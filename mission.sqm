@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={15995.938,66.61116,19543.533};
-		dir[]={0.039259721,-0.78736836,0.61526966};
-		up[]={0.050140198,0.61643302,0.7858029};
-		aside[]={0.99799156,4.4186527e-07,-0.063682549};
+		pos[]={5221.0874,459.64273,2471.2813};
+		dir[]={0.62512559,-0.1878521,0.75758141};
+		up[]={0.11955963,0.98219728,0.14489272};
+		aside[]={0.77131283,-7.4505806e-09,-0.63645613};
 	};
 };
 binarizationWanted=0;
@@ -135,13 +135,13 @@ class ScenarioData
 	author="Jezuro+WSV";
 	overviewText="Warlords Redux introduces hundreds of improvements of the original Warlords.";
 	overViewPicture="img\wl_logo_ca.paa";
-	wreckManagerMode=1;
-	wreckLimit=10;
-	wreckRemovalMaxTime=300;
 	corpseManagerMode=2;
 	corpseLimit=60;
 	corpseRemovalMinTime=300;
 	corpseRemovalMaxTime=1800;
+	wreckManagerMode=1;
+	wreckLimit=10;
+	wreckRemovalMaxTime=300;
 	minPlayerDistance=1000;
 };
 class Mission
@@ -1236,7 +1236,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={9198.4805,16.548729,21565.646};
-			angle=0.93116736;
+			angle=0.9311673;
 			class Attributes
 			{
 				sizeA=150;
@@ -9189,7 +9189,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={23059.529,49.055279,7274.6079};
-			angle=3.9814072;
+			angle=3.9814067;
 			class Attributes
 			{
 				sizeA=150;
@@ -9242,7 +9242,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={22753.467,18.265915,13577.189};
-			angle=3.9814072;
+			angle=3.9814067;
 			class Attributes
 			{
 				sizeA=150;
@@ -11657,6 +11657,7 @@ class Mission
 					};
 					id=1603;
 					type="O_Soldier_TL_F";
+					atlOffset=-5.7220459e-06;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -11693,6 +11694,7 @@ class Mission
 			{
 			};
 			id=1602;
+			atlOffset=-5.7220459e-06;
 		};
 		class Item393
 		{
