@@ -28,6 +28,9 @@ if (_isAircraft) then {
     private _currentMags = magazinesAllTurrets _asset;
     _defaultMags sort true;
     _currentMags sort true;
+    if (count _defaultMags == 0) then { 
+        _eligibleFreeRearm = false;
+    };
 
     {
         if (_forEachIndex >= count _defaultMags) exitWith {
