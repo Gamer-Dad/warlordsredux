@@ -1,6 +1,14 @@
 params ["_asset", "_isAircraft"];
 
-private _eligibleFreeRearm = true;
+
+
+private _rearmCount =  _asset getVariable ["BIS_WL_rearmCount", -1];
+private _eligibleFreeRearm = false;
+/*if(_rearmCount == 0) then {
+    _eligibleFreeRearm = true;
+};*/
+if(_rearmCount == 0) exitWith { true };
+
 if (_isAircraft) then {
     private _currentPylonInfo = getAllPylonsInfo _asset;
     {

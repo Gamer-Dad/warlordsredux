@@ -411,6 +411,8 @@ _asset spawn {
 	params ["_asset"];
     private _display = findDisplay WLM_DISPLAY;
     private _rearmButtonControl = _display displayCtrl WLM_REARM_BUTTON;
+    private _isAircraft = uiNamespace getVariable ["WLM_assetIsAircraft", false];
+
 	while {!isNull _display} do {
 		private _cooldown = (((_asset getVariable "BIS_WL_nextRearm") - serverTime) max 0);
 		private _nearbyVehicles = (_asset nearObjects ["All", WL_MAINTENANCE_RADIUS]) select { alive _x };
@@ -427,7 +429,7 @@ _asset spawn {
 		_rearmButtonControl ctrlSetText _rearmText;
 
         private _applyButtonControl = _display displayCtrl WLM_APPLY_BUTTON;
-        private _isAircraft = uiNamespace getVariable ["WLM_assetIsAircraft", false];
+
         private _eligibleFreeRearm = [_asset, _isAircraft] call WLM_fnc_calculateFreeRearmEligibility;
         if (_eligibleFreeRearm) then {
             _applyButtonControl ctrlSetText (localize "STR_WLM_APPLY_FREE");

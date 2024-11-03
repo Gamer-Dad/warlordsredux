@@ -278,8 +278,12 @@ if (isPlayer _owner) then {
 		};
 	};
 
-	private _rearmTime = (missionNamespace getVariable "WL2_rearmTimers") getOrDefault [(typeOf _asset), 600];
-	_asset setVariable ["BIS_WL_nextRearm", serverTime + _rearmTime];
+	if (!(_asset isKindOf "Man")) then {
+		private _rearmTime = (missionNamespace getVariable "WL2_rearmTimers") getOrDefault [(typeOf _asset), 600];
+		_asset setVariable ["BIS_WL_nextRearm", serverTime + _rearmTime];
+		_asset setVariable ["BIS_WL_rearmCount", 0];
+	};
+	
 
 	if (_asset call DIS_fnc_Check) then {
 		_asset spawn DIS_fnc_RegisterLauncher;
