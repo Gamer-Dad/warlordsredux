@@ -58,6 +58,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
@@ -82,6 +83,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
@@ -106,6 +108,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
     };  // "Mk32 GMG 20 mm"
 
     class O_GMG_01_high_F {
@@ -113,6 +116,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
     };  // "Mk32 GMG 20 mm (Raised)"
 
     class O_HMG_01_A_F {
@@ -121,6 +125,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 150;
+        loadable = 1;
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
@@ -146,6 +151,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 150;
+        loadable = 1;
     };
 
     class O_static_AT_F {
@@ -153,6 +159,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
@@ -179,6 +186,7 @@ class Defences {
         requirements[] = {};
         rearm = 300;
         killReward = 100;
+        loadable = 1;
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
@@ -205,6 +213,7 @@ class Defences {
         requirements[] = {};
         rearm = 900;
         killReward = 125;
+        loadable = 1;
     };  // "Mortar"
 
     class O_UGV_02_Demining_F {
@@ -247,6 +256,7 @@ class Defences {
         requirements[] = {};
         offset[] = {0, 7, 0};
         killReward = 350;
+        loadable = 1;
     };  // "R-750 Cronus Radar"
 
     class B_AAA_System_01_F {
@@ -255,6 +265,7 @@ class Defences {
         offset[] = {0, 5.3, 0};
         rearm = 300;
         killReward = 400;
+        loadable = 1;
     };  // "Praetorian 1C"
 
     class B_SAM_System_01_F {
@@ -263,6 +274,7 @@ class Defences {
         offset[] = {0, 5.3, 0};
         rearm = 600;
         killReward = 500;
+        loadable = 1;
     };  // "Mk49 Spartan"
 
     class O_SAM_System_04_F {
@@ -271,6 +283,7 @@ class Defences {
         offset[] = {0, 6, 0};
         rearm = 450;
         killReward = 500;
+        loadable = 1;
     };  // "S-750 Rhea"
 
     class B_SAM_System_02_F {
@@ -279,6 +292,7 @@ class Defences {
         offset[] = {0, 5.3, 0};
         rearm = 600;
         killReward = 600;
+        loadable = 1;
     };  // "Mk21 Centurion"
 /*
     class B_Ship_MRLS_01_F {

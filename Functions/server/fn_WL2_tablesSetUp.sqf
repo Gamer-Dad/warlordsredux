@@ -12,6 +12,7 @@ private _capValueHashMap = createHashMap;
 private _apsHashMap = createHashMap;
 private _garbageCollectHashMap = createHashMap;
 private _demolishableHashMap = createHashMap;
+private _loadableHashMap = createHashMap;
 
 private _populateUnitPoolList = [];
 private _populateVehiclePoolList = [];
@@ -42,6 +43,7 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 
 				private _requisitionGarbageCollect = getNumber (_x >> "garbageCollect");
 				private _requisitionDemolishable = getNumber (_x >> "demolishable");
+				private _requisitionLoadable = getNumber (_x >> "loadable");
 
 				private _requisitionDisallowMagazines = getArray (_x >> "disallowMagazines");
 				private _requisitionAllowPylonMagazines = getArray (_x >> "allowPylonMagazines");
@@ -88,6 +90,10 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 					_demolishableHashMap set [_requistitonName, true];
 				};
 
+				if (_requisitionLoadable != 0) then {
+					_loadableHashMap set [_requistitonName, true];
+				};
+
 				if (_requisitionUnitSpawn != 0) then {
 					_populateUnitPoolList pushBack _requistitonName;
 				};
@@ -132,6 +138,7 @@ missionNamespace setVariable ["WL2_aps", _apsHashMap, true];
 
 serverNamespace setVariable ["WL2_staticsGarbageCollector", _garbageCollectHashMap];
 missionNamespace setVariable ["WL2_demolishable", _demolishableHashMap, true];
+missionNamespace setVariable ["WL2_loadable", _loadableHashMap, true];
 missionNamespace setVariable ["WL2_structure", _structureHashMap, true];
 
 serverNamespace setVariable ["WL2_populateUnitPoolList", _populateUnitPoolList];
