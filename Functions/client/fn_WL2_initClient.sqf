@@ -566,6 +566,41 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 
 		sleep 0.5;
 	};
+};
+
+comment "Magazine Repack";
+// Event Listener to Detect Inventory UI Open
+["MAZ_inventoryUIOpened", "onEachFrame", {
+    if (!isNull (findDisplay 602)) then {
+        ["inventoryOpened"] call MAZ_fnc_initializeUI;
+    };
+}] call BIS_fnc_addStackedEventHandler;
+
+// Initialize the Button and UI Elements
+MAZ_fnc_initializeUI = {
+    params ["_context"]; // Optionally pass context like "inventoryOpened" or custom triggers
+
+    if (_context == "inventoryOpened") then {
+        // Create Repack Button
+        with uiNamespace do {
+            private _repackButton = (findDisplay 602) ctrlCreate ["RscButtonMenu", 1600];
+            _repackButton ctrlSetBackgroundColor [0, 0, 0, 0.6];
+            _repackButton ctrlSetPosition [
+                0.433069 * safeZoneW + safeZoneX, 
+                0.7545 * safeZoneH + safeZoneY, 
+                0.3025 * safeZoneW, 
+                0.027 * safeZoneH
+            ];
+            _repackButton ctrlSetEventHandler ["ButtonClick", "0 spawn MAZ_fnc_repackMagazines"];
+            _repackButton ctrlSetStructuredText parseText "<t size='0.05'>&#160;</t><br/><t align='center' size='1.01'>Repack Magazines</t>";
+            _repackButton ctrlSetFont "PuristaSemiBold";
+            _repackButton ctrlCommit 0;
+        };
+
+        showChat true; // Ensure chat visibility for debugging or user feedback
+    };
+};
+
 MAZ_fnc_repackMagazines = {
 	private _allMags = magazinesAmmoFull player;
 	private _primWep = primaryWeapon player;
