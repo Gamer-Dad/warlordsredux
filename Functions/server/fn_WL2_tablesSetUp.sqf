@@ -145,6 +145,7 @@ missionNamespace setVariable ["WL2_turretOverrides", _turretOverridesHashMap, tr
 
 serverNamespace setVariable ["garbageCollector",
 	createHashMapFromArray [
+		["Steerable_Parachute_F", true],
 		["B_Ejection_Seat_Plane_Fighter_01_F", true],
 		["O_Ejection_Seat_Plane_Fighter_02_F", true],
 		["I_Ejection_Seat_Plane_Fighter_03_F", true],

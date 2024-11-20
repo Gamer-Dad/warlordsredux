@@ -367,4 +367,33 @@ if (isPlayer _owner) then {
 	if (_structure getOrDefault [typeOf _asset, false]) then {
 		_asset setVariable ["WL_structure", true, 2];
 	};
+
+	private _parachuteCount = count ((backpackCargo _asset) select {_x == "B_Parachute"});
+	if (_parachuteCount > 0) then {
+		_asset addEventHandler ["GetOut", {
+			params ["_vehicle", "_role", "_unit", "_turret", "_isEject"];
+
+			if (!_isEject) exitWith {};
+
+
+			[_vehicle, _unit] spawn {
+				params ["_vehicle", "_unit"];
+
+				private _height = (getPos _unit) # 2;
+				private _distance = _vehicle distance _unit;
+
+				waitUntil {
+					sleep 1;
+					_height = (getPos _unit) # 2;
+					_distance = _vehicle distance _unit;
+					_height < 5 || _distance > 10 || !alive _unit || !alive _vehicle;
+				};
+
+				if (_height > 5 && alive _unit) then {
+					private _parachute = createVehicle ["Steerable_Parachute_F", position _unit, [], 0, "CAN_COLLIDE"];
+					_unit moveInDriver _parachute;
+				};
+			};
+		}];
+	};
 };
