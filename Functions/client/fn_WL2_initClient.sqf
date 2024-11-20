@@ -88,16 +88,26 @@ BIS_fnc_WL2_sub_vehicleLockAction = compileFinal preprocessFileLineNumbers "Func
 
 MRTM_fnc_settingsinit = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_settingsinit.sqf";
 
-waitUntil {!isNull player && {isPlayer player}};
+waitUntil {
+	!isNull player && {
+		isPlayer player
+	}
+};
 missionNamespace setVariable ["voteLocked", false];
 player setVariable ["voteLocked", false, true];
 
 "client" call BIS_fnc_WL2_varsInit;
-waitUntil {!(isNil "BIS_WL_playerSide")};
+waitUntil {
+	!(isNil "BIS_WL_playerSide")
+};
 if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 	private _uid = getPlayerUID player;
 	private _switch = format ["teamBlocked_%1", _uid];
-	waitUntil {!isNil {missionNamespace getVariable _switch}};
+	waitUntil {
+		!isNil {
+			missionNamespace getVariable _switch
+		}
+	};
 	if (missionNamespace getVariable _switch) exitWith {
 		addMissionEventHandler ["EachFrame", {
 			clearRadio;
@@ -113,15 +123,23 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		0 fadeRadio 0;
 		{
 			_x setPlayerVoNVolume 1;
-		} forEach allPlayers select {side _x == side player};
-		{_x enableChannel [false, false]} forEach [0,1,2,3,4,5];
+		} forEach allPlayers select {
+			side _x == side player
+		};
+		{
+			_x enableChannel [false, false]
+		} forEach [0, 1, 2, 3, 4, 5];
 		missionNamespace setVariable [_switch, nil];
 		[localize "STR_A3_WL_switch_teams", localize "STR_A3_WL_switch_teams_info"] call BIS_fnc_WL2_blockScreen;
 	};
 	missionNamespace setVariable [_switch, nil];
 
 	private _imb = format ["balanceBlocked_%1", _uid];
-	waitUntil {!isNil {missionNamespace getVariable _imb}};
+	waitUntil {
+		!isNil {
+			missionNamespace getVariable _imb
+		}
+	};
 	if (missionNamespace getVariable _imb) exitWith {
 		addMissionEventHandler ["EachFrame", {
 			clearRadio;
@@ -137,8 +155,12 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		0 fadeRadio 0;
 		{
 			_x setPlayerVoNVolume 1;
-		} forEach allPlayers select {side _x == side player};
-		{_x enableChannel [false, false]} forEach [0,1,2,3,4,5];
+		} forEach allPlayers select {
+			side _x == side player
+		};
+		{
+			_x enableChannel [false, false]
+		} forEach [0, 1, 2, 3, 4, 5];
 		missionNamespace setVariable [_imb, nil];
 		["Teams are imbalanced!", "It seems that the teams are not balanced, please head back to the lobby and join the other team, Thank you."] call BIS_fnc_WL2_blockScreen;
 	};
@@ -146,7 +168,9 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 
 	_text = toLower (name player);
 	_list = getArray (missionConfigFile >> "adminFilter");
-	if ((_list findIf {[_x, _text] call BIS_fnc_inString}) != -1) exitWith {
+	if ((_list findIf {
+		[_x, _text] call BIS_fnc_inString
+	}) != -1) exitWith {
 		["client_init"] call BIS_fnc_endLoadingScreen;
 		player removeItem "ItemMap";
 		player removeItem "ItemRadio";
@@ -155,7 +179,9 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		enableSentences false;
 		0 fadeSpeech 0;
 		0 fadeRadio 0;
-		{_x enableChannel [false, false]} forEach [0,2,3,4,5];
+		{
+			_x enableChannel [false, false]
+		} forEach [0, 2, 3, 4, 5];
 		[localize "STR_A3_nameFilter", localize "STR_A3_nameFilter_info"] call BIS_fnc_WL2_blockScreen;
 	};
 };
@@ -175,20 +201,24 @@ if !((count _penaltyCheck) == 0) then {
 		profileNameSpace setVariable ["teamkill_penalty", nil];
 		saveProfileNamespace;
 	};
-	if ((_penaltySessionID == _sessionID ) && (_penaltyEnd > 0)) exitwith {
+	if ((_penaltySessionID == _sessionID ) && (_penaltyEnd > 0)) exitWith {
 		_penaltyEnd spawn BIS_fnc_WL2_friendlyFireHandleClient;
 	};
 };
 
 enableRadio true;
 enableSentences true;
-{_x enableChannel [true, true]} forEach [1,3,4,5];
-{_x enableChannel [true, false]} forEach [0,2];
+{
+	_x enableChannel [true, true]
+} forEach [1, 3, 4, 5];
+{
+	_x enableChannel [true, false]
+} forEach [0, 2];
 enableEnvironment [false, true];
 
 call MRTM_fnc_settingsInit;
 
-uiNamespace setVariable ["BIS_WL_purchaseMenuLastSelection", [0,0,0]];
+uiNamespace setVariable ["BIS_WL_purchaseMenuLastSelection", [0, 0, 0]];
 uiNamespace setVariable ["activeControls", []];
 uiNamespace setVariable ["control", 10000];
 
@@ -235,12 +265,17 @@ player spawn APS_fnc_SetupProjectiles;
 call BIS_fnc_WL2_sub_arsenalSetup;
 
 0 spawn {
-	waitUntil {uiSleep 0.1; !isNull (uiNamespace getVariable ["BIS_WL_mapControl", controlNull])};
+	waitUntil {
+		uiSleep 0.1;
+		!isNull (uiNamespace getVariable ["BIS_WL_mapControl", controlNull])
+	};
 	(uiNamespace getVariable ["BIS_WL_mapControl", controlNull]) ctrlMapAnimAdd [0, 0.35, (BIS_WL_playerSide call BIS_fnc_WL2_getSideBase)];
 	ctrlMapAnimCommit (uiNamespace getVariable ["BIS_WL_mapControl", controlNull]);
 };
 
-{_x setMarkerAlphaLocal 0} forEach BIS_WL_sectorLinks;
+{
+	_x setMarkerAlphaLocal 0
+} forEach BIS_WL_sectorLinks;
 
 call BIS_fnc_WL2_refreshCurrentTargetData;
 call BIS_fnc_WL2_sceneDrawHandle;
@@ -253,16 +288,41 @@ call BIS_fnc_WL2_targetResetHandle;
 
 0 spawn {
 	_uid = getPlayerUID player;
-	_selectedCnt = count ((groupSelectedUnits player) select {_x != player && {(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid}});
-	while {!BIS_WL_missionEnd} do {
-		waitUntil {sleep 1; count ((groupSelectedUnits player) select {_x != player && {(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid}}) != _selectedCnt};
-		_selectedCnt = count ((groupSelectedUnits player) select {_x != player && {(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid}});
+	_selectedCnt = count ((groupSelectedUnits player) select {
+		_x != player && {
+			(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid
+		}
+	});
+	while { !BIS_WL_missionEnd } do {
+		waitUntil {
+			sleep 1;
+			count ((groupSelectedUnits player) select {
+				_x != player && {
+					(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid
+				}
+			}) != _selectedCnt
+		};
+		_selectedCnt = count ((groupSelectedUnits player) select {
+			_x != player && {
+				(_x getVariable ["BIS_WL_ownerAsset", "123"]) == _uid
+			}
+		});
 		call BIS_fnc_WL2_sub_purchaseMenuRefresh;
 	};
 };
 
-[player, "maintenance", {(player nearObjects ["All", 30]) findIf {(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportRepair") > 0) || {(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportAmmo") > 0)}} != -1}] call BIS_fnc_WL2_hintHandle;
-[player, "nearSL", {(player distance2D (leader group player) <= 200) && {player != (leader group player)}}] call BIS_fnc_WL2_hintHandle;
+[player, "maintenance", {
+	(player nearObjects ["All", 30]) findIf {
+		(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportRepair") > 0) || {
+			(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportAmmo") > 0)
+		}
+	} != -1
+}] call BIS_fnc_WL2_hintHandle;
+[player, "nearSL", {
+	(player distance2D (leader group player) <= 200) && {
+		player != (leader group player)
+	}
+}] call BIS_fnc_WL2_hintHandle;
 
 0 spawn BIS_fnc_WL2_selectedTargetsHandle;
 0 spawn BIS_fnc_WL2_targetSelectionHandleClient;
@@ -279,7 +339,7 @@ private _fncEarPlugs = compile preprocessFileLineNumbers "scripts\GF_Earplugs\GF
 0 spawn {
 	_markers = BIS_WL_playerSide call BIS_fnc_WL2_getRespawnMarkers;
 	_respawnPos = markerPos selectRandom _markers;
-	while {player distance2D _respawnPos > 300} do {
+	while { player distance2D _respawnPos > 300 } do {
 		player setVehiclePosition [_respawnPos, [], 0, "NONE"];
 		sleep 1;
 	};
@@ -287,7 +347,7 @@ private _fncEarPlugs = compile preprocessFileLineNumbers "scripts\GF_Earplugs\GF
 
 0 spawn {
 	WL_ORIGINAL_SPEAKER = speaker player;
-	while {!BIS_WL_missionEnd} do {
+	while { !BIS_WL_missionEnd } do {
 		sleep 5;
 		private _noVoice = profileNamespace getVariable ["MRTM_noVoiceSpeaker", false];
 		if (_noVoice) then {
@@ -300,7 +360,7 @@ private _fncEarPlugs = compile preprocessFileLineNumbers "scripts\GF_Earplugs\GF
 
 0 spawn {
 	private _ownedVehicleVar = format ["BIS_WL_ownedVehicles_%1", getPlayerUID player];
-	while {!BIS_WL_missionEnd} do {
+	while { !BIS_WL_missionEnd } do {
 		private _vehicles = missionNamespace getVariable [_ownedVehicleVar, []];
 		{
 			private _lastActiveTime = _x getVariable ["BIS_WL_lastActive", 0];
@@ -310,7 +370,9 @@ private _fncEarPlugs = compile preprocessFileLineNumbers "scripts\GF_Earplugs\GF
 			};
 		} forEach _vehicles;
 
-		_vehicles = _vehicles select {alive _x};
+		_vehicles = _vehicles select {
+			alive _x
+		};
 		missionNamespace setVariable [_ownedVehicleVar, _vehicles, [2, clientOwner]];
 		sleep 10;
 	};
@@ -319,12 +381,16 @@ private _fncEarPlugs = compile preprocessFileLineNumbers "scripts\GF_Earplugs\GF
 if !(["(EU) #11", serverName] call BIS_fnc_inString) then {
 	player addAction [
 		"10K CP",
-		{[player, "10K"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];}
+		{
+			[player, "10K"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
+		}
 	];
 };
 
 private _squadActionText = format ["<t color='#00FFFF'>%1</t>", localize "STR_SQUADS_squads"];
-private _squadActionId = player addAction[_squadActionText, { [true] call SQD_fnc_menu }, [], -100, false, false, "", ""];
+private _squadActionId = player addAction[_squadActionText, {
+	[true] call SQD_fnc_menu
+}, [], -100, false, false, "", ""];
 player setUserActionText [_squadActionId, _squadActionText, "<img size='2' image='\a3\ui_f\data\igui\cfg\simpletasks\types\meet_ca.paa'/>"];
 
 0 spawn BIS_fnc_WL2_factionBasedClientInit;
@@ -345,30 +411,30 @@ call BIS_fnc_WL2_pingFixInit;
 0 spawn MRTM_fnc_settingsMenu;
 missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player],
 	createHashMapFromArray [
-		//***Automatic mines***/
-		["APERSMine_Range_Ammo", 				[10, []]],
-		["APERSTripMine_Wire_Ammo", 			[10, []]],
-		["APERSBoundingMine_Range_Ammo", 		[10, []]],
-		["ATMine_Range_Ammo", 					[10, []]],
-		["SLAMDirectionalMine_Wire_Ammo", 		[10, []]],
-		//***Manually Detonated***/
-		["ClaymoreDirectionalMine_Remote_Ammo",	[5,  []]],
-		["SatchelCharge_Remote_Ammo", 			[5,  []]],
-		["DemoCharge_Remote_Ammo", 				[5,  []]]
-		//***Blacklisted***/
+		// ***Automatic mines***/
+		["APERSMine_Range_Ammo", [10, []]],
+		["APERSTripMine_Wire_Ammo", [10, []]],
+		["APERSBoundingMine_Range_Ammo", [10, []]],
+		["ATMine_Range_Ammo", [10, []]],
+		["SLAMDirectionalMine_Wire_Ammo", [10, []]],
+		// ***Manually Detonated***/
+		["ClaymoreDirectionalMine_Remote_Ammo", [5, []]],
+		["SatchelCharge_Remote_Ammo", [5, []]],
+		["DemoCharge_Remote_Ammo", [5, []]]
+		// ***Blacklisted***/
 		/*
-		["APERSMineDispenser_Mine_Ammo", 		[0,  []]],
-		["IEDUrbanSmall_Remote_Ammo", 			[0,  []]],
-		["IEDLandSmall_Remote_Ammo", 			[0,  []]],
-		["IEDUrbanBig_Remote_Ammo", 			[0,  []]],
-		["IEDLandBig_Remote_Ammo",				[0,  []]]
+			["APERSMineDispenser_Mine_Ammo", [0, []]], 
+			["IEDUrbanSmall_Remote_Ammo", [0, []]], 
+			["IEDLandSmall_Remote_Ammo", [0, []]], 
+			["IEDUrbanBig_Remote_Ammo", [0, []]], 
+			["IEDLandBig_Remote_Ammo", [0, []]]
 		*/
 	],
 	[2, clientOwner]
 ];
 
 0 spawn {
-	while {!BIS_WL_missionEnd} do {
+	while { !BIS_WL_missionEnd } do {
 		{
 			private _uav = _x;
 			private _ownerUavAsset = _uav getVariable ["BIS_WL_ownerUavAsset", "123"];
@@ -397,7 +463,7 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 0 spawn {
 	private _previousState = BIS_WL_currentSelection;
 	private _lastFullUpdate = -1;
-	while {!BIS_WL_missionEnd} do {
+	while { !BIS_WL_missionEnd } do {
 		sleep 0.1;
 		if (_previousState == BIS_WL_currentSelection && _lastFullUpdate + 2 > serverTime) then {
 			continue;
@@ -420,7 +486,9 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 				BIS_WL_selection_dimSectors = true;
 			};
 			case WL_ID_SELECTION_FAST_TRAVEL: {
-				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 2) select {(_x getVariable ["BIS_WL_owner", independent]) == (side (group player))};
+				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 2) select {
+					(_x getVariable ["BIS_WL_owner", independent]) == (side (group player))
+				};
 				BIS_WL_selection_showLinks = false;
 				BIS_WL_selection_dimSectors = true;
 			};
@@ -430,14 +498,18 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 				BIS_WL_selection_dimSectors = true;
 			};
 			case WL_ID_SELECTION_ORDERING_AIRCRAFT: {
-				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 0) select {BIS_WL_orderedAssetRequirements isEqualTo (BIS_WL_orderedAssetRequirements arrayIntersect (_x getVariable "BIS_WL_services"))};
+				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 0) select {
+					BIS_WL_orderedAssetRequirements isEqualTo (BIS_WL_orderedAssetRequirements arrayIntersect (_x getVariable "BIS_WL_services"))
+				};
 				BIS_WL_selection_showLinks = false;
 				BIS_WL_selection_dimSectors = true;
 			};
 			case WL_ID_SELECTION_SCAN: {
 				private _allScannableSectors = BIS_WL_sectorsArray # 3;
 				private _lastScanEligible = serverTime - (getMissionConfigValue ["BIS_WL_scanCooldown", 300]);
-				private _availableSectors = _allScannableSectors select {_x getVariable [format ["BIS_WL_lastScanEnd_%1", BIS_WL_playerSide], -9999] < _lastScanEligible};
+				private _availableSectors = _allScannableSectors select {
+					_x getVariable [format ["BIS_WL_lastScanEnd_%1", BIS_WL_playerSide], -9999] < _lastScanEligible
+				};
 				BIS_WL_selection_availableSectors = _availableSectors;
 				BIS_WL_selection_showLinks = false;
 				BIS_WL_selection_dimSectors = true;
@@ -480,12 +552,16 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 	_scoreControl ctrlSetPosition [_displayX - (_blockW * 110), _displayY - (_blockH * 16 * 3 + _blockH * 30), _blockW * 160, _blockH * 16 * 4];
 	_scoreControl ctrlCommit 0;
 
-	while {!BIS_WL_missionEnd} do {
+	while { !BIS_WL_missionEnd } do {
 		private _killRewards = missionNamespace getVariable ["WL_killReward", []];
-		_killRewards = _killRewards select { ((_x # 1) + 10) > serverTime };
+		_killRewards = _killRewards select {
+			((_x # 1) + 10) > serverTime
+		};
 		missionNamespace setVariable ["WL_killReward", _killRewards];
 
-		private _killText = (_killRewards apply { _x # 0 }) joinString "<br />";
+		private _killText = (_killRewards apply {
+			_x # 0
+		}) joinString "<br />";
 		_scoreControl ctrlSetStructuredText parseText _killText;
 
 		sleep 0.5;
