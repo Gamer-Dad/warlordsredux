@@ -25,16 +25,6 @@ while { !BIS_WL_missionEnd } do {
 	if (_winningScore == 0) then {
 		_winner = _originalOwner;
 	};
-	
-	if ((_winner == _originalOwner) && (_captureProgress <= 0) || ((_originalOwner != independent) && _winner == independent)) then {
-		sleep 2;
-		continue;
-	};
-
-	if ((_winner == _originalOwner) && (_captureProgress <= 0) || ((_originalOwner != independent) && _winner == independent)) then {
-		sleep 2;
-		continue;
-	};
 
 	if (_winner == _capturingTeam) then {
 		if (_capturingTeam != _originalOwner) then {
@@ -62,6 +52,10 @@ while { !BIS_WL_missionEnd } do {
 		_sector setVariable ["BIS_WL_capturingTeam", _capturingTeam, true];
 	};
 
+	if ((_winner == _originalOwner) && (_captureProgress <= 0) || ((_originalOwner != independent) && _winner == independent)) then {
+		sleep 2;
+	} else {
+		sleep 0.2;
+	};
 	// systemChat format ["Sector %1 | Owner: %2, Capturing Team: %3, Progress: %4", _sector getVariable ["BIS_WL_name", "Unknown"], _sector getVariable ["BIS_WL_owner", "Unknown"], _sector getVariable ["BIS_WL_capturingTeam", "Unknown"], _sector getVariable ["BIS_WL_captureProgress", 0]];
-	sleep 0.2;
 };
