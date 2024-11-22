@@ -1,6 +1,7 @@
-params ["_sender", "_pos", "_class", "_cost"];
+params ["_sender", "_pos", "_orderedClass", "_cost"];
 
 if !(isServer) exitWith {};
+private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 private _owner = owner _sender;
 _uid = getPlayerUID _sender;
@@ -56,5 +57,6 @@ if (count _smallFlareMags == 1) then {
 
 _asset setVariable ["BIS_WL_ownerAsset", _uid, [2, _owner]];
 [_asset] call BIS_fnc_WL2_lastHitHandler;
+_asset setVariable ["WL2_orderedClass", _orderedClass, true];
 [_asset, _sender] remoteExec ["BIS_fnc_WL2_newAssetHandle", _owner];
 _sender setVariable ["BIS_WL_isOrdering", false, [2, _owner]];

@@ -29,6 +29,7 @@ if (_showWarning) exitWith {
 };
 
 private _asset = uiNamespace getVariable "WLM_asset";
-private _variableName = format ["WLM_savedLoadout_%1", typeOf _asset];
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+private _variableName = format ["WLM_savedLoadout_%1", _assetActualType];
 profileNamespace setVariable [_variableName, []];
 call WLM_fnc_constructPresetMenu;

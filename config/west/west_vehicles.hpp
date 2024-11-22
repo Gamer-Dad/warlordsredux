@@ -87,8 +87,9 @@ class Vehicles {
         };
     }; // "Prowler (AT)"
 
-    class B_T_LSV_01_AT_F {
+    class B_LSV_01_AT_UP_F {
         name = "Prowler (AT UP)";
+        spawn = "B_LSV_01_AT_F";
         cost = 1000;
         requirements[] = {};
         rearm = 200;
@@ -153,8 +154,9 @@ class Vehicles {
         aps = 1;
     }; // "Hunter GMG"
 
-    class B_T_MRAP_01_gmg_F {
+    class B_MRAP_01_gmg_up_F {
         name = "Hunter UP Autocannon";
+        spawn = "B_MRAP_01_gmg_F";
         cost = 1700;
         requirements[] = {};
         rearm = 300;
@@ -272,8 +274,9 @@ class Vehicles {
         aps = 2;
     }; // "AMV-7 Marshall"
 
-    class B_T_APC_Wheeled_01_cannon_F {
+    class B_APC_Wheeled_01_cannon_up_F {
         name = "AMV-7 Marshall UP";
+        spawn = "B_APC_Wheeled_01_cannon_F";
         cost = 3500;
         requirements[] = {};
         rearm = 500;
@@ -335,8 +338,9 @@ class Vehicles {
         };
     }; // "IFV-6a Cheetah"
 
-    class B_T_APC_Tracked_01_AA_F {
+    class B_APC_Tracked_01_AA_UP_F {
         name = "IFV-6X Puma";
+        spawn = "B_APC_Tracked_01_AA_F";
         cost = 9000;
         requirements[] = {};
         rearm = 450;
@@ -409,8 +413,9 @@ class Vehicles {
         };
     }; // "M2A1 Slammer UP"
 
-    class B_T_MBT_01_TUSK_F {
+    class B_MBT_01_TUSK_Railgun_F {
         name = "M2X Slammer (Railgun)";
+        spawn = "B_MBT_01_TUSK_F";
         cost = 13000;
         requirements[] = {};
         rearm = 600;

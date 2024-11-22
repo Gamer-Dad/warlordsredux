@@ -358,7 +358,8 @@ if (isPlayer _owner) then {
 	};
 
 	private _demolishable = missionNamespace getVariable ["WL2_demolishable", createHashMap];
-	if (_demolishable getOrDefault [typeOf _asset, false]) then {
+	private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+	if (_demolishable getOrDefault [_assetActualType, false]) then {
 		_asset setVariable ["WL_demolishTurnsLeft", 4, true];
 		[_asset] remoteExec ["BIS_fnc_WL2_sub_demolish", 0, true];
 	};

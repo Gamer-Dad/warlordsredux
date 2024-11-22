@@ -101,8 +101,9 @@ class Vehicles {
         };
     }; // "Qilin (AT)"
 
-    class O_T_LSV_02_AT_F {
+    class O_LSV_02_AT_M_F {
         name = "Qilin (AT-M)";
+        spawn = "O_LSV_02_AT_F";
         cost = 750;
         requirements[] = {};
         rearm = 200;
@@ -176,8 +177,9 @@ class Vehicles {
         aps = 1;
     }; // "Ifrit GMG"
 
-    class O_T_MRAP_02_gmg_ghex_F {
+    class O_MRAP_02_gmg_m_F {
         name = "Ifrit-M Autocannon";
+        spawn = "O_MRAP_02_gmg_F";
         cost = 1700;
         requirements[] = {};
         rearm = 300;
@@ -236,8 +238,9 @@ class Vehicles {
         aps = 2;
     }; // "MSE-3 Marid"
 
-    class O_T_APC_Wheeled_02_rcws_v2_ghex_F {
+    class O_APC_Wheeled_02_rcws_v2_m_F {
         name = "MSE-3M Marid Autocannon";
+        spawn = "O_APC_Wheeled_02_rcws_v2_F";
         cost = 3700;
         requirements[] = {};
         rearm = 500;
@@ -319,8 +322,9 @@ class Vehicles {
         };
     }; // "ZSU-39 Tigris"
 
-    class O_T_APC_Tracked_02_AA_ghex_F {
+    class O_APC_Tracked_02_AA_M_F {
         name = "ZSU-49 Euphrates";
+        spawn = "O_APC_Tracked_02_AA_F";
         cost = 9000;
         requirements[] = {};
         rearm = 450;

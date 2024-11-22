@@ -21,7 +21,8 @@ uiNamespace setVariable ["WLM_assetIsAircraft", _isAircraft];
 disableSerialization;
 
 private _nameOverrides = missionNamespace getVariable ["WL2_nameOverrides", createHashMap];
-private _nameOverride = _nameOverrides getOrDefault [typeof _asset, ""];
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+private _nameOverride = _nameOverrides getOrDefault [_assetActualType, ""];
 private _assetTypeName = if (_nameOverride != "") then {
     _nameOverride
 } else {

@@ -19,7 +19,8 @@ if (!_isAircraft) then {
     _loadSelectControl lbSetTooltip [_defaultSelection, localize "STR_WLM_RESET_TOOLTIP"];
 };
 
-private _variableName = format ["WLM_savedLoadout_%1", typeOf _asset];
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+private _variableName = format ["WLM_savedLoadout_%1", _assetActualType];
 private _savedLoadouts = profileNamespace getVariable [_variableName, []];
 
 {

@@ -50,7 +50,9 @@ private _savedLoadoutHandled = FALSE;
 
 			{
 				_className = configName _x;
-				_class = configFile >> "CfgVehicles" >> _className;
+				_actualClassName = getText (_x >> "spawn");
+				if (_actualClassName == "") then {_actualClassName = _className};
+				_class = configFile >> "CfgVehicles" >> _actualClassName;
 				_cost = getNumber (_x >> "cost");
 				_requirements = getArray (_x >> "requirements");
 				_offset = getArray (_x >> "offset");

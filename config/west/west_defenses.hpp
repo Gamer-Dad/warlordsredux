@@ -201,8 +201,9 @@ class Defences {
         };
     }; // "Static Titan Launcher (AA) [NATO]"
 
-    class B_T_Static_AA_F {
+    class B_static_AA_UP_F {
         name = "Static AA Launcher (UP)";
+        spawn = "B_static_AA_F";
         cost = 600;
         requirements[] = {};
         rearm = 300;
@@ -257,8 +258,9 @@ class Defences {
         killReward = 100;
     }; // "UGAS"
 
-    class B_T_UGV_01_rcws_olive_F {
+    class B_UGV_01_rcws_UP_F {
         name = "UGV Stomper UP";
+        spawn = "B_UGV_01_rcws_F";
         cost = 1500;
         requirements[] = {};
         offset[] = {0, 3, 0};
@@ -289,8 +291,9 @@ class Defences {
         killReward = 100;
     }; // AR-2
 
-    class I_UAV_01_F {
+    class B_UAV_01_UP_F {
         name = "AR-2 Darter UP";
+        spawn = "B_UAV_01_F";
         cost = 1200;
         requirements[] = {};
         killReward = 200;
@@ -300,14 +303,29 @@ class Defences {
             removeMagazines[] = {};
             removeWeapons[] = {};
             addMagazines[] = {
-                "200Rnd_65x39_cased_Box_Tracer",
-                "200Rnd_65x39_cased_Box_Tracer",
-                "200Rnd_65x39_cased_Box_Tracer",
-                "200Rnd_65x39_cased_Box_Tracer",
-                "200Rnd_65x39_cased_Box_Tracer"
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
+                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow"
             };
             addWeapons[] = {
-                "LMG_Mk200_F"
+                "SMG_01_F"
             };
         };
     };

@@ -12,11 +12,12 @@ private _display = findDisplay WLM_DISPLAY;
 
 private _myPreset = if (_isAircraft) then {
     private _pylonConfig = configFile >> "CfgVehicles" >> typeOf _asset >> "Components" >> "TransportPylonsComponent";
+    private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
 
     if (_loadoutName != "") then {
         getArray (_pylonConfig >> "Presets" >> _loadoutName >> "attachment") apply { [_x, []] };
     } else  {
-        private _variableName = format ["WLM_savedLoadout_%1", typeOf _asset];
+        private _variableName = format ["WLM_savedLoadout_%1", _assetActualType];
         private _savedLoadouts = profileNamespace getVariable [_variableName, []];
         private _selectedLoadout = _savedLoadouts select (_lbCurSel - 1);
         _selectedLoadout # 1;
@@ -25,7 +26,7 @@ private _myPreset = if (_isAircraft) then {
     if (_loadoutName == "Reset") then {
         [];
     } else  {
-        private _variableName = format ["WLM_savedLoadout_%1", typeOf _asset];
+        private _variableName = format ["WLM_savedLoadout_%1", _assetActualType];
         private _savedLoadouts = profileNamespace getVariable [_variableName, []];
         private _selectedLoadout = _savedLoadouts select (_lbCurSel - 2);
         _selectedLoadout # 1;
@@ -42,13 +43,13 @@ if (_isAircraft) then {
 
         _pylonControl lbSetCurSel 0;
 
-        for "_i" from 1 to (lbSize _pylonControl - 1) do { 
+        for "_i" from 1 to (lbSize _pylonControl - 1) do {
             if (count _myPreset <= _forEachIndex) exitWith {};
-            
+
             private _presetItem = _myPreset select _forEachIndex;
 
-            if ((_pylonControl lbData _i) == _presetItem # 0) exitWith { 
-                _pylonControl lbSetCurSel _i; 
+            if ((_pylonControl lbData _i) == _presetItem # 0) exitWith {
+                _pylonControl lbSetCurSel _i;
 
                 if (_presetItem # 1 isEqualTo [0]) then {
                     _pylonUserControl ctrlSetTooltip "Control: Gunner";

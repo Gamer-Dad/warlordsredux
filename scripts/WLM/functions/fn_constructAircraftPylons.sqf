@@ -34,7 +34,8 @@ private _currentAssetPylonInfo = getAllPylonsInfo _asset;
     private _allowedMagazines = _asset getCompatiblePylonMagazines _pylonConfigName;
 
     private _allowListForPylon = missionNamespace getVariable ["WL2_allowPylonMagazines", createHashMap];
-    _allowedMagazines append (_allowListForPylon getOrDefault [typeOf _asset, []]);
+    private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+    _allowedMagazines append (_allowListForPylon getOrDefault [_assetActualType, []]);
 
     private _bannedWords = ["leaflet", "bombcluster"];
     _allowedMagazines = _allowedMagazines select {

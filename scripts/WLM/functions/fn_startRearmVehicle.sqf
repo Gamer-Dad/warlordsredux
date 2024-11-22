@@ -49,7 +49,8 @@ _rearmSource setVariable ["WLM_ammoCargo", _newAmmo, true];
 
 [_asset] remoteExec ["WLM_fnc_rearmVehicle", _asset];
 
-private _rearmTime = (missionNamespace getVariable "WL2_rearmTimers") getOrDefault [typeOf _asset, 600];
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+private _rearmTime = (missionNamespace getVariable "WL2_rearmTimers") getOrDefault [_assetActualType, 600];
 _asset setVariable ["BIS_WL_nextRearm", serverTime + _rearmTime];
 
 playSound3D ["A3\Sounds_F\sfx\UI\vehicles\Vehicle_Rearm.wss", _asset, false, getPosASL _asset, 2, 1, 75];

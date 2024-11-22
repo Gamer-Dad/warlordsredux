@@ -1,6 +1,8 @@
 #include "..\warlords_constants.inc"
 
-params ["_class", "_cost", "_requirements"];
+params ["_orderedClass", "_cost", "_requirements"];
+
+private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 player setVariable ["BIS_WL_isOrdering", true, [2, clientOwner]];
 
@@ -31,4 +33,4 @@ if (isNull BIS_WL_targetSector) exitWith {
 
 [toUpper localize "STR_A3_WL_asset_dispatched_TODO_REWRITE"] spawn BIS_fnc_WL2_smoothText;
 
-[player, "orderAsset", "air", BIS_WL_targetSector, _class] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
+[player, "orderAsset", "air", BIS_WL_targetSector, _orderedClass] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];

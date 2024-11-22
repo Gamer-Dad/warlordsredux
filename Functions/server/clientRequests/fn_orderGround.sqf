@@ -1,6 +1,8 @@
-params ["_sender", "_pos", "_class", "_direction"];
+params ["_sender", "_pos", "_orderedClass", "_direction"];
 
 if !(isServer) exitWith {};
+
+private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 private _isUav = getNumber (configFile >> "CfgVehicles" >> _class >> "isUav") == 1;
 private _asset = if (_isUav) then {
@@ -12,7 +14,7 @@ private _asset = if (_isUav) then {
 waitUntil {sleep 0.1; !(isNull _asset)};
 
 private _turretOverrides = missionNamespace getVariable ["WL2_turretOverrides", createHashMap];
-private _turretOverridesForVehicle = _turretOverrides getOrDefault [_class, []];
+private _turretOverridesForVehicle = _turretOverrides getOrDefault [_orderedClass, []];
 
 {
 	private _turretOverride = _x;
@@ -54,7 +56,7 @@ if (count _smallFlareMags == 1) then {
 _owner = owner _sender;
 _asset setVariable ["BIS_WL_ownerAsset", (getPlayerUID _sender), [2, _owner]];
 _asset setVariable ["BIS_WL_lastActive", 0, _owner];
-
 [_asset] call BIS_fnc_WL2_lastHitHandler;
+_asset setVariable ["WL2_orderedClass", _orderedClass, true];
 [_asset, _sender] remoteExec ["BIS_fnc_WL2_newAssetHandle", _owner];
 _sender setVariable ["BIS_WL_isOrdering", false, [2, _owner]];

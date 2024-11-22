@@ -17,7 +17,9 @@ private _broadcastActionToSide = {
 if (_action == "orderAsset") exitWith {
 	private _orderType = _param1;
 	private _position = _param2;
-	private _class = _param3;
+	private _orderedClass = _param3;
+
+	private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 	// Griefer check
 	private _nearbyEntities = [];
@@ -55,21 +57,21 @@ if (_action == "orderAsset") exitWith {
 		[format ["Too close to another %1!", _nearbyObjectName]] remoteExec ["systemChat", _owner];
 	};
 
-	private _cost = ((serverNamespace getVariable "WL2_costs") getOrDefault [_class, 50001]);
+	private _cost = ((serverNamespace getVariable "WL2_costs") getOrDefault [_orderedClass, 50001]);
 	private _hasFunds = (playerFunds >= _cost);
 	if (_hasFunds) then {
 		(-_cost) call BIS_fnc_WL2_fundsDatabaseWrite;
 
 		switch (_orderType) do {
 			case "air" : {
-				[_sender, _position, _class, _cost] spawn BIS_fnc_orderAir;
+				[_sender, _position, _orderedClass, _cost] spawn BIS_fnc_orderAir;
 			};
 			case "naval" : {
-				[_sender, _position, _class] spawn BIS_fnc_orderNaval;
+				[_sender, _position, _orderedClass] spawn BIS_fnc_orderNaval;
 			};
 			default {
 				private _direction = _param4;
-				[_sender, _position, _class, _direction] spawn BIS_fnc_orderGround;
+				[_sender, _position, _orderedClass, _direction] spawn BIS_fnc_orderGround;
 			};
 		};
 	};

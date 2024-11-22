@@ -5,17 +5,17 @@ params ["_killer", "_event", ["_show", true]];
 if (_event == "init") then {
 	{
 		_varName = format ["BIS_WL_showHint_%1", _x];
-		
+
 		if (isNil _varName) then {
 			missionNamespace setVariable [_varName, false]
 		};
 	} forEach ["assembly", "maintenance", "targetResetVoting", "forfeitVoting", "nearSL"];
-	
+
 	_hintText = "";
 	_lastHint = "";
 	while {!BIS_WL_missionEnd} do {
 		_hintText = "";
-		
+
 		if (BIS_WL_showHint_assembly) then {
 			_hintText = _hintText + format [
 				"<t size = '1.2' shadow = '0'><t align = 'left'>[ %1 ]</t><t align = 'right' color = '#4bff58'>%2</t><br/><t align = 'left'>[ %3 ]</t><t align = 'right' color = '#ff4b4b'>%4</t></t>",
@@ -25,12 +25,12 @@ if (_event == "init") then {
 				localize "STR_ca_cancel"
 			];
 		};
-		
+
 		if (BIS_WL_showHint_targetResetVoting) then {
 			_varNameVoting = format ["BIS_WL_targetResetVotingSince_%1", BIS_WL_playerSide];
 			_warlords = allPlayers select {side group _x == BIS_WL_playerSide};
 			_hintText = _hintText + format [
-				"%10<t shadow = '0'><t align = 'center' size = '1.3'>%1</t><br/><t size = '1.2'><t align = 'left'>[ %2 + %3 ]</t><t align = 'right' color = '#4bff58'>%4</t><br/><t align = 'left'>[ %2 + %5 ]</t><t align = 'right' color = '#ff4b4b'>%6</t></t><t size = '1'><br/><br/><t align = 'center'>- %9 -</t></t></t>",
+				"%8<t shadow = '0'><t align = 'center' size = '1.3'>%1</t><br/><t size = '1.2'><t align = 'left'>[ %2 + %3 ]</t><t align = 'right' color = '#4bff58'>%4</t><br/><t align = 'left'>[ %2 + %5 ]</t><t align = 'right' color = '#ff4b4b'>%6</t></t><t size = '1'><br/><br/><t align = 'center'>- %7 -</t></t></t>",
 				toUpper localize "STR_A3_WL_target_reset_info",
 				localize "str_dik_lcontrol",
 				localize "str_dik_y",
@@ -46,7 +46,7 @@ if (_event == "init") then {
 			_varNameVoting = format ["BIS_WL_forfeitVotingSince_%1", BIS_WL_playerSide];
 			_warlords = allPlayers select {side group _x == BIS_WL_playerSide};
 			_hintText = _hintText + format [
-				"%10<t shadow = '0'><t align = 'center' size = '1.3'>%1</t><br/><t size = '1.2'><t align = 'left'>[ %2 + %3 ]</t><t align = 'right' color = '#4bff58'>%4</t><br/><t align = 'left'>[ %2 + %5 ]</t><t align = 'right' color = '#ff4b4b'>%6</t></t><t size = '1'><br/><br/><t align = 'center'>- %9 -</t></t></t>",
+				"%8<t shadow = '0'><t align = 'center' size = '1.3'>%1</t><br/><t size = '1.2'><t align = 'left'>[ %2 + %3 ]</t><t align = 'right' color = '#4bff58'>%4</t><br/><t align = 'left'>[ %2 + %5 ]</t><t align = 'right' color = '#ff4b4b'>%6</t></t><t size = '1'><br/><br/><t align = 'center'>- %7 -</t></t></t>",
 				toUpper "Surrender vote activated",
 				localize "str_dik_lcontrol",
 				localize "str_dik_y",
@@ -66,7 +66,7 @@ if (_event == "init") then {
 	};
 } else {
 	_varName = format ["BIS_WL_showHint_%1", _event];
-	
+
 	if (_show isEqualType true) then {
 		missionNamespace setVariable [_varName, _show];
 	} else {

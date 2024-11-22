@@ -1,6 +1,8 @@
-params ["_class", "_cost"];
+params ["_orderedClass", "_cost"];
 
 player setVariable ["BIS_WL_isOrdering", true, [2, clientOwner]];
+
+private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 if (_class isKindOf "Man") then {
 	_asset = (group player) createUnit [_class, (getPosATL player), [], 2, "NONE"];
@@ -71,7 +73,7 @@ if (_class isKindOf "Man") then {
 
 	if (BIS_WL_spacePressed) then {
 		playSound "assemble_target";
-		[player, "orderAsset", "vehicle", [(_p # 0), (_p # 1), 0], _class, direction player] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
+		[player, "orderAsset", "vehicle", [(_p # 0), (_p # 1), 0], _orderedClass, direction player] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
 	} else {
 		"Canceled" call BIS_fnc_WL2_announcer;
 		[toUpper localize "STR_A3_WL_deploy_canceled"] spawn BIS_fnc_WL2_smoothText;

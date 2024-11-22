@@ -11,8 +11,9 @@ class Aircraft {
         killReward = 100;
     }; // "UH-80 Ghost Hawk"
 
-    class B_CTRG_Heli_Transport_01_tropic_F {
+    class B_Heli_Transport_01_UP_F {
         name = "UH-80 Ghost Hawk UP";
+        spawn = "B_Heli_Transport_01_F";
         cost = 2000;
         requirements[] = {"H"};
         killReward = 200;

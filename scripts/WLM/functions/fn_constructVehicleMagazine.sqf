@@ -35,6 +35,7 @@ _asset setVariable ["WLM_savedMagazines", _savedMagazines];
 private _assetDefaultMagazines = _asset getVariable ["BIS_WL_defaultMagazines", []];
 
 private _menuTextOverrides = call WLM_fnc_menuTextOverrides;
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
 private _disallowListForVehicle = missionNamespace getVariable ["WL2_disallowMagazinesForVehicle", createHashMap];
 
 private _getMagazineName = {
@@ -277,7 +278,7 @@ private _getMagazineTooltip = {
     private _allowedMagazinesByWeapon = [];
     {
         private _magazinesForWeapon = [];
-        private _incompatibleMagazines = _disallowListForVehicle getOrDefault [typeOf _asset, []];
+        private _incompatibleMagazines = _disallowListForVehicle getOrDefault [_assetActualType, []];
         private _compatibleMagazines = compatibleMagazines _x - _incompatibleMagazines;
 
         {

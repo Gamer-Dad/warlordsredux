@@ -1,6 +1,7 @@
 #include "..\warlords_constants.inc"
 
-params ["_class", "_cost", "_offset"];
+params ["_orderedClass", "_cost", "_offset"];
+private _class = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_orderedClass, _orderedClass];
 
 player setVariable ["BIS_WL_isOrdering", true, [2, clientOwner]];
 if (count _offset != 3) then {
@@ -76,7 +77,7 @@ deleteVehicle _asset;
 
 if (BIS_WL_spacePressed) then {
 	playSound "assemble_target";
-	[player, "orderAsset", "def", [(_p # 0), (_p # 1), 0], _class, direction player] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
+	[player, "orderAsset", "def", [(_p # 0), (_p # 1), 0], _orderedClass, direction player] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
 } else {
 	"Canceled" call BIS_fnc_WL2_announcer;
 	[toUpper localize "STR_A3_WL_deploy_canceled"] spawn BIS_fnc_WL2_smoothText;

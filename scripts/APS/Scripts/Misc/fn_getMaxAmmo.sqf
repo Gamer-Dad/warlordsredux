@@ -1,7 +1,8 @@
 params ["_asset"];
 
 private _vehicleApsMap = missionNamespace getVariable ["WL2_aps", createHashMap];
-private _index = _vehicleApsMap getOrDefault [(typeOf _asset), -1];
+private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
+private _index = _vehicleApsMap getOrDefault [_assetActualType, -1];
 private _ammo = switch (_index) do {
 	case 3: { 0 };
 	case 2: { 6 };
