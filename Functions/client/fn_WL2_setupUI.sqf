@@ -5,6 +5,8 @@ params ["_displayClass"];
 waitUntil {!isNull (findDisplay 46)};
 
 // OSD equals the lower right hand HUD stuff for the most part
+_voteLocked = missionNamespace getVariable ["voteLocked", false];
+if (_voteLocked) exitWith {};
 
 if (_displayClass == "OSD") then {
 	{
@@ -367,7 +369,7 @@ if (_displayClass == "OSD") then {
 					};
 					case "FundsTransfer": {call BIS_fnc_WL2_orderFundsTransfer; [player, "fundsTransferBill"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2]};
 					case "TargetReset": {"RequestMenu_close" call BIS_fnc_WL2_setupUI; [player, "targetReset"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2]};
-					case "forfeitVote": {call BIS_fnc_WL2_orderForfeit};
+					case "forfeitVote": {0 spawn BIS_fnc_WL2_orderForfeit};
 					case "LockVehicles": {
 						{
 							[_x, 2] remoteExec ["lock", _x];

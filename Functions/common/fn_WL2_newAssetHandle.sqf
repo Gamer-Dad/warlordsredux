@@ -30,9 +30,6 @@ if (isPlayer _owner) then {
 		_asset setVariable ["BIS_WL_nextRepair", 0];
 		_asset setVariable ["BIS_WL_ownerAssetSide", _side, true];
 
-		private _defaultMags = magazinesAllTurrets _asset;
-		_asset setVariable ["BIS_WL_defaultMagazines", _defaultMags, true];
-		_asset setVariable ["WLM_savedDefaultMags", _defaultMags, true];
 		_var = format ["BIS_WL_ownedVehicles_%1", getPlayerUID player];
 		_vehicles = missionNamespace getVariable [_var, []];
 		_vehicles pushBack _asset;
@@ -61,6 +58,10 @@ if (isPlayer _owner) then {
 			};
 			case "Land_Communication_F": {
 				_asset setVariable ["BIS_WL_jammerActivated", false, true];
+
+				// reduce height for demolish action
+				private _assetPos = getPosATL _asset;
+				_asset setPosATL [_assetPos select 0, _assetPos select 1, -8];
 
 				// too hardy otherwise, start off at 10% health
 				_asset setDamage 0.9;
@@ -360,5 +361,10 @@ if (isPlayer _owner) then {
 	if (_demolishable getOrDefault [typeOf _asset, false]) then {
 		_asset setVariable ["WL_demolishTurnsLeft", 4, true];
 		[_asset] remoteExec ["BIS_fnc_WL2_sub_demolish", 0, true];
+	};
+
+	private _structure = missionNamespace getVariable ["WL2_structure", createHashMap];
+	if (_structure getOrDefault [typeOf _asset, false]) then {
+		_asset setVariable ["WL_structure", true, 2];
 	};
 };

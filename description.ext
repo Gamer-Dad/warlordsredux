@@ -4,7 +4,7 @@
 #include "scripts\WLM\ui\WLM_pylons.hpp"
 #include "scripts\Squads\squadMenu.hpp"
 
-onLoadName = "Warlords Redux 2.6";
+onLoadName = "Warlords Redux 2.6.3";
 dev = "Jezuro + WSV";
 author = "Jezuro + WSV";
 allowFunctionsLog = 1;
@@ -18,11 +18,27 @@ respawnOnStart = -1;
 disabledAI = 1;
 enableDebugConsole = 1;
 ReviveMode = 0;
-corpseManagerMode = 0;
-wreckManagerMode = 0;
+
+corpseManagerMode = 1;
+corpseLimit = 50;        //72
+corpseRemovalMinTime = 30;    //300
+corpseRemovalMaxTime = 300;    //1800
+
+wreckManagerMode = 1;
+wreckLimit = 32;        //16
+wreckRemovalMinTime = 30;    //300
+wreckRemovalMaxTime = 300;    //600
+
+weaponholderManagerMode = 1; //2
+weaponholderLimit = 50; //50
+weaponholderRemovalMinTime = 30; //3600
+weaponholderRemovalMaxTime = 180; //36000
+
+disposalCheckPeriod = 15; //5
+minPlayerDistance[] = {0, 0, 0};    //0,0,0
 
 BIS_WL_sectorResetTimeout = 300;
-BIS_WL_sectorVotingDuration = 15;
+BIS_WL_sectorVotingDuration = 90;
 BIS_WL_scanCost = 750;
 BIS_WL_fastTravelCostContested = 200;
 BIS_WL_fastTravelCostSquadLeader = 10;
@@ -46,7 +62,7 @@ class Header
 {
 	gameType = Warlords;
 	minPlayers = 1;
-	maxPlayers = 90;
+	maxPlayers = 128;
 };
 
 #include "mp_securityCommands.hpp"

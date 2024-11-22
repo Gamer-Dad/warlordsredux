@@ -47,6 +47,10 @@ if (_isAircraft) then {
     if (_asset call APS_fnc_getMaxAmmo > _asset getVariable ["apsAmmo", 0]) then {
         _eligibleFreeRearm = false;
     };
+
+    if (_asset getVariable ["WLM_ineligibleForRearmTimer", 0] > serverTime) then {
+        _eligibleFreeRearm = false;
+    };
 };
 
 _eligibleFreeRearm;

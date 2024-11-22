@@ -76,4 +76,7 @@ if (_eligibleFreeRearm) then {
 
     playSound3D ["A3\Sounds_F\sfx\UI\vehicles\Vehicle_Rearm.wss", _asset, false, getPosASL _asset, 2, 1, 75];
     [toUpper localize "STR_A3_WL_popup_asset_rearmed"] spawn BIS_fnc_WL2_smoothText;
+} else {
+    private _regularRearmTimer = _asset getVariable ["BIS_WL_nextRearm", 0];
+    _asset setVariable ["WLM_ineligibleForRearmTimer", _regularRearmTimer];
 };

@@ -6,13 +6,6 @@ class Vehicles {
         capValue = 1;
     }; // "Quad Bike"
 
-    class O_LSV_02_unarmed_F {
-        cost = 50;
-        requirements[] = {};
-        killReward = 50;
-        capValue = 1;
-    }; // "Qilin (Unarmed)"
-
     class O_MRAP_02_F {
         cost = 300;
         requirements[] = {};
@@ -382,7 +375,7 @@ class Vehicles {
         capValue = 4;
         aps = 3;
     }; // "T-140K Angara"
-
+/* Disabled as it is broken since disabling SETWEAPONRELOADINGTIME
     class O_MBT_02_railgun_F {
         cost = 15000;
         requirements[] = {};
@@ -391,7 +384,7 @@ class Vehicles {
         capValue = 4;
         aps = 3;
     }; // "T-100 Futura"
-
+*/
     class O_MBT_02_arty_F {
         cost = 20000;
         requirements[] = {};
@@ -399,6 +392,10 @@ class Vehicles {
         killReward = 600;
         capValue = 4;
         aps = 1;
+        disallowMagazines[] = {
+            "2Rnd_155mm_Mo_Cluster",
+            "2Rnd_155mm_Mo_Cluster_O"
+        };
     }; // "2S9 Sochor"
 
     class I_Truck_02_MRL_F {
@@ -408,6 +405,9 @@ class Vehicles {
         killReward = 600;
         capValue = 4;
         aps = 1;
+        disallowMagazines[] = {
+            "12Rnd_230mm_rockets_cluster"
+        };
     }; // "Zamak MRL"
 
     class O_Truck_03_medical_F {

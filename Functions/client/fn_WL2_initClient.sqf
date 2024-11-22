@@ -89,6 +89,8 @@ BIS_fnc_WL2_sub_vehicleLockAction = compileFinal preprocessFileLineNumbers "Func
 MRTM_fnc_settingsinit = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_settingsinit.sqf";
 
 waitUntil {!isNull player && {isPlayer player}};
+missionNamespace setVariable ["voteLocked", false];
+player setVariable ["voteLocked", false, true];
 
 "client" call BIS_fnc_WL2_varsInit;
 waitUntil {!(isNil "BIS_WL_playerSide")};
@@ -153,7 +155,7 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		enableSentences false;
 		0 fadeSpeech 0;
 		0 fadeRadio 0;
-		{_x enableChannel [false, false]} forEach [0,1,2,3,4,5];
+		{_x enableChannel [false, false]} forEach [0,2,3,4,5];
 		[localize "STR_A3_nameFilter", localize "STR_A3_nameFilter_info"] call BIS_fnc_WL2_blockScreen;
 	};
 };
@@ -163,10 +165,25 @@ if !(BIS_WL_playerSide in BIS_WL_competingSides) exitWith {
 	["Warlords error: Your unit is not a Warlords competitor"] call BIS_fnc_error;
 };
 
+private _penaltyCheck = profileNameSpace getVariable ["teamkill_penalty", createHashMap];
+private _sessionID = missionNamespace getVariable ["sessionID", -1];
+
+if !((count _penaltyCheck) == 0) then {
+	private _penaltyEnd = _penaltyCheck getorDefault ["penaltyEndTime", 0];
+	private _penaltySessionID = _penaltyCheck getorDefault ["sessionID", 0];
+	if (_penaltySessionID != _sessionID) then {
+		profileNameSpace setVariable ["teamkill_penalty", nil];
+		saveProfileNamespace;
+	};
+	if ((_penaltySessionID == _sessionID ) && (_penaltyEnd > 0)) exitwith {
+		_penaltyEnd spawn BIS_fnc_WL2_friendlyFireHandleClient;
+	};
+};
+
 enableRadio true;
 enableSentences true;
-{_x enableChannel [true, true]} forEach [3,4,5];
-{_x enableChannel [true, false]} forEach [0,1,2];
+{_x enableChannel [true, true]} forEach [1,3,4,5];
+{_x enableChannel [true, false]} forEach [0,2];
 enableEnvironment [false, true];
 
 call MRTM_fnc_settingsInit;
@@ -446,5 +463,31 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			((_x getVariable "BIS_WL_markers") # 0) setMarkerAlphaLocal _alpha;
 			((_x getVariable "BIS_WL_markers") # 1) setMarkerAlphaLocal _alpha;
 		} forEach BIS_WL_allSectors;
+	};
+};
+
+0 spawn {
+	private _scoreControl = (findDisplay 46) ctrlCreate ["RscStructuredText", -1];
+
+	private _blockW = safeZoneW / 1000;
+	private _blockH = safeZoneH / (1000 / (getResolution # 4));
+
+	private _displayW = _blockW * 180;
+	private _displayH = _blockH * 54;
+	private _displayX = safeZoneW + safeZoneX - _displayW - (_blockW * 10);
+	private _displayY = safeZoneH + safeZoneY - _displayH - (_blockH * 50);
+
+	_scoreControl ctrlSetPosition [_displayX - (_blockW * 110), _displayY - (_blockH * 16 * 3 + _blockH * 30), _blockW * 160, _blockH * 16 * 4];
+	_scoreControl ctrlCommit 0;
+
+	while {!BIS_WL_missionEnd} do {
+		private _killRewards = missionNamespace getVariable ["WL_killReward", []];
+		_killRewards = _killRewards select { ((_x # 1) + 10) > serverTime };
+		missionNamespace setVariable ["WL_killReward", _killRewards];
+
+		private _killText = (_killRewards apply { _x # 0 }) joinString "<br />";
+		_scoreControl ctrlSetStructuredText parseText _killText;
+
+		sleep 0.5;
 	};
 };

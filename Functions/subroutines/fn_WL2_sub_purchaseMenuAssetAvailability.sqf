@@ -6,6 +6,9 @@ private _class = _assetDetails # 0;
 private _DLCOwned = true;
 private _DLCTooltip = "";
 
+_funds = ((missionNamespace getVariable "fundsDatabaseClients") get (getPlayerUID player));
+
+if (isNil "_class") exitWith {};
 if (_cost > _funds) then {_ret = false; _tooltip = localize "STR_A3_WL_low_funds"};
 if (!alive player) then {_ret = false; _tooltip = localize "STR_A3_WL_fasttravel_restr6"};
 if (lifeState player == "INCAPACITATED") then {_ret = false; _tooltip = format [localize "STR_A3_Revive_MSG_INCAPACITATED", name player]};
@@ -199,6 +202,17 @@ if (_ret) then {
 			_var = format ["BIS_WL_ownedVehicles_%1", getPlayerUID player];
 			_vehiclesCnt = count ((missionNamespace getVariable [_var, []]) select {alive _x});
 			_units = ((units group player) select {((_x getVariable ["BIS_WL_ownerAsset", "123"]) == getPlayerUID player) && {_x != player && {alive _x}}});
+			private _currentSector = if (_visitedSectorID != -1) then {
+				_possibleSectors # _visitedSectorID
+			} else {
+				objNull;
+			};
+
+			private _servicesInSector = _currentSector getVariable ["BIS_WL_services", []];
+			if ("H" in _requirements && !("H" in _servicesInSector)) exitWith {
+				_ret = false;
+				_tooltip = localize "STR_A3_WL_popup_appropriate_sector_selection";
+			};
 
 			if (_requirements findIf {!(_x in _servicesAvailable)} >= 0) exitWith {_ret = false; _tooltip = localize "STR_A3_WL_airdrop_restr1"};
 			if (_category == "Infantry" && {(count _units) >= BIS_WL_matesAvailable}) exitWith {_ret = false; _tooltip = localize "STR_A3_WL_airdrop_restr2"};

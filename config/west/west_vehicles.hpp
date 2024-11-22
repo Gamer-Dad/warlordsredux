@@ -446,6 +446,10 @@ class Vehicles {
         killReward = 600;
         capValue = 4;
         aps = 1;
+        disallowMagazines[] = {
+            "2Rnd_155mm_Mo_Cluster",
+            "2Rnd_155mm_Mo_Cluster_O"
+        };
     }; // "M4 Scorcher"
 
     class B_MBT_01_mlrs_F {
@@ -455,6 +459,9 @@ class Vehicles {
         killReward = 600;
         capValue = 4;
         aps = 1;
+        disallowMagazines[] = {
+            "12Rnd_230mm_rockets_cluster"
+        };
     }; // "M5 Sandstorm MLRS"
 
     class B_Truck_01_medical_F {

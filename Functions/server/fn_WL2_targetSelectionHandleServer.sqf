@@ -64,7 +64,7 @@
 				missionNamespace setVariable [_x, objNull];
 			} forEach _voterVariables;
 		};
-		
+
 		while {!BIS_WL_missionEnd} do {
 			_t = serverTime + 10 + random 10;
 			missionNamespace setVariable [_votingResetVar, FALSE];
@@ -86,23 +86,23 @@
 				// Final condition
 				_votingReset || _playerHasVote
 			};
-			
+
 			if !(missionNamespace getVariable [_votingResetVar, false]) then {
-				_votingEnd = serverTime + (getMissionConfigValue ["BIS_WL_sectorVotingDuration", 15]);
+				_votingEnd = serverTime + (getMissionConfigValue ["BIS_WL_sectorVotingDuration", 90]);
 				_nextUpdate = serverTime;
-				
+
 				while {serverTime < _votingEnd && {!(missionNamespace getVariable [_votingResetVar, false])}} do {
 					private _allPlayers = call BIS_fnc_listPlayers;
 					_warlords = _allPlayers select {side group _x == _side};
 					_players = _warlords select {isPlayer _x};
-					
+
 					if (serverTime >= _nextUpdate) then {
 						_calculation = call _calculateMostVotedSector;
 						missionNamespace setVariable [format ["BIS_WL_mostVoted_%1", _side], [_calculation # 0, _votingEnd], TRUE];
 						missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], [_calculation # 1, _calculation # 2], TRUE];
 						_nextUpdate = serverTime + WL_TIMEOUT_STANDARD;
 					};
-					
+
 					sleep WL_TIMEOUT_SHORT;
 				};
 
