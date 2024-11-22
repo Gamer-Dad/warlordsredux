@@ -69,6 +69,7 @@ BIS_fnc_WL2_spectrumAction = compileFinal preprocessFileLineNumbers "Functions\c
 BIS_fnc_WL2_captureList = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_captureList.sqf";
 BIS_fnc_WL2_MineLimitHint = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_MineLimitHint.sqf";
 BIS_fnc_WL2_airburst = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_airburst.sqf";
+BIS_fnc_WL2_repackMagazines = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_repackMagazines.sqf";
 
 BIS_fnc_WL2_sub_arsenalSetup = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_arsenalSetup.sqf";
 BIS_fnc_WL2_sub_dazzlerAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_dazzlerAction.sqf";
@@ -285,6 +286,8 @@ call BIS_fnc_WL2_targetResetHandle;
 ["OSD"] spawn BIS_fnc_WL2_setupUI;
 0 spawn BIS_fnc_WL2_timer;
 0 spawn BIS_fnc_WL2_cpBalance;
+
+0 spawn BIS_fnc_WL2_repackMagazines;
 
 0 spawn {
 	_uid = getPlayerUID player;
