@@ -35,18 +35,28 @@ private _deployActionId = _asset addAction [
                 _asset setVariable ["WL2_children", _assetChildren, [2, clientOwner]];
             };
         } else {
+            private _speed = speed _asset;
+            if (_speed > 5) exitWith {
+                systemChat "Cannot unload deployable while moving!";
+                playSound "AddItemFailed";
+            };
+
             private _desiredPosRelative = [8, 0, 0];
             private _desiredPosRelativeHigh = [0, 0, 1] vectorAdd _desiredPosRelative;
             private _desiredPosWorld = _asset modelToWorld _desiredPosRelative;
             private _desiredPosWorldZero = [_desiredPosWorld # 0, _desiredPosWorld # 1, 0];
+
+            private _isPosInWater = surfaceIsWater [_desiredPosWorldZero # 0, _desiredPosWorldZero # 1];
+            if (_isPosInWater) exitWith {
+                systemChat "Deploying in water is not allowed!";
+                playSound "AddItemFailed";
+            };
 
             private _direction = direction _assetLoadedItem;
             private _class = typeOf _assetLoadedItem;
             private _nearbyEntities = [_class, AGLtoASL _desiredPosWorldZero, _direction, "dontcheckuid", [_asset, _assetLoadedItem]] call BIS_fnc_WL2_grieferCheck;
 
             if (count _nearbyEntities > 0) exitWith {
-                _assetLoadedItem attachTo [_asset, [0, 0, 1], "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
-
                 private _nearbyObjectName = [_nearbyEntities # 0] call BIS_fnc_WL2_getAssetTypeName;
                 systemChat format ["Deploying too close to %1!", _nearbyObjectName];
                 playSound "AddItemFailed";
