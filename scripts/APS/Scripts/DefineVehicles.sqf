@@ -32,7 +32,7 @@ private _projectileSettings = [
 
     // Air Vehicle SEAD
     ["ammo_Missile_HARM", [2, 3, true]],        // AGM-88 HARM
-    ["ammo_Missile_KH58", [2, 2, true]],        // KH-58 ARM
+    ["ammo_Missile_KH58", [2, 3, true]],        // KH-58 ARM
 
     // Air Vehicle Guided
     ["M_Jian_AT", [2, 2, true]],                // Jian - Max loadout: 4

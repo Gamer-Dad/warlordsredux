@@ -100,6 +100,10 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 800;
+
+        allowPylonMagazines[] = {
+            "PylonMissile_1Rnd_Mk82_F"
+        };
     }; // "A-164 Wipeout (CAS)"
 
     class I_Plane_Fighter_04_F {
@@ -107,6 +111,10 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 600;
+
+        allowPylonMagazines[] = {
+            "PylonMissile_1Rnd_Mk82_F"
+        };
     }; // "A-149 Gryphon"
 
     class B_Plane_Fighter_01_F {
@@ -116,7 +124,8 @@ class FixedWing {
         killReward = 1000;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_HARM_x1"
+            "PylonMissile_Missile_HARM_x1",
+            "PylonMissile_1Rnd_Mk82_F"
         };
     }; // "F/A-181 Black Wasp II"
 
@@ -127,7 +136,8 @@ class FixedWing {
         killReward = 1000;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_HARM_x1"
+            "PylonMissile_Missile_HARM_x1",
+            "PylonMissile_1Rnd_Mk82_F"
         };
     }; // "F/A-181 Black Wasp II (Stealth)"
 };

@@ -88,6 +88,10 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 600;
+
+        allowPylonMagazines[] = {
+            "PylonMissile_1Rnd_Mk82_F"
+        };
     }; // "A-143 Buzzard"
 
     class O_Plane_CAS_02_dynamicLoadout_F {
@@ -95,6 +99,10 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 900;
+
+        allowPylonMagazines[] = {
+            "PylonMissile_1Rnd_Mk82_F"
+        };
     }; // "To-199 Neophron (CAS)"
 
     class O_Plane_Fighter_02_Stealth_F {
@@ -104,7 +112,8 @@ class FixedWing {
         killReward = 1100;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_KH58_x1"
+            "PylonMissile_Missile_KH58_x1",
+            "PylonMissile_1Rnd_Mk82_F"
         };
     }; // "To-201 Shikra (Stealth)"
 
@@ -115,7 +124,8 @@ class FixedWing {
         killReward = 1100;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_KH58_x1"
+            "PylonMissile_Missile_KH58_x1",
+            "PylonMissile_1Rnd_Mk82_F"
         };
     }; // "To-201 Shikra"
 };

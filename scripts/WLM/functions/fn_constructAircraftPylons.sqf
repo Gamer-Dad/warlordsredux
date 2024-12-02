@@ -37,7 +37,11 @@ private _currentAssetPylonInfo = getAllPylonsInfo _asset;
     private _disallowListForPylon = missionNamespace getVariable ["WL2_disallowMagazinesForVehicle", createHashMap];
     private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
     private _disallowListForAsset = _disallowListForPylon getOrDefault [_assetActualType, []];
-    _allowedMagazines append (_allowListForPylon getOrDefault [_assetActualType, []]);
+    {
+        if !(_x in _allowedMagazines) then {
+            _allowedMagazines pushBack _x;
+        };
+    } forEach (_allowListForPylon getOrDefault [_assetActualType, []]);
 
     private _bannedWords = ["leaflet", "bombcluster"];
     _allowedMagazines = _allowedMagazines select {

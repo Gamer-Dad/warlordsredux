@@ -10,15 +10,15 @@ private _side = BIS_WL_playerSide;
 if (_customText != "") then {
 	_displayText = format ["%1", _customText];
 } else {
-	if (_unit isKindOf "Man") then {
+	private _unitType = if (typeOf _unit == "") then {
+		_unitTypeName
+	} else {
+		typeOf _unit
+	};
+
+	if (_unitType isKindOf "Man") then {
 		_displayText = "Enemy killed";
 	} else {
-		private _unitType = if (typeOf _unit == "") then {
-			_unitTypeName
-		} else {
-			typeOf _unit
-		};
-
 		_displayName = [_unit, _unitType] call BIS_fnc_WL2_getAssetTypeName;
 		_displayText = "%1 destroyed";
 	};
