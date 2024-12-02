@@ -38,6 +38,7 @@ addMissionEventHandler ["HandleDisconnect", {
 
 addMissionEventHandler ["EntityDeleted", {
 	params ["_entity"];
+	// do not ever make this a spawn, async calls will break type info
 	[_entity, objNull, objNull] call BIS_fnc_WL2_handleEntityRemoval;
 }];
 
