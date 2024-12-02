@@ -13,6 +13,11 @@ _asset addEventHandler ["Hit", {
 
 	_unit setVariable ["BIS_WL_lastHitter", _responsiblePlayer, 2];
 
+	private _children = _unit getVariable ["WL2_children", []];
+	{
+		_x setVariable ["BIS_WL_lastHitter", _responsiblePlayer, 2];
+	} forEach _children;
+
 	private _crew = crew _unit;
 	if (count _crew == 0) exitWith {};
 	if (count _crew == 1 && _crew # 0 == _unit) exitWith {};
