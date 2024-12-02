@@ -9,20 +9,14 @@ _asset addEventHandler ["Hit", {
 
 	if (_ownerSide == _responsibleSide) exitWith {};
 	if (!alive _unit) exitWith {};
+	if (isNull _responsiblePlayer) exitWith {};
 
-	private _writeLastHitter = {
-		params ["_unit", "_hitter"];
-		if (isNull _hitter) exitWith {};
+	_unit setVariable ["BIS_WL_lastHitter", _responsiblePlayer, 2];
 
-		_unit setVariable ["BIS_WL_lastHitter", _hitter, 2];
-
-		private _crew = crew _unit;
-		if (count _crew == 0) exitWith {};
-		if (count _crew == 1 && _crew # 0 == _unit) exitWith {};
-		{
-			_x setVariable ["BIS_WL_lastHitter", _hitter, 2];
-		} forEach _crew;
-	};
-
-	[_unit, _responsiblePlayer] call _writeLastHitter;
+	private _crew = crew _unit;
+	if (count _crew == 0) exitWith {};
+	if (count _crew == 1 && _crew # 0 == _unit) exitWith {};
+	{
+		_x setVariable ["BIS_WL_lastHitter", _responsiblePlayer, 2];
+	} forEach _crew;
 }];
