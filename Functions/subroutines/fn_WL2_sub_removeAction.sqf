@@ -15,8 +15,7 @@ private _removeActionID = _asset addAction [
 				{_unit deleteVehicleCrew _x} forEach crew _unit;
 				deleteGroup _grp;
 			};
-
-			[_unit] remoteExec ["BIS_fnc_WL2_removeAsset", 2];
+			deleteVehicle _unit;
 		};
 	},
 	[],

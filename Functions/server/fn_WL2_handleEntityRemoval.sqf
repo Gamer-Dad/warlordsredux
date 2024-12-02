@@ -12,8 +12,11 @@ if (isNull _responsiblePlayer || _unit == _responsiblePlayer) then {
 };
 
 if !(isNull _responsiblePlayer) then {
-    [_unit, _responsiblePlayer] spawn BIS_fnc_WL2_killRewardHandle;
-    [_unit, _responsiblePlayer] spawn BIS_fnc_WL2_friendlyFireHandleServer;
+    _unit setVariable ["BIS_WL_lastHitter", objNull, true];
+
+    // must be sync calls, type info may disappear in next frame
+    [_unit, _responsiblePlayer] call BIS_fnc_WL2_killRewardHandle;
+    [_unit, _responsiblePlayer] call BIS_fnc_WL2_friendlyFireHandleServer;
 
     if (isPlayer _unit) then {
         diag_log format["PvP kill: %1_%2 was killed by %3_%4 from %5m", name _unit, getPlayerUID _unit, name _responsiblePlayer, getPlayerUID _responsiblePlayer, _unit distance _responsiblePlayer];

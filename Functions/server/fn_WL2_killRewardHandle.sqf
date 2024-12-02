@@ -50,7 +50,7 @@ if (_killerSide != _unitSide) then {
 	_killReward = round _killReward;
 	_killReward call BIS_fnc_WL2_fundsDatabaseWrite;
 
-	[_unit, _killReward, _customText, "#228b22", typeOf _unit] remoteExec ["BIS_fnc_WL2_killRewardClient", owner _responsibleLeader];
+	[_unit, _killReward, _customText, "#228b22", _assetActualType] remoteExec ["BIS_fnc_WL2_killRewardClient", owner _responsibleLeader];
 
 	["earnPoints", [_playerId, _killReward]] call SQD_fnc_server;
 

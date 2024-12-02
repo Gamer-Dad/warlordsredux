@@ -95,7 +95,7 @@ switch (_className) do {
                             deleteGroup _group;
                         };
 
-                        [_asset] remoteExec ["BIS_fnc_WL2_removeAsset", 2];
+                        deleteVehicle _asset;
                     };
                 } forEach _allAssets;
             };

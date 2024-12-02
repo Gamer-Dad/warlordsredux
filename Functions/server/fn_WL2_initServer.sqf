@@ -32,7 +32,6 @@ BIS_fnc_WL2_incomePayoff = compileFinal preprocessFileLineNumbers "Functions\ser
 BIS_fnc_WL2_killRewardHandle = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_killRewardHandle.sqf";
 BIS_fnc_WL2_populateSector = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_populateSector.sqf";
 BIS_fnc_WL2_processRunways = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_processRunways.sqf";
-BIS_fnc_WL2_removeAsset = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_removeAsset.sqf";
 BIS_fnc_WL2_selectTarget = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_selectTarget.sqf";
 BIS_fnc_WL2_serverEHs = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_serverEHs.sqf";
 BIS_fnc_WL2_setupNewWarlord = compileFinal preprocessFileLineNumbers "Functions\server\fn_WL2_setupNewWarlord.sqf";
