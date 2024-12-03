@@ -8,5 +8,6 @@ class Spawn {
     class B_Slingload_01_Medevac_F {
         name = "NATO Spawn Pod";
         killReward = 300;
+        loadable[] = { 0, 0, 0 };
     }; // Huron Spawn
 };

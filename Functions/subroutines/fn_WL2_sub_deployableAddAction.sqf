@@ -12,17 +12,21 @@ private _deployActionId = _asset addAction [
 
             if (count _nearLoadableEntities > 0) then {
                 private _assetToLoad = _nearLoadableEntities select 0;
-                private _offset = _eligibilityQuery # 2;
-                _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
-                _assetToLoad setVehicleLock "LOCKED";
-                {
-                    _assetToLoad enableVehicleSensor [_x # 0, false];
-                } forEach (listVehicleSensors _assetToLoad);
+                if ((_asset canVehicleCargo _assetToLoad) # 0) then {
+                    _asset setVehicleCargo _assetToLoad;
+                } else {
+                    private _offset = _eligibilityQuery # 2;
+                    _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
+                    _assetToLoad setVehicleLock "LOCKED";
+                    {
+                        _assetToLoad enableVehicleSensor [_x # 0, false];
+                    } forEach (listVehicleSensors _assetToLoad);
+                };
 
                 _asset setVariable ["WL2_loadedItem", _assetToLoad];
                 _assetToLoad setVariable ["WL2_autonomousBeforeLoad", isAutonomous _assetToLoad];
                 _assetToLoad setVariable ["BIS_WL_lockedFromSquad", true, true];
-
+                
                 private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
                 {
                     _x forgetTarget _assetToLoad;

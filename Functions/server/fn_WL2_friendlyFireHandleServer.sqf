@@ -24,7 +24,9 @@ if (_unit isKindOf "Man") then {
 	private _crew = (crew _unit) select { alive _x };
 	private _sideCrew = (if ((count _crew) > 0) then {side (group (_crew # 0))} else {_sideOwner});
 
+	private _assetType = [_unit] call BIS_fnc_WL2_getAssetTypeName;
+
 	if (_sideOwner == side (group _responsibleLeader) && {_sideOwner == _sideCrew}) then {
-		[_responsibleLeader, _unit] remoteExec ["BIS_fnc_WL2_askForgiveness", _owner];
+		[_responsibleLeader, _unit, _assetType] remoteExec ["BIS_fnc_WL2_askForgiveness", _owner];
 	};
 };

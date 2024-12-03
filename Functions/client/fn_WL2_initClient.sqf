@@ -138,7 +138,6 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		missionNamespace setVariable [_switch, nil];
 		[localize "STR_A3_WL_switch_teams", localize "STR_A3_WL_switch_teams_info"] call BIS_fnc_WL2_blockScreen;
 	};
-	missionNamespace setVariable [_switch, nil];
 
 	private _imb = format ["balanceBlocked_%1", _uid];
 	waitUntil {
@@ -170,7 +169,6 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		missionNamespace setVariable [_imb, nil];
 		["Teams are imbalanced!", "It seems that the teams are not balanced, please head back to the lobby and join the other team, Thank you."] call BIS_fnc_WL2_blockScreen;
 	};
-	missionNamespace setVariable [_imb, nil];
 
 	_text = toLower (name player);
 	_list = getArray (missionConfigFile >> "adminFilter");

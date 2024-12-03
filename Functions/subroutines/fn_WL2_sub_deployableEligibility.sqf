@@ -3,7 +3,8 @@ private _assetOwner = _asset getVariable ["BIS_WL_ownerAsset", "123"];
 private _callerUID = getPlayerUID _caller;
 private _callerID = getPlayerID _caller;
 private _loadedItem = _asset getVariable ["WL2_loadedItem", objNull];
-private _hasLoadedItem = !isNull _loadedItem;
+private _loadedVehicles = getVehicleCargo _asset;
+private _hasLoadedItem = !isNull _loadedItem || count _loadedVehicles > 0;
 
 private _nearLoadableEntities = (_asset nearEntities 30) select {isNull attachedTo _x};
 private _loadableHashmap = missionNamespace getVariable ["WL2_loadable", createHashMap];
