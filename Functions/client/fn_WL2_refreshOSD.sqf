@@ -16,8 +16,15 @@ if (_fullRefresh) then {
 };
 
 private _cdText = "";
-if (vehicle player !=  player) then {
-	private _cooldown = ((vehicle player getVariable ["BIS_WL_nextRearm", 0]) - serverTime) max 0;
+private _playerVehicle = vehicle (getConnectedUAVUnit player);
+if (isNull _playerVehicle) then {
+	if (vehicle player != player) then {
+		_playerVehicle = vehicle player;
+	};
+};
+
+if (!isNull _playerVehicle) then {
+	private _cooldown = ((_playerVehicle getVariable ["BIS_WL_nextRearm", 0]) - serverTime) max 0;
 
 	if (_cooldown > 0) then {
 		private _cooldownDisplay = [_cooldown, "MM:SS"] call BIS_fnc_secondsToString;

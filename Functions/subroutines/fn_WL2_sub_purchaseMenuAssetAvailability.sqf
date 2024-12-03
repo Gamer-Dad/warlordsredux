@@ -230,7 +230,7 @@ if (_ret) then {
 				_tooltip =  localize "STR_A3_WL_tooltip_deploy_enemies_nearby";
 			};
 
-			if (vehicle player != player) exitWith {
+			if (vehicle player != player && !("A" in _requirements)) exitWith {
 				_ret = false;
 				_tooltip = localize "STR_A3_WL_fasttravel_restr3";
 			};
