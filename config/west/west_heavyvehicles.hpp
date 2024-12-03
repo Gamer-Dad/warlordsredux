@@ -115,8 +115,7 @@ class HeavyVehicles {
                 "autocannon_40mm_CTWS"
             };
             addMagazines[] = {
-                "1000Rnd_20mm_shells",
-                "1000Rnd_20mm_shells"
+                "2000Rnd_20mm_shells"
             };
             addWeapons[] = {
                 "gatling_20mm"

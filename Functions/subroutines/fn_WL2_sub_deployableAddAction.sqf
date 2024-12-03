@@ -12,14 +12,18 @@ private _deployActionId = _asset addAction [
 
             if (count _nearLoadableEntities > 0) then {
                 private _assetToLoad = _nearLoadableEntities select 0;
-                private _offset = _eligibilityQuery # 2;
-                _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
-                _assetToLoad setVehicleLock "LOCKED";
-                {
-                    _assetToLoad enableVehicleSensor [_x # 0, false];
-                } forEach (listVehicleSensors _assetToLoad);
+                if ((_asset canVehicleCargo _assetToLoad) # 0) then {
+                    _asset setVehicleCargo _assetToLoad;
+                } else {
+                    private _offset = _eligibilityQuery # 2;
+                    _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
+                    _assetToLoad setVehicleLock "LOCKED";
+                    {
+                        _assetToLoad enableVehicleSensor [_x # 0, false];
+                    } forEach (listVehicleSensors _assetToLoad);
+                };
 
-                _asset setVariable ["WL2_loadedItem", _assetToLoad];\
+                _asset setVariable ["WL2_loadedItem", _assetToLoad];
 
                 private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
                 {
@@ -62,15 +66,21 @@ private _deployActionId = _asset addAction [
                 playSound "AddItemFailed";
             };
 
+            private _loadedVehicles = getVehicleCargo _asset;
+            if (count _loadedVehicles == 0) then {
+                _assetLoadedItem setVehicleLock "UNLOCKED";
+                {
+                    _assetLoadedItem enableVehicleSensor [_x # 0, true];
+                } forEach (listVehicleSensors _assetLoadedItem);
+            } else {
+                _asset setVehicleCargo objNull;
+            };
+
             _assetLoadedItem attachTo [_asset, _desiredPosRelativeHigh];
             detach _assetLoadedItem;
 
             private _assetLoadedItemPos = getPos _assetLoadedItem;
             _assetLoadedItem setPos [_assetLoadedItemPos # 0, _assetLoadedItemPos # 1, 0];
-            _assetLoadedItem setVehicleLock "UNLOCKED";
-            {
-                _assetLoadedItem enableVehicleSensor [_x # 0, true];
-            } forEach (listVehicleSensors _assetLoadedItem);
 
             _asset setVariable ["WL2_loadedItem", objNull];
 

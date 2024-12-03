@@ -72,7 +72,6 @@ if (isPlayer _owner) then {
 
 			// Logistics
 			case "B_Truck_01_flatbed_F": {
-				_asset call BIS_fnc_WL2_sub_logisticsAddAction;
 				_asset call BIS_fnc_WL2_sub_deployableAddAction;
 				if (_side == east) then {
 					{
@@ -80,8 +79,7 @@ if (isPlayer _owner) then {
 					} forEach (getArray (configfile >> "CfgVehicles" >> typeof _asset >> "textureSources" >> "Olive" >> "textures"));
 				};
 			};
-			case "B_T_VTOL_01_vehicle_F";
-			case "O_T_VTOL_02_vehicle_dynamicLoadout_F": {
+			case "B_T_VTOL_01_vehicle_F": {
 				_asset call BIS_fnc_WL2_sub_logisticsAddAction;
 			};
 

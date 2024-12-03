@@ -8,5 +8,6 @@ class Spawn {
     class Land_Pod_Heli_Transport_04_medevac_F {
         name = "CSAT Spawn Pod";
         killReward = 300;
+        loadable[] = { 0, 0, 0 };
     }; // Taru Spawn Container
 };
