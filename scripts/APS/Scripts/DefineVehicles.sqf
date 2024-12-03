@@ -12,12 +12,8 @@
 // Value: [APS Type (0-2, 3 if not applicable), APS ammo consumption, Dazzleable]
 
 private _projectileSettings = [
-    // Laser-guided bombs
+    // SDB
     ["ammo_Bomb_SDB", [3, 1, true]],            // GBU SDB
-    ["Bo_GBU12_LGB", [3, 1, true]],             // GBU-12 LGB
-    ["Bo_GBU12_LGB_MI10", [3, 1, true]],        // GBU-12 LGB
-    ["Bomb_04_F", [3, 1, true]],                // GBU-12 LGB
-    ["Bomb_03_F", [3, 1, true]],                // KAB-250 LGB
 
     // Tank ATGM
     ["M_120mm_cannon_ATGM", [1, 1, true]],      // 120mm Cannon ATGM
@@ -31,8 +27,8 @@ private _projectileSettings = [
     ["M_SPG9_HEAT", [1, 1, false]],             // SPG-9 HEAT
 
     // Air Vehicle SEAD
-    ["ammo_Missile_HARM", [1, 3, true]],        // AGM-88 HARM
-    ["ammo_Missile_KH58", [1, 3, true]],        // KH-58 ARM
+    ["ammo_Missile_HARM", [1, 2, true]],        // AGM-88 HARM
+    ["ammo_Missile_KH58", [1, 2, true]],        // KH-58 ARM
 
     // Air Vehicle Guided
     ["M_Jian_AT", [1, 2, true]],                // Jian - Max loadout: 4

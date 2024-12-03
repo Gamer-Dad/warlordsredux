@@ -28,14 +28,14 @@ private _color = ['#004d99', '#7f0400', '#007f04'] # ([west, east, independent] 
 ((ctrlParent WL_CONTROL_MAP) getVariable "BIS_sectorInfoBox") ctrlCommit 0;
 ((ctrlParent WL_CONTROL_MAP) getVariable "BIS_sectorInfoBox") ctrlSetStructuredText parseText format [
 	if (_scanCD == 0) then {
-		"<t shadow = '2' size = '%1'>%2<br/>+%3 %4/%5%6%7%8%9%10%11<br/><t color = '%15'>%14</t></t>"
+		"<t shadow = '2' size = '%1'>%2<br/>%3%4/%5%6%7%8%9%10%11<br/><t color = '%15'>%14</t></t>"
 	} else {
-		"<t shadow = '2' size = '%1'>%2<br/>+%3 %4/%5%6%7%8%9%10%11<br/>%12: <t color = '#ff4b4b'>%13</t><br/><t color = '%15'>%14</t></t>"
+		"<t shadow = '2' size = '%1'>%2<br/>%3%4/%5%6%7%8%9%10%11<br/>%12: <t color = '#ff4b4b'>%13</t><br/><t color = '%15'>%14</t></t>"
 	},
 	(1 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale),
 	_sector getVariable "BIS_WL_name",
-	_sector getVariable "BIS_WL_value",
 	[_side] call BIS_fnc_WL2_getMoneySign,
+	_sector getVariable "BIS_WL_value",
 	localize "STR_A3_rscmpprogress_min",
 	if (_airstrip || {_helipad || {_harbor}}) then {"<br/>"} else {""},
 	if (_airstrip) then {localize "STR_A3_WL_param32_title"} else {""},
