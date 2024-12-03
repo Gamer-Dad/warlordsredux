@@ -17,11 +17,11 @@ if (isPlayer _owner) then {
 
 	if (_asset isKindOf "Man") then {
 		_asset call APS_fnc_SetupProjectiles;
-		_asset addEventHandler ["Killed", {
-			missionNamespace setVariable ["WL2_manLost", true];
-			BIS_WL_matesAvailable = (BIS_WL_matesAvailable - 1) max 0;
-			false spawn BIS_fnc_WL2_refreshOSD;
-		}];
+
+		private _refreshTimerVar = format ["WL2_manpowerRefreshTimers_%1", getPlayerUID player];
+		private _manpowerRefreshTimers = missionNamespace getVariable [_refreshTimerVar, []];
+		_manpowerRefreshTimers pushBack [serverTime + WL_MANPOWER_REFRESH_COOLDOWN, _asset];
+		missionNamespace setVariable [_refreshTimerVar, _manpowerRefreshTimers, true];
 	} else {
 		private _side = side _owner;
 

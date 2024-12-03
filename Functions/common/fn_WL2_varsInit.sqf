@@ -27,7 +27,7 @@ switch (_locality) do {
 		BIS_WL_purchaseMenuVisible = FALSE;
 		BIS_WL_gearKeyPressed = FALSE;
 		BIS_WL_currentSelection = 0;
-		BIS_WL_matesAvailable = 1;
+		BIS_WL_matesAvailable = 0;
 		BIS_WL_lastLoadout = [];
 		BIS_WL_savedLoadout = [];
 		BIS_WL_loadoutApplied = FALSE;
