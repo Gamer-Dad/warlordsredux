@@ -120,9 +120,9 @@ while {!BIS_WL_missionEnd} do {
 		[toUpper localize "STR_A3_WL_voting_reset"] spawn BIS_fnc_WL2_smoothText;
 		sleep 2;
 	} else {
-		call BIS_fnc_WL2_refreshCurrentTargetData;
 		if !(BIS_WL_missionEnd) then {
 			waitUntil {sleep WL_TIMEOUT_MIN; !isNull WL_TARGET_FRIENDLY};
+			call BIS_fnc_WL2_refreshCurrentTargetData;
 			"Selected" call BIS_fnc_WL2_announcer;
 			[toUpper format [localize "STR_A3_WL_popup_voting_done", WL_TARGET_FRIENDLY getVariable "BIS_WL_name"]] spawn BIS_fnc_WL2_smoothText;
 			["client", TRUE] call BIS_fnc_WL2_updateSectorArrays;

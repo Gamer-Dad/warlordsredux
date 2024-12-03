@@ -22,6 +22,8 @@ if (isPlayer _owner) then {
 		private _manpowerRefreshTimers = missionNamespace getVariable [_refreshTimerVar, []];
 		_manpowerRefreshTimers pushBack [serverTime + WL_MANPOWER_REFRESH_COOLDOWN, _asset];
 		missionNamespace setVariable [_refreshTimerVar, _manpowerRefreshTimers, true];
+
+		call BIS_fnc_WL2_teammatesAvailability;
 	} else {
 		private _side = side _owner;
 
