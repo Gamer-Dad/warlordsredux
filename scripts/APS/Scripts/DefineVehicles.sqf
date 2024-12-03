@@ -27,8 +27,8 @@ private _projectileSettings = [
     ["M_SPG9_HEAT", [1, 1, false]],             // SPG-9 HEAT
 
     // Air Vehicle SEAD
-    ["ammo_Missile_HARM", [1, 2, true]],        // AGM-88 HARM
-    ["ammo_Missile_KH58", [1, 2, true]],        // KH-58 ARM
+    ["ammo_Missile_HARM", [1, 3, true]],        // AGM-88 HARM
+    ["ammo_Missile_KH58", [1, 3, true]],        // KH-58 ARM
 
     // Air Vehicle Guided
     ["M_Jian_AT", [1, 2, true]],                // Jian - Max loadout: 4
