@@ -16,6 +16,12 @@ if (_adminKeyPressed && !_isAdmin) exitWith {
     true;
 };
 
+private _display = uiNamespace getVariable ["BIS_WL_purchaseMenuDisplay", displayNull];
+private _purchase_transfer_amount = _display displayCtrl 117;
+if (ctrlEnabled _purchase_transfer_amount) exitWith {
+    false;
+};
+
 private _isNumberKey = true;
 private _existingCode = uiNamespace getVariable ["WL_BuyMenuCode", ""];
 private _addToCode = switch (_key) do {
@@ -105,6 +111,12 @@ if (_itemDone) then {
         "_offset"
     ];
 
+    private _tasksRequireUIList = ["FundsTransfer"];
+    if (_className in _tasksRequireUIList) exitWith {
+        systemChat format ["Invalid task requires UI: %1", _displayName];
+        playSound "AddItemFailed";
+    };
+
     private _categoryString = WL_REQUISITION_CATEGORIES # _categoryCode;
     if (isNil "_cost") then {
         _cost = 0;
@@ -131,7 +143,6 @@ if (_itemDone) then {
             true;
         };
 
-        private _display = uiNamespace getVariable ["BIS_WL_purchaseMenuDisplay", displayNull];
         private _purchase_category = _display displayCtrl 100;
         _purchase_category lbSetCurSel _categoryCode;
     };

@@ -56,7 +56,7 @@ _killReward call BIS_fnc_WL2_fundsDatabaseWrite;
 
 [_unit, _killReward, _customText, "#228b22", _assetActualType] remoteExec ["BIS_fnc_WL2_killRewardClient", _responsibleLeader];
 
-["earnPoints", [_playerId, _killReward]] call SQD_fnc_server;
+["earnPoints", [_uid, _killReward]] call SQD_fnc_server;
 
 // Vehicle crew reward
 private _reward = round (_killReward / 4);
@@ -68,4 +68,5 @@ private _crew = (crew _vehicle) select {
 	_uid = getPlayerUID _x;
 	_reward call BIS_fnc_WL2_fundsDatabaseWrite;
 	[_unit, _reward] remoteExec ["BIS_fnc_WL2_killRewardClient", _x];
+	["earnPoints", [_uid, _killReward]] call SQD_fnc_server;
 } forEach _crew;

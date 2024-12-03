@@ -62,7 +62,7 @@ disableSerialization;
                 private _playerItem = tvAdd [TREE, [_squadItem], _playerName];
                 tvSetData [TREE, [_squadItem, _playerItem], format ["%1", _playerId]];
 
-                _points = WL_PlayerSquadContribution getOrDefault [_playerId, 0];
+                _points = WL_PlayerSquadContribution getOrDefault [getPlayerUID _player, 0];
                 tvSetTooltip [TREE, [_squadItem, _playerItem], format [localize "STR_SQUADS_squadMemberTooltip", _playerName, _points]];
 
                 _tvColor = if (_playerId == (getPlayerID player)) then {
@@ -117,7 +117,7 @@ disableSerialization;
             private _playerItem = lbAdd [PLAYER_LIST, _playerName];
             lbSetData [PLAYER_LIST, _playerItem, format ["%1", getPlayerID _player]];
 
-            _points = WL_PlayerSquadContribution getOrDefault [getPlayerID _player, 0];
+            _points = WL_PlayerSquadContribution getOrDefault [getPlayerUID _player, 0];
             lbSetTooltip [PLAYER_LIST, _playerItem, format [localize "STR_SQUADS_squadMemberTooltip", _playerName, _points]];
 
             _listEntries set [format ["%1", getPlayerID _player], _playerItem];
@@ -178,14 +178,18 @@ disableSerialization;
         {
             private _treePath = [_y select 0, _y select 1];
             private _playerId = _x;
+            private _player = allPlayers select {getPlayerID _x == _playerId} select 0;
+
+            if (isNil "_player") then {
+                continue;
+            };
 
             private _picture = [_playerId] call _getPictureForPlayerId;
             tvSetPicture [TREE, _treePath, _picture];
 
-            private _points = WL_PlayerSquadContribution getOrDefault [_playerId, 0];
+            private _points = WL_PlayerSquadContribution getOrDefault [getPlayerUID _player, 0];
             tvSetTooltip [TREE, _treePath, format [localize "STR_SQUADS_squadMemberTooltip", name (allPlayers select {getPlayerID _x == _playerId} select 0), _points]];
 
-            private _player = allPlayers select {getPlayerID _x == _playerId} select 0;
             private _tvColor = if (_playerId == (getPlayerID player)) then {
                 [0.4, 0.6, 1.0, 1];
             } else {
@@ -202,11 +206,15 @@ disableSerialization;
 
         {
             private _playerId = _x;
+            private _player = allPlayers select {getPlayerID _x == _playerId} select 0;
+            if (isNil "_player") then {
+                continue;
+            };
 
             private _picture = [_playerId] call _getPictureForPlayerId;
             lbSetPicture [PLAYER_LIST, _y, _picture];
 
-            private _points = WL_PlayerSquadContribution getOrDefault [_playerId, 0];
+            private _points = WL_PlayerSquadContribution getOrDefault [getPlayerUID _player, 0];
             lbSetTooltip [PLAYER_LIST, _y, format [localize "STR_SQUADS_squadMemberTooltip", name (allPlayers select {getPlayerID _x == _playerId} select 0), _points]];
         } forEach _listEntries;
     };

@@ -249,18 +249,25 @@ if (_action == "orderAI") exitWith {
 
 if (_action == "fundsTransfer") exitWith {
 	private _incomeBlocked = serverNamespace getVariable ["BIS_WL_incomeBlockedList", []];
-	if (playerFunds >= _param1) then {
-		_uid = getPlayerUID _param2;
+	private _transferCost = getMissionConfigValue ["BIS_WL_fundsTransferCost", 2000];
+	private _transferAmount = _param1;
+	private _recipient = _param2;
+	if (playerFunds >= (_transferAmount + _transferCost)) then {
+		_uid = getPlayerUID _recipient;
 		if !(_uid in _incomeBlocked) then {
-			_param1 call BIS_fnc_WL2_fundsDatabaseWrite;
+			_transferAmount call BIS_fnc_WL2_fundsDatabaseWrite;
+
       		private _oldTransfer = serverNamespace getVariable [format ["BIS_WL_WLAC_%1", _uid], 0];
-		  	serverNamespace setVariable [format ["BIS_WL_WLAC_%1", _uid], _oldTransfer + _param1];
+		  	serverNamespace setVariable [format ["BIS_WL_WLAC_%1", _uid], _oldTransfer + _transferAmount];
+
 			_uid = getPlayerUID _sender;
-			(-_param1) call BIS_fnc_WL2_fundsDatabaseWrite;
+			-(_transferAmount + _transferCost) call BIS_fnc_WL2_fundsDatabaseWrite;
+
 			serverNamespace setVariable [format ["BIS_WL_isTransferring_%1", _uid], false];
 
-			private _sentMoney = format ["%1%2", [_side] call BIS_fnc_WL2_getMoneySign, _param1];
-			private _message = format [localize "STR_A3_WL_donate_cp", name _sender, name _param2, _sentMoney];
+			private _sentMoney = format ["%1%2", [_side] call BIS_fnc_WL2_getMoneySign, _transferAmount];
+			private _message = format [localize "STR_A3_WL_donate_cp", name _sender, name _recipient, _sentMoney];
+
 			[_side, _message] call _broadcastActionToSide;
 		};
 	};
@@ -268,14 +275,11 @@ if (_action == "fundsTransfer") exitWith {
 
 if (_action == "fundsTransferCancel") exitWith {
 	if (serverNamespace getVariable (format ["BIS_WL_isTransferring_%1", _uid])) then {
-		(getMissionConfigValue ["BIS_WL_fundsTransferCost", 2000]) call BIS_fnc_WL2_fundsDatabaseWrite;
 		serverNamespace setVariable [format ["BIS_WL_isTransferring_%1", _uid], false];
 	};
 };
 
 if (_action == "fundsTransferBill") exitWith {
-	(-(getMissionConfigValue ["BIS_WL_fundsTransferCost", 2000])) call BIS_fnc_WL2_fundsDatabaseWrite;
-
 	serverNamespace setVariable [format ["BIS_WL_isTransferring_%1", _uid], true];
 };
 
