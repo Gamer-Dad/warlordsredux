@@ -72,7 +72,7 @@ if (_displayClass == "OSD") then {
 
 	_osd_action_sl_nearby ctrlSetPosition [_displayX + (_blockW * 55), _displayY - (_blockH * 13), _blockW * 40, _blockH * 16];
 
-	_osd_rearm_possible ctrlSetPosition [_displayX + (_blockW * 73), _displayY + (_blockH * 8), _blockW * 120, _blockH * 16];
+	_osd_rearm_possible ctrlSetPosition [_displayX, _displayY + (_blockH * 8), _blockW * 177, _blockH * 16];
 
 	_osd_icon_side_2 ctrlSetText "\A3\Ui_F_Curator\Data\Displays\RscDisplayCurator\modeUnits_ca.paa";
 

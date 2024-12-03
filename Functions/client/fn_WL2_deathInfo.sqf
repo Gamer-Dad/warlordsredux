@@ -203,6 +203,9 @@ private _scoreText = format ["<t size='1' color='#ffffff'>%1</t><br/><t size='1.
 _rightDisplayText2 ctrlSetStructuredText parseText _scoreText;
 _rightDisplayText2 ctrlShow true;
 
+sleep (playerRespawnTime / 2);
+showScoretable 1;
+
 waitUntil {
     sleep 0.2;
     alive player;
