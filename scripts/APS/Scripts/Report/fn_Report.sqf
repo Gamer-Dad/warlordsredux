@@ -1,4 +1,10 @@
-params ["_vehicle", "_angle", "_indicator"];
+params ["_vehicle", "_angle", "_indicator", ["_gunner", objNull]];
+
+if (!isNull _gunner) then {
+	{
+		_x reveal [vehicle _gunner, 1.5];
+	} forEach (crew _vehicle);
+};
 
 if (vehicle player != _vehicle) exitWith {};
 

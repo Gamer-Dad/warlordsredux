@@ -95,7 +95,7 @@ while {_continue && alive _projectile} do {
 				_explosionPosition set [2, _explosionHeight];
 				createVehicle ["SmallSecondary", _explosionPosition, [], 0, "FLY"];
 
-				[_x, _relativeDirection, true] remoteExec ["APS_fnc_Report", _x];
+				[_x, _relativeDirection, true, _gunner] remoteExec ["APS_fnc_Report", _x];
 
 				private _ownerSide = _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown];
 				if (side _unit == _ownerSide) then {
