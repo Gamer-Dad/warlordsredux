@@ -10,7 +10,6 @@ _this addEventHandler ["Fired", {
 			private _samTargets = [];
 			{
 				_x params ["_target", "_type", "_relationship", "_detectionSource"];
-				systemChat str (getDir _projectile);
 				private _isInAngle = [getPosATL _projectile, getDir _projectile, 120, getPosATL _target] call BIS_fnc_inAngleSector;
 				if (_isInAngle && _type == "ground" && _relationship != "friendly" && "passiveradar" in _detectionSource) then {
 					_samTargets pushBack (_x # 0);
