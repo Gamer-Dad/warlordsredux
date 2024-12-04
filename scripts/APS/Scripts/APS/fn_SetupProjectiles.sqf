@@ -9,10 +9,10 @@ _this addEventHandler ["Fired", {
 			private _allAssetTargets = getSensorTargets _unit;
 			private _samTargets = [];
 			{
-				private _type = _x select 1;
-				private _relationship = _x select 2;
-				private _detectionSource = _x select 3;
-				if (_type == "ground" && _relationship != "friendly" && "passiveradar" in _detectionSource) then {
+				_x params ["_target", "_type", "_relationship", "_detectionSource"];
+				systemChat str (getDir _projectile);
+				private _isInAngle = [getPosATL _projectile, getDir _projectile, 120, getPosATL _target] call BIS_fnc_inAngleSector;
+				if (_isInAngle && _type == "ground" && _relationship != "friendly" && "passiveradar" in _detectionSource) then {
 					_samTargets pushBack (_x # 0);
 				};
 			} forEach _allAssetTargets;
