@@ -154,8 +154,9 @@ while {_i < _garrisonSize} do {
 	private _cnt = (count allPlayers) max 1;
 
 	private _i2 = 0;
+	private _groupPosArr = _spawnPosArr select {(_pos distance2D _x) < 150};
 	for "_i2" from 0 to _grpSize do {
-		_newUnit = _newGrp createUnit [selectRandom _unitsPool, _pos, [], 80, "NONE"];
+		private _newUnit = _newGrp createUnit [selectRandom _unitsPool, selectRandom _groupPosArr, [], 0, "NONE"];
 		_newUnit call BIS_fnc_WL2_newAssetHandle;
 		_units pushBack _newUnit;
 
