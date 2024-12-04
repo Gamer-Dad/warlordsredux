@@ -34,10 +34,19 @@ _id = lbCurSel _purchase_category;
 _purchase_items_list lbSetCurSel ((uiNamespace getVariable ["BIS_WL_purchaseMenuLastSelection", [0, 0, 0]]) # 1);;
 _purchase_items = _display displayCtrl 1;
 private _maxSubordinates = missionNamespace getVariable [format ["BIS_WL_maxSubordinates_%1", BIS_WL_playerSide], 1];
+
+private _refreshTimerText = "";
+private _refreshTimerVar = format ["WL2_manpowerRefreshTimers_%1", getPlayerUID player];
+private _manpowerRefreshTimers = missionNamespace getVariable [_refreshTimerVar, []];
+private _refreshTimerText = (_manpowerRefreshTimers apply {
+	private _cooldown = _x # 0 - serverTime;
+	[_cooldown, "MM:SS"] call BIS_fnc_secondsToString;
+}) joinString ", ";
+
 (_display displayCtrl 103) ctrlSetStructuredText parseText format [
 	"<t align = 'left' size = '%2'>%1</t>",
 	[
-		format [localize "STR_A3_WL_asset_infantry_info", _maxSubordinates],
+		format ["Max subordinates: %1<br/>Refresh Timers: %2", _maxSubordinates, _refreshTimerText],
 		localize "STR_A3_WL_LightVehicle_Info",
 		localize "STR_A3_WL_HeavyVehicle_Info",
 		localize "STR_A3_WL_RotaryWing_Info",
