@@ -203,6 +203,8 @@ if (isPlayer _owner) then {
 			_asset setVariable ["BIS_WL_ownerUavAsset", getPlayerUID player, true];
 			[_asset, _owner] spawn BIS_fnc_WL2_uavJammer;
 			_asset setVariable ["WL_canConnectUav", true];
+
+			[_asset] call BIS_fnc_WL2_uavConnectRefresh;
 		};
 
 		private _notLockableVehicles = createHashMapFromArray [

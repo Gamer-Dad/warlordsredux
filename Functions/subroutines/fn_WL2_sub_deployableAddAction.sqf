@@ -23,14 +23,12 @@ private _deployActionId = _asset addAction [
                 } else {
                     private _offset = _eligibilityQuery # 2;
                     _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
-                    {
-                        _assetToLoad enableVehicleSensor [_x # 0, false];
-                    } forEach (listVehicleSensors _assetToLoad);
                 };
 
                 _asset setVariable ["WL2_loadedItem", _assetToLoad];
                 _assetToLoad setVariable ["WL2_autonomousBeforeLoad", isAutonomous _assetToLoad];
-                _assetToLoad setVariable ["BIS_WL_lockedFromSquad", true, true];
+                _assetToLoad setVariable ["WL2_transporting", true, true];
+                [_assetToLoad] remoteExec ["BIS_fnc_WL2_uavConnectRefresh", 0];
 
                 private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
                 {
@@ -76,9 +74,6 @@ private _deployActionId = _asset addAction [
             private _loadedVehicles = getVehicleCargo _asset;
             if (count _loadedVehicles == 0) then {
                 _assetLoadedItem setVehicleLock "UNLOCKED";
-                {
-                    _assetLoadedItem enableVehicleSensor [_x # 0, true];
-                } forEach (listVehicleSensors _assetLoadedItem);
             } else {
                 _asset setVehicleCargo objNull;
             };
@@ -91,7 +86,8 @@ private _deployActionId = _asset addAction [
 
             private _wasAutonomous = _assetLoadedItem getVariable ["WL2_autonomousBeforeLoad", false];
             _assetLoadedItem setAutonomous _wasAutonomous;
-            _assetLoadedItem setVariable ["BIS_WL_lockedFromSquad", false, true];
+            _assetLoadedItem setVariable ["WL2_transporting", false, true];
+            [_assetLoadedItem] call BIS_fnc_WL2_uavConnectRefresh;
 
             _asset setVariable ["WL2_loadedItem", objNull];
 
@@ -128,9 +124,6 @@ private _deployActionId = _asset addAction [
             };
             if ((locked _assetLoadedItem) != 2) then {
                 _assetLoadedItem setVehicleLock "LOCKED";
-            };
-            if !(_assetLoadedItem getVariable ["BIS_WL_lockedFromSquad", false]) then {
-                _assetLoadedItem setVariable ["BIS_WL_lockedFromSquad", true, true];
             };
         };
 

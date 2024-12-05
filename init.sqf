@@ -29,6 +29,7 @@ BIS_fnc_WL2_parsePurchaseList = compileFinal preprocessFileLineNumbers "Function
 BIS_fnc_WL2_reloadOverride = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_reloadOverride.sqf";
 BIS_fnc_WL2_sortSectorArrays = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_sortSectorArrays.sqf";
 BIS_fnc_WL2_tablesSetUp = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_tablesSetUp.sqf";
+BIS_fnc_WL2_uavConnectRefresh = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_uavConnectRefresh.sqf";
 BIS_fnc_WL2_updateSectorArrays = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_updateSectorArrays.sqf";
 BIS_fnc_WL2_varsInit = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_varsInit.sqf";
 BIS_fnc_WL2_vehicleLock = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_vehicleLock.sqf";

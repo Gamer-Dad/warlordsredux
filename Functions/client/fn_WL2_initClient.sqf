@@ -443,25 +443,7 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 0 spawn {
 	while { !BIS_WL_missionEnd } do {
 		{
-			private _uav = _x;
-			private _ownerUavAsset = _uav getVariable ["BIS_WL_ownerUavAsset", "123"];
-			private _ownerUnit = _ownerUavAsset call BIS_fnc_getUnitByUID;
-			private _ownerID = getPlayerID _ownerUnit;
-			private _isInMySquad = ["isInMySquad", [_ownerID]] call SQD_fnc_client;
-
-			private _isConnectable = player isUAVConnectable [_uav, true];
-			private _isLockedFromSquad = _uav getVariable ["BIS_WL_lockedFromSquad", false];
-			if ((!_isInMySquad || _isLockedFromSquad) && _ownerUnit != player) then {
-				_uav setVariable ["WL_canConnectUav", false];
-				if (_isConnectable) then {
-					player disableUAVConnectability [_uav, true];
-				};
-			} else {
-				_uav setVariable ["WL_canConnectUav", true];
-				if (!_isConnectable) then {
-					player enableUAVConnectability [_uav, true];
-				};
-			};
+			_x call BIS_fnc_WL2_uavConnectRefresh;
 		} forEach allUnitsUAV;
 		sleep 5;
 	};

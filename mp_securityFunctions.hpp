@@ -68,6 +68,10 @@ class CfgRemoteExec {
 			allowedTargets = 0;
 		};
 
+		class BIS_fnc_WL2_uavConnectRefresh {
+			allowedTargets = 0;
+		};
+
 		class BIS_fnc_WL2_updateVehicleList {
 			allowedTargets = 2;
 		};
