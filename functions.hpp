@@ -85,6 +85,7 @@ class CfgFunctions {
 	class WLM {
 		class WLM {
 			file = "Scripts\WLM\functions";
+			class applyCustomization {};
 			class applyLoadoutAircraft {};
 			class applyLoadoutVehicle {};
 			class applyPylon {};
