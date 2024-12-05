@@ -1,3 +1,5 @@
+#include "..\warlords_constants.inc"
+
 params [
     "_className",
     "_requirements",
