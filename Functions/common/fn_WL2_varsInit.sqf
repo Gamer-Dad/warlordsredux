@@ -52,5 +52,7 @@ switch (_locality) do {
 		BIS_WL_colorFriendly = BIS_WL_colorsArray # (BIS_WL_sidesArray find BIS_WL_playerSide);
 		BIS_WL_penalized = false;
 		BIS_WL_mapAssetTarget = objNull;
+		WL_GEAR_BUY_MENU = false;
+		WL_TEMP_BUY_MENU = false;
 	};
 };

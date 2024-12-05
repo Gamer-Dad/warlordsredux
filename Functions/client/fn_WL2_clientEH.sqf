@@ -133,15 +133,22 @@ if ((getPlayerUID player) in (getArray (missionConfigFile >> "adminIDs"))) then 
 
 0 spawn {
 	waituntil {sleep 0.1; !isnull (findDisplay 46)};
-	(findDisplay 46) displayAddEventHandler ["KeyUp", {
+	private _display = findDisplay 46;
+	_display displayAddEventHandler ["KeyUp", {
 		_key = _this # 1;
 		if (_key in actionKeys "Gear") then {
 			BIS_WL_gearKeyPressed = false;
 		};
 	}];
 
-	(findDisplay 46) displayAddEventHandler ["KeyDown", {
+	_display displayAddEventHandler ["KeyDown", {
 		_this call BIS_fnc_WL2_handleKeypress;
+	}];
+
+	// intentionally separate handler
+	_display displayAddEventHandler ["KeyDown", {
+		private _key = _this # 1;
+		[_key] call BIS_fnc_WL2_handleBuyMenuKeypress;
 	}];
 };
 

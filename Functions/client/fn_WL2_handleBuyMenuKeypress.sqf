@@ -3,6 +3,24 @@
 
 params ["_key"];
 
+private _tempBuyKey = actionKeys "User5";
+_tempBuyKey pushBack DIK_NUMPADSLASH;
+if (_key in _tempBuyKey) exitWith {
+    WL_TEMP_BUY_MENU = true;
+    hint "Entering buy code...";
+};
+
+if (!WL_GEAR_BUY_MENU && !WL_TEMP_BUY_MENU) exitWith {
+    false;
+};
+
+if (_key == DIK_BACKSPACE) exitWith {
+    WL_TEMP_BUY_MENU = faLse;
+    uiNamespace setVariable ["WL_BuyMenuCode", ""];
+    hint "";
+    true;
+};
+
 if (_key in actionKeys "Gear" && !BIS_WL_gearKeyPressed) exitWith {
     "RequestMenu_close" call BIS_fnc_WL2_setupUI;
     true;
@@ -91,12 +109,14 @@ _itemCode = _itemCode - 1;
 if (_itemDone) then {
     hintSilent "";
     uiNamespace setVariable ["WL_BuyMenuCode", ""];
+    WL_TEMP_BUY_MENU = false;
 
     private _selectedCategory = WL_PLAYER_REQUISITION_LIST # _categoryCode;
 
     if (_itemCode > (count _selectedCategory - 1)) exitWith {
         systemChat "Invalid buy code item.";
         playSound "AddItemFailed";
+        WL_TEMP_BUY_MENU = false;
         true;
     };
     private _selectedItem = _selectedCategory # _itemCode;
@@ -140,6 +160,7 @@ if (_itemDone) then {
             uiNamespace setVariable ["WL_BuyMenuCode", ""];
             systemChat "Invalid buy code category.";
             playSound "AddItemFailed";
+            WL_TEMP_BUY_MENU = false;
             true;
         };
 

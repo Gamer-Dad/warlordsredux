@@ -139,12 +139,15 @@ if (_displayClass == "OSD") then {
 				playSound "AddItemFailed";
 			};
 			BIS_WL_purchaseMenuVisible = false;
+			WL_GEAR_BUY_MENU = false;
 			WL_CONTROL_MAP ctrlEnable true;
+			hint "";
 		}];
 
 		uiNamespace setVariable ["WL_BuyMenuCode", ""];
 		_myDisplay displayAddEventHandler ["KeyDown", {
 			private _key = _this # 1;
+			WL_GEAR_BUY_MENU = true;
 			[_key] call BIS_fnc_WL2_handleBuyMenuKeypress;
 		}];
 
