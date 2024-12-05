@@ -37,7 +37,7 @@ if ((_targets findIf {_unit inArea (_x getVariable "objectAreaComplete")}) != -1
 
 private _playerId = getPlayerID _responsibleLeader;
 private _squadmatesIDs = ["getSquadmates", [_playerId]] call SQD_fnc_server;
-private _squadReward = round (_killReward * 0.5 / (sqrt (count _squadmatesIDs)));
+private _squadReward = round (_killReward * 0.5 / (sqrt (count _squadmatesIDs) max 1));
 {
 	private _userInfo = getUserInfo _x;
 	if (count _userInfo < 3) then {
