@@ -1,11 +1,9 @@
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 0 spawn KS_fnc_unflipVehicleAddAction;
 
-_leader = (leader group _newUnit);
-if ((_newUnit != _leader) && {(alive _leader) && {((_oldUnit distance2D _leader) < 200) && {isPlayer _leader}}}) then {
-	deleteVehicle _oldUnit;
-	call BIS_fnc_WL2_orderLastLoadout;
-	_newUnit setVehiclePosition [getPosASL _leader, [], 2, "NONE"];
+private _newGroup = group _newUnit;
+if (leader _newGroup != _newUnit) then {
+	[_newGroup, _newUnit] remoteExec ["selectLeader", groupOwner _newGroup];
 };
 
 _var = format ["BIS_WL_ownedVehicles_%1", getPlayerUID _newUnit];

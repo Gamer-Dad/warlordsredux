@@ -194,3 +194,11 @@ addMissionEventHandler ["EntityCreated", {
 		};
 	};
 }];
+
+addMissionEventHandler ["EntityRespawned", {
+	params ["_newEntity", "_oldEntity"];
+	private _wasMan = _oldEntity getEntityInfo 0;
+	if (_wasMan) then {
+		removeAllActions _oldEntity;
+	};
+}];

@@ -28,7 +28,6 @@ if (_displayClass == "OSD") then {
 		["BIS_WL_osd_progress_voting_background", "RscText"],
 		["BIS_WL_osd_progress_voting", "RscProgress"],
 		["BIS_WL_osd_action_voting_title", "RscStructuredText"],
-		["BIS_WL_osd_sl_nearby", "RscStructuredText"],
 		["BIS_WL_osd_rearm_possible", "RscStructuredText"]
 	];
 
@@ -45,7 +44,6 @@ if (_displayClass == "OSD") then {
 	_osd_progress_voting_background = uiNamespace getVariable "BIS_WL_osd_progress_voting_background";
 	_osd_progress_voting = uiNamespace getVariable "BIS_WL_osd_progress_voting";
 	_osd_action_voting_title = uiNamespace getVariable "BIS_WL_osd_action_voting_title";
-	_osd_action_sl_nearby = uiNamespace getVariable "BIS_WL_osd_sl_nearby";
 	_osd_rearm_possible = uiNamespace getVariable "BIS_WL_osd_rearm_possible";
 
 	_blockW = safeZoneW / 1000;
@@ -69,8 +67,6 @@ if (_displayClass == "OSD") then {
 	_osd_icon_side_2 ctrlSetPosition [_displayX + (_blockW * 124), _displayY - (_blockH * 16), _blockW * 16, _blockH * 16];
 
 	_osd_income_side_2 ctrlSetPosition [_displayX + (_blockW * 137), _displayY - (_blockH * 13), _blockW * 40, _blockH * 16];
-
-	_osd_action_sl_nearby ctrlSetPosition [_displayX + (_blockW * 55), _displayY - (_blockH * 13), _blockW * 40, _blockH * 16];
 
 	_osd_rearm_possible ctrlSetPosition [_displayX, _displayY + (_blockH * 8), _blockW * 177, _blockH * 16];
 
@@ -98,7 +94,6 @@ if (_displayClass == "OSD") then {
 		_osd_progress_voting_background,
 		_osd_progress_voting,
 		_osd_action_voting_title,
-		_osd_action_sl_nearby,
 		_osd_rearm_possible
 	];
 

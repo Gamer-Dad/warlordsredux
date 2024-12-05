@@ -330,11 +330,6 @@ call BIS_fnc_WL2_targetResetHandle;
 		}
 	} != -1
 }] call BIS_fnc_WL2_hintHandle;
-[player, "nearSL", {
-	(player distance2D (leader group player) <= 200) && {
-		player != (leader group player)
-	}
-}] call BIS_fnc_WL2_hintHandle;
 
 0 spawn BIS_fnc_WL2_selectedTargetsHandle;
 0 spawn BIS_fnc_WL2_targetSelectionHandleClient;

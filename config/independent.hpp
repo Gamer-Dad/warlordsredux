@@ -106,7 +106,7 @@ class INDEPENDENT {
 
         class I_LT_01_scout_F {
             killReward = 240;
-            vehicleSpawn = 1;
+            // vehicleSpawn = 1;
             capValue = 4;
         };
 
