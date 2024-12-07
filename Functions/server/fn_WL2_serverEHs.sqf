@@ -1,7 +1,6 @@
 addMissionEventHandler ["HandleDisconnect", {
 	params ["_unit", "_id", "_uid", "_name"];
-	_ownedVehicles = format ["BIS_WL_ownedVehicles_%1", _uid];
-	_minesDB = format ["BIS_WL2_minesDB_%1", _uid];
+	private _ownedVehicles = format ["BIS_WL_ownedVehicles_%1", _uid];
 	{
 		if (unitIsUAV _x) then {
 			private _grp = group effectiveCommander _x;
@@ -13,6 +12,7 @@ addMissionEventHandler ["HandleDisconnect", {
 	} forEach ((missionNamespace getVariable [_ownedVehicles, []]) select {!(isNull _x)});
 	missionNamespace setVariable [_ownedVehicles, nil];
 
+	private _minesDB = format ["BIS_WL2_minesDB_%1", _uid];
 	{
 		_mineData = (missionNamespace getVariable _minesDB) getOrDefault [_x, [0, []]];
 		_mines = (_mineData select 1);
