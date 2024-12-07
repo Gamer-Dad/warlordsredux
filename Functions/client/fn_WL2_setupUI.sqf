@@ -11,9 +11,11 @@ if (_voteLocked) exitWith {};
 private _side = BIS_WL_playerSide;
 private _moneySign = [_side] call BIS_fnc_WL2_getMoneySign;
 if (_displayClass == "OSD") then {
+	"OSDLayer" cutRsc ["RscTitleDisplayEmpty", "PLAIN"];
+	private _display = uiNamespace getVariable "RscTitleDisplayEmpty";
 	{
 		_x params ["_var", "_type"];
-		uiNamespace setVariable [_var, (findDisplay 46) ctrlCreate [_type, -1]];
+		uiNamespace setVariable [_var, _display ctrlCreate [_type, -1]];
 	} forEach [
 		["BIS_WL_osd_cp_current", "RscStructuredText"],
 		["BIS_WL_osd_icon_side_1", "RscPictureKeepAspect"],
@@ -159,51 +161,71 @@ if (_displayClass == "OSD") then {
 			};
 		}];
 
-		_purchase_background = _myDisplay ctrlCreate ["RscText", -1];
-		_purchase_background_1 = _myDisplay ctrlCreate ["RscText", -1];
-		_purchase_background_2 = _myDisplay ctrlCreate ["RscText", -1];
-		_purchase_title_assets = _myDisplay ctrlCreate ["RscStructuredText", -1];
-		_purchase_title_details = _myDisplay ctrlCreate ["RscStructuredText", -1];
-		_purchase_title_deployment = _myDisplay ctrlCreate ["RscStructuredText", -1];
-		_purchase_category = _myDisplay ctrlCreate ["RscListBox", 100];
-		_purchase_items = _myDisplay ctrlCreate ["RscListBox", 101];
-		_purchase_pic = _myDisplay ctrlCreate ["RscStructuredText", 102];
-		_purchase_info = _myDisplay ctrlCreate ["RscStructuredText", 103];
-		_purchase_income = _myDisplay ctrlCreate ["RscStructuredText", 104];
-		_purchase_info_asset = _myDisplay ctrlCreate ["RscStructuredText", 105];
-		_purchase_title_cost = _myDisplay ctrlCreate ["RscStructuredText", 106];
-		_purchase_request = _myDisplay ctrlCreate ["RscStructuredText", 107];
-		_purchase_box = _myDisplay ctrlCreate ["RscStructuredText", 108];
-		_purchase_transfer_background = _myDisplay ctrlCreate ["RscText", 115];
-		_purchase_transfer_units = _myDisplay ctrlCreate ["RscListBox", 116];
-		_purchase_transfer_amount = _myDisplay ctrlCreate ["RscEdit", 117];
-		_purchase_transfer_cp_title = _myDisplay ctrlCreate ["RscStructuredText", 118];
-		_purchase_transfer_ok = _myDisplay ctrlCreate ["RscStructuredText", 119];
-		_purchase_transfer_cancel = _myDisplay ctrlCreate ["RscStructuredText", 120];
+		private _purchase_background = _myDisplay ctrlCreate ["RscText", -1];
+		private _purchase_title_assets = _myDisplay ctrlCreate ["RscStructuredText", -1];
+		private _purchase_title_details = _myDisplay ctrlCreate ["RscStructuredText", -1];
+
+		private _purchase_frame = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_top = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_bottom = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_left = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_right = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_topleft = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_topright = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_bottomleft = _myDisplay ctrlCreate ["RscPicture", -1];
+		private _purchase_frame_bottomright = _myDisplay ctrlCreate ["RscPicture", -1];
+
+		private _purchase_category = _myDisplay ctrlCreate ["RscListBox", 100];
+		private _purchase_items = _myDisplay ctrlCreate ["RscListBox", 101];
+		private _purchase_pic = _myDisplay ctrlCreate ["RscStructuredText", 102];
+		private _purchase_info = _myDisplay ctrlCreate ["RscStructuredText", 103];
+		private _purchase_info_asset = _myDisplay ctrlCreate ["RscStructuredText", 105];
+		private _purchase_request = _myDisplay ctrlCreate ["RscStructuredText", 107];
+		private _purchase_transfer_background = _myDisplay ctrlCreate ["RscText", 115];
+		private _purchase_transfer_units = _myDisplay ctrlCreate ["RscListBox", 116];
+		private _purchase_transfer_amount = _myDisplay ctrlCreate ["RscEdit", 117];
+		private _purchase_transfer_cp_title = _myDisplay ctrlCreate ["RscStructuredText", 118];
+		private _purchase_transfer_ok = _myDisplay ctrlCreate ["RscStructuredText", 119];
+		private _purchase_transfer_cancel = _myDisplay ctrlCreate ["RscStructuredText", 120];
 
 		uiNamespace setVariable ["BIS_WL_purchaseMenuDisplay", _myDisplay];
 
-		_purchase_background ctrlSetPosition [_xDef, _yDef + (_hDef * 0.15), _wDef, _hDef * 0.7];
-		_purchase_title_assets ctrlSetPosition [_xDef, _yDef + (_hDef * 0.15), _wDef / 2, _hDef * 0.045];
+		_purchase_background ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.15), _wDef / 2, _hDef * 0.7];
+		_purchase_title_assets ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.15), _wDef / 4, _hDef * 0.045];
 		_purchase_title_details ctrlSetPosition [_xDef + (_wDef / 2), _yDef + (_hDef * 0.15), _wDef / 4, _hDef * 0.045];
-		_purchase_title_deployment ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.15), _wDef / 4, _hDef * 0.045];
-		_purchase_income ctrlSetPosition [_xDef, _yDef + (_hDef * 0.805), _wDef, _hDef * 0.045];
-		_purchase_category ctrlSetPosition [_xDef, _yDef + (_hDef * 0.195), _wDef * 0.25, _hDef * 0.5];
-		_purchase_items ctrlSetPosition [_xDef + (_wDef * 0.25), _yDef + (_hDef * 0.195), _wDef * 0.25, _hDef * 0.5];
-		_purchase_info ctrlSetPosition [_xDef, _yDef + (_hDef * 0.695), _wDef * 0.5, _hDef * 0.11];
+
+		_purchase_frame ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.15), _wDef / 2, _hDef * 0.7];
+		_purchase_frame_top ctrlSetPosition [_xDef + (_wDef * 0.25), _yDef + (_hDef * 0.117), _wDef * 0.5, _hDef * 0.05];
+		_purchase_frame_bottom ctrlSetPosition [_xDef + (_wDef * 0.25), _yDef + (_hDef * 0.834), _wDef * 0.5, _hDef * 0.05];
+		_purchase_frame_left ctrlSetPosition [_xDef + (_wDef * 0.227), _yDef + (_hDef * 0.15), _wDef * 0.035, _hDef * 0.7];
+		_purchase_frame_right ctrlSetPosition [_xDef + (_wDef * 0.739), _yDef + (_hDef * 0.15), _wDef * 0.035, _hDef * 0.7];
+		_purchase_frame_topleft ctrlSetPosition [_xDef + (_wDef * 0.227), _yDef + (_hDef * 0.117), _wDef * 0.035, _hDef * 0.05];
+		_purchase_frame_topright ctrlSetPosition [_xDef + (_wDef * 0.739), _yDef + (_hDef * 0.117), _wDef * 0.035, _hDef * 0.05];
+		_purchase_frame_bottomleft ctrlSetPosition [_xDef + (_wDef * 0.227), _yDef + (_hDef * 0.834), _wDef * 0.035, _hDef * 0.05];
+
+		_purchase_frame_bottomright ctrlSetPosition [_xDef + (_wDef * 0.739), _yDef + (_hDef * 0.834), _wDef * 0.035, _hDef * 0.05];
+		_purchase_frame_bottomright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BR_ca.paa";
+		_purchase_category ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.195), _wDef * 3 / 32, _hDef * 0.5];
+		_purchase_items ctrlSetPosition [_xDef + (_wDef * 11 / 32), _yDef + (_hDef * 0.195), _wDef * 5 / 32, _hDef * 0.5];
+		_purchase_info ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.695), _wDef / 2, _hDef * 0.11];
 		_purchase_pic ctrlSetPosition [_xDef + (_wDef * 0.5), _yDef + (_hDef * 0.195), _wDef * 0.25, _hDef * 0.23];
-		_purchase_info_asset ctrlSetPosition [_xDef + (_wDef * 0.5), _yDef + (_hDef * 0.425), _wDef * 0.25, _hDef * 0.38];
-		_purchase_background_1 ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.195), _wDef, _hDef * 0.1625];
-		_purchase_title_cost ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.195), _wDef / 4, _hDef * 0.04];
-		_purchase_request ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.235), _wDef / 4, _hDef * 0.055];
-		_purchase_box ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.3575), _wDef / 4, _hDef * 0.1875];
-		_purchase_background_2 ctrlSetPosition [_xDef + (_wDef * 0.75), _yDef + (_hDef * 0.5452), _wDef, _hDef * 0.2598];
+		_purchase_info_asset ctrlSetPosition [_xDef + (_wDef * 0.5), _yDef + (_hDef * 0.425), _wDef * 0.25, _hDef * 0.27];
+		_purchase_request ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.805), _wDef / 2, _hDef * 0.045];
 		_purchase_transfer_background ctrlSetPosition [_xDef + (_wDef / 3), _yDef + (_hDef / 3), _wDef / 3, _hDef / 3];
 		_purchase_transfer_units ctrlSetPosition [_xDef + (_wDef / 3), _yDef + (_hDef / 3), _wDef / 6, _hDef / 3];
 		_purchase_transfer_amount ctrlSetPosition [_xDef + (_wDef / 3) + (_wDef / 6), _yDef + (_hDef * 0.425), _wDef / 12, _hDef * 0.035];
 		_purchase_transfer_cp_title ctrlSetPosition [_xDef + (_wDef / 3) + (_wDef / 6) + (_wDef / 12), _yDef + (_hDef * 0.425), _wDef / 12, _hDef * 0.035];
 		_purchase_transfer_ok ctrlSetPosition [_xDef + (_wDef / 3) + (_wDef / 6), _yDef + (_hDef * 0.5502), _wDef / 6, _hDef * 0.035];
 		_purchase_transfer_cancel ctrlSetPosition [_xDef + (_wDef / 3) + (_wDef / 6), _yDef + (_hDef * 0.59), _wDef / 6, _hDef * 0.035];
+
+		_purchase_frame ctrlSetText "a3\ui_f\data\igui\rsctitles\interlacing\interlacing_ca.paa";
+		_purchase_frame_top ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_T_ca.paa";
+		_purchase_frame_bottom ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_B_ca.paa";
+		_purchase_frame_left ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_L_ca.paa";
+		_purchase_frame_right ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_R_ca.paa";
+		_purchase_frame_topleft ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_TL_ca.paa";
+		_purchase_frame_topright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_TR_ca.paa";
+		_purchase_frame_bottomleft ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BL_ca.paa";
 
 		{_x ctrlSetFade 1; _x ctrlEnable false; _x ctrlCommit 0} forEach [
 			_purchase_transfer_background,
@@ -214,39 +236,40 @@ if (_displayClass == "OSD") then {
 			_purchase_transfer_cancel
 		];
 
+		{_x ctrlCommit 0} forEach [
+			_purchase_frame_top,
+			_purchase_frame_bottom,
+			_purchase_frame_left,
+			_purchase_frame_right,
+			_purchase_frame_topleft,
+			_purchase_frame_topright,
+			_purchase_frame_bottomleft,
+			_purchase_frame_bottomright
+		];
+
 		{_x ctrlEnable false; _x ctrlCommit 0} forEach [
 			_purchase_background,
 			_purchase_title_assets,
 			_purchase_title_details,
-			_purchase_title_deployment,
-			_purchase_income,
 			_purchase_info,
 			_purchase_pic,
 			_purchase_info_asset,
-			_purchase_background_1,
-			_purchase_title_cost,
-			_purchase_background_2
+			_purchase_frame
 		];
 
 		{_x ctrlCommit 0} forEach [
 			_purchase_category,
 			_purchase_items,
-			_purchase_request,
-			_purchase_box
+			_purchase_request
 		];
 
-		_purchase_background ctrlSetBackgroundColor [0, 0, 0, 0.5];
+		_purchase_background ctrlSetBackgroundColor [0.2, 0.2, 0.2, 1];
 		_purchase_title_assets ctrlSetBackgroundColor [0, 0, 0, 0.5];
 		_purchase_title_details ctrlSetBackgroundColor [0, 0, 0, 0.5];
-		_purchase_title_deployment ctrlSetBackgroundColor [0, 0, 0, 0.5];
-		_purchase_income ctrlSetBackgroundColor [0, 0, 0, 0.5];
 		_purchase_info ctrlSetBackgroundColor [0, 0, 0, 0.3];
 		_purchase_pic ctrlSetBackgroundColor [0, 0, 0, 0.3];
 		_purchase_info_asset ctrlSetBackgroundColor [0, 0, 0, 0.3];
-		_purchase_background_1 ctrlSetBackgroundColor [0, 0, 0, 0.3];
 		_purchase_request ctrlSetBackgroundColor BIS_WL_colorFriendly;
-		_purchase_box ctrlSetBackgroundColor [0, 0, 0, 0.3];
-		_purchase_background_2 ctrlSetBackgroundColor [0, 0, 0, 0.3];
 		_purchase_transfer_background ctrlSetBackgroundColor [0, 0, 0, 1];
 		_purchase_transfer_ok ctrlSetBackgroundColor BIS_WL_colorFriendly;
 		_purchase_transfer_cancel ctrlSetBackgroundColor BIS_WL_colorFriendly;
@@ -254,16 +277,12 @@ if (_displayClass == "OSD") then {
 		{_x ctrlSetTextColor [0.65, 0.65, 0.65, 1]} forEach [
 			_purchase_title_assets,
 			_purchase_title_details,
-			_purchase_title_deployment,
-			_purchase_income,
 			_purchase_info,
-			_purchase_info_asset,
-			_purchase_title_cost
+			_purchase_info_asset
 		];
 
 		_purchase_title_assets ctrlSetStructuredText parseText format ["<t size = '%2' align = 'center' shadow = '2'>%1</t>", localize "STR_A3_WL_purchase_menu_title_assets", (1.5 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
 		_purchase_title_details ctrlSetStructuredText parseText format ["<t size = '%2' align = 'center' shadow = '2'>%1</t>", localize "STR_A3_WL_purchase_menu_title_detail", (1.5 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
-		_purchase_title_deployment ctrlSetStructuredText parseText format ["<t size = '%2' align = 'center' shadow = '2'>%1</t>", localize "STR_A3_WL_purchase_menu_title_deployment", (1.5 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
 		_purchase_request ctrlSetStructuredText parseText format ["<t font = 'PuristaLight' align = 'center' shadow = '2' size = '%2'>%1</t>", toUpper localize "STR_A3_WL_menu_request", (1.75 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
 		_purchase_transfer_cp_title ctrlSetStructuredText parseText format ["<t align = 'center' size = '%2'>%1</t>", _moneySign, (1.25 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
 		_purchase_transfer_ok ctrlSetStructuredText parseText format ["<t align = 'center' shadow = '2' size = '%2'>%1</t>", localize "STR_A3_WL_button_transfer", (1.25 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
@@ -302,6 +321,44 @@ if (_displayClass == "OSD") then {
 
 		_purchase_items ctrlAddEventHandler ["LBSelChanged", {
 			call BIS_fnc_WL2_sub_purchaseMenuSetAssetDetails;
+		}];
+
+		_purchase_items ctrlAddEventHandler ["LBDblClick", {
+			params ["_control", "_selectedIndex"];
+			private _display = uiNamespace getVariable ["BIS_WL_purchaseMenuDisplay", displayNull];
+			private _purchase_category = _display displayCtrl 100;
+
+			private _assetDetails = (_control lbData _selectedIndex) splitString "|||";
+			_assetDetails params [
+				"_className",
+				"_requirements",
+				"_displayName",
+				"_picture",
+				"_text",
+				"_offset"
+			];
+
+			_requirements = call compile _requirements;
+			private _category = WL_REQUISITION_CATEGORIES # ((lbCurSel _purchase_category) max 0);
+			private _cost = _control lbValue _selectedIndex;
+			if (isNil "_cost") then {
+				_cost = 0;
+			};
+
+			private _purchaseDetails = [_className, _requirements, _displayName, _picture, _text, _offset, _cost, _category];
+			private _availability = _purchaseDetails call BIS_fnc_WL2_sub_purchaseMenuAssetAvailability;
+			if (_availability # 0) then {
+				_purchaseDetails call BIS_fnc_WL2_triggerPurchase;
+				playSound "AddItemOK";
+
+				private _tasksRequireUIList = ["FundsTransfer"];
+				if !(_className in _tasksRequireUIList) then {
+					"RequestMenu_close" call BIS_fnc_WL2_setupUI;
+				};
+			} else {
+				systemChat format ["Invalid buy action: %1", _availability # 1];
+				playSound "AddItemFailed";
+			};
 		}];
 
 		_purchase_request ctrlAddEventHandler ["MouseEnter", {

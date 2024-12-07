@@ -8,18 +8,8 @@ _purchase_category = _display displayCtrl 100;
 _purchase_items = _display displayCtrl 101;
 _purchase_pic = _display displayCtrl 102;
 _purchase_info = _display displayCtrl 103;
-_purchase_income = _display displayCtrl 104;
 _purchase_info_asset = _display displayCtrl 105;
-_purchase_title_cost = _display displayCtrl 106;
 _purchase_request = _display displayCtrl 107;
-
-_funds = ((missionNamespace getVariable "fundsDatabaseClients") get (getPlayerUID player));
-private _matesAvail = BIS_WL_matesAvailable;
-_servicesAvailable = BIS_WL_sectorsArray # 5;
-
-private _side = side player;
-private _moneySign = [_side] call BIS_fnc_WL2_getMoneySign;
-_purchase_income ctrlSetStructuredText parseText format ["<t size = '%7' align = 'center' shadow = '2'>%2%3%4%5%6, " + localize "STR_A3_WL_max_group_size" + "</t>", _matesAvail, _moneySign, _funds, if ("A" in _servicesAvailable) then {", " + localize "STR_A3_WL_param32_title"} else {""}, if ("H" in _servicesAvailable) then {", " + localize "STR_A3_WL_module_service_helipad"} else {""}, if ("W" in _servicesAvailable) then {", " + localize "STR_A3_WL_param30_title"} else {""}, (1.5 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale)];
 
 _i = 0;
 for "_i" from 0 to ((lbSize _purchase_items) - 1) do {

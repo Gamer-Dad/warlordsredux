@@ -6,9 +6,7 @@ _purchase_category = _display displayCtrl 100;
 _purchase_items = _display displayCtrl 101;
 _purchase_pic = _display displayCtrl 102;
 _purchase_info = _display displayCtrl 103;
-_purchase_income = _display displayCtrl 104;
 _purchase_info_asset = _display displayCtrl 105;
-_purchase_title_cost = _display displayCtrl 106;
 _purchase_request = _display displayCtrl 107;
 
 _curSel = (lbCurSel _purchase_items) max 0;
@@ -33,5 +31,7 @@ _cost = _purchase_items lbValue lbCurSel _purchase_items;
 
 private _side = side player;
 private _moneySign = [_side] call BIS_fnc_WL2_getMoneySign;
-_purchase_title_cost ctrlSetStructuredText parseText format ["<t size = '%7' align = 'center' shadow = '0'>%1%8: %2%3%4%5%6</t>", localize "STR_A3_WL_menu_cost", _moneySign, _cost, if ("A" in _requirements) then {", " + localize "STR_A3_WL_param32_title"} else {""}, if ("H" in _requirements) then {", " + localize "STR_A3_WL_module_service_helipad"} else {""}, if ("W" in _requirements) then {", " + localize "STR_A3_WL_param30_title"} else {""}, (1.25 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale), if (toLower language == "french") then {" "} else {""}];
+private _scale = 1.5 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale;
+private _costDisplay = (_cost call BIS_fnc_numberText) regexReplace [" ", ","];
+_purchase_request ctrlSetStructuredText parseText format ["<t font = 'PuristaLight' align = 'center' shadow = '2' size = '%1'>%2 (%3%4)", _scale, localize "STR_A3_WL_menu_request", _moneySign, _costDisplay];
 call BIS_fnc_WL2_sub_purchaseMenuRefresh;

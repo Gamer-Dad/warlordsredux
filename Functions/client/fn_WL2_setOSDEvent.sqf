@@ -2,9 +2,6 @@
 
 params ["_action", "_actionParams"];
 
-
-BIS_WL_OSDBusy = true;
-
 waitUntil {!isNull (uiNamespace getVariable ["BIS_WL_osd_action_voting_title", controlNull])};
 
 _osd_cp_current = uiNamespace getVariable "BIS_WL_osd_cp_current";
@@ -56,14 +53,14 @@ if (_action == "voting") then {
 			_osd_action_title ctrlSetStructuredText parseText format ["<t shadow = '2' align = 'center' size = '%2'>%1</t>", _sector getVariable "BIS_WL_name", 1 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale];
 			_osd_progress progressSetPosition _captureProgress;
 			sleep WL_TIMEOUT_MIN;
-			
+
 			_captureProgress = _sector getVariable ["BIS_WL_captureProgress", 0];
 		};
 		BIS_WL_terminateOSDEvent_seizing = TRUE;
 		if (BIS_WL_terminateOSDEvent_trespassing) then {
 			_osd_progress_background ctrlSetBackgroundColor [0, 0, 0, 0];
 			_osd_action_title ctrlSetStructuredText parseText "";
-			_osd_progress ctrlSetTextColor [0, 0, 0, 0];			
+			_osd_progress ctrlSetTextColor [0, 0, 0, 0];
 			_osd_progress progressSetPosition 0;
 		};
 	} else {
@@ -76,7 +73,7 @@ if (_action == "voting") then {
 			_osd_progress_background ctrlSetBackgroundColor [0, 0, 0, 0.25];
 			_osd_progress ctrlSetTextColor [1, 0, 0, 1];
 			while {serverTime < _tEnd && !BIS_WL_terminateOSDEvent_trespassing} do {
-				_osd_action_title ctrlSetStructuredText parseText format ["<t shadow = '2' align = 'center' size = '%2'>%1</t>", localize "STR_A3_WL_osd_zone", 1 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale];				
+				_osd_action_title ctrlSetStructuredText parseText format ["<t shadow = '2' align = 'center' size = '%2'>%1</t>", localize "STR_A3_WL_osd_zone", 1 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale];
 				_osd_progress progressSetPosition linearConversion [_tStart, _tEnd, serverTime, 0, 1];
 				sleep WL_TIMEOUT_MIN;
 			};
@@ -109,5 +106,3 @@ if (_action == "voting") then {
 		};
 	};
 };
-
-BIS_WL_OSDBusy = false;

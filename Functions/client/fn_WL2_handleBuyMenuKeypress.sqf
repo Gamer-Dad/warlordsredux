@@ -22,8 +22,15 @@ if (_key == DIK_BACKSPACE) exitWith {
 };
 
 if (_key in actionKeys "Gear" && !BIS_WL_gearKeyPressed) exitWith {
-    "RequestMenu_close" call BIS_fnc_WL2_setupUI;
-    true;
+    if (!WL_GEAR_BUY_MENU && WL_TEMP_BUY_MENU) then {   // cancel buy code with menu
+        WL_TEMP_BUY_MENU = false;
+        uiNamespace setVariable ["WL_BuyMenuCode", ""];
+        hint "";
+        false;
+    } else {
+        "RequestMenu_close" call BIS_fnc_WL2_setupUI;
+        true;
+    };
 };
 
 private _zeusKey = actionKeys "curatorInterface";

@@ -157,20 +157,6 @@ private _savedLoadoutHandled = FALSE;
 					if (_textNew != _text) then {_text = localize _textNew} else {_text = _textNew};
 				};
 
-				_textSize = count _text;
-				_textLimit = if (_category != "Gear") then {500} else {750};
-
-				if (_textSize > _textLimit) then {
-					_textArr = toArray _text;
-					_textArr deleteRange [_textLimit, _textSize - _textLimit];
-					_text = toString _textArr;
-					if (_category != "Gear") then {
-						_text = _text + "...<br/><br/>" + localize "STR_A3_WL_menu_field_manual_tip";
-					} else {
-						_text = _text + "..."
-					};
-				};
-
 				private _description = _descriptionMap getOrDefault [_className, ""];
 				if (_description != "") then {
 					_text = _description;
