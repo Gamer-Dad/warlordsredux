@@ -13,7 +13,7 @@ if (inputAction "cycleThrownItems" > 0.01) exitWith {
     true;
 };
 
-if (_key in actionKeys "Gear" && {!(missionNamespace getVariable ["BIS_WL_gearKeyPressed", false]) && {alive player && {!BIS_WL_penalized}}}) exitWith {
+if (_key in actionKeys "Gear" && {!(missionNamespace getVariable ["BIS_WL_gearKeyPressed", false]) && alive player}) exitWith {
     if !(isNull (uiNamespace getVariable ["BIS_WL_purchaseMenuDisplay", displayNull])) then {
         "RequestMenu_close" call BIS_fnc_WL2_setupUI;
     } else {

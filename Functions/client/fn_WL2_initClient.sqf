@@ -6,7 +6,6 @@ BIS_fnc_WL2_announcer = compileFinal preprocessFileLineNumbers "Functions\client
 BIS_fnc_WL2_askForgiveness = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_askForgiveness.sqf";
 BIS_fnc_WL2_assetMapControl = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_assetMapControl.sqf";
 BIS_fnc_WL2_betty = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_betty.sqf";
-BIS_fnc_WL2_blockScreen = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_blockScreen.sqf";
 BIS_fnc_WL2_clientEH = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_clientEH.sqf";
 BIS_fnc_WL2_cpBalance = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_cpBalance.sqf";
 BIS_fnc_WL2_deathInfo = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_deathInfo.sqf";
@@ -115,28 +114,10 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		}
 	};
 	if (missionNamespace getVariable _switch) exitWith {
-		addMissionEventHandler ["EachFrame", {
-			clearRadio;
-		}];
-		sleep 0.1;
 		["client_init"] call BIS_fnc_endLoadingScreen;
-		player removeItem "ItemMap";
-		player removeItem "ItemRadio";
-		[player] joinSilent BIS_WL_wrongTeamGroup;
-		enableRadio false;
-		enableSentences false;
-		0 fadeSpeech 0;
-		0 fadeRadio 0;
-		{
-			_x setPlayerVoNVolume 1;
-		} forEach allPlayers select {
-			side _x == side player
-		};
-		{
-			_x enableChannel [false, false]
-		} forEach [0, 1, 2, 3, 4, 5];
-		missionNamespace setVariable [_switch, nil];
-		[localize "STR_A3_WL_switch_teams", localize "STR_A3_WL_switch_teams_info"] call BIS_fnc_WL2_blockScreen;
+		"BlockScreen" setDebriefingText ["Switch Teams", localize "STR_A3_WL_switch_teams_info", localize "STR_A3_WL_switch_teams"];
+		endMission "BlockScreen";
+		forceEnd;
 	};
 
 	private _imb = format ["balanceBlocked_%1", _uid];
@@ -146,47 +127,21 @@ if (["(EU) #11", serverName] call BIS_fnc_inString) then {
 		}
 	};
 	if (missionNamespace getVariable _imb) exitWith {
-		addMissionEventHandler ["EachFrame", {
-			clearRadio;
-		}];
-		sleep 0.1;
 		["client_init"] call BIS_fnc_endLoadingScreen;
-		player removeItem "ItemMap";
-		player removeItem "ItemRadio";
-		[player] joinSilent BIS_WL_wrongTeamGroup;
-		enableRadio false;
-		enableSentences false;
-		0 fadeSpeech 0;
-		0 fadeRadio 0;
-		{
-			_x setPlayerVoNVolume 1;
-		} forEach allPlayers select {
-			side _x == side player
-		};
-		{
-			_x enableChannel [false, false]
-		} forEach [0, 1, 2, 3, 4, 5];
-		missionNamespace setVariable [_imb, nil];
-		["Teams are imbalanced!", "It seems that the teams are not balanced, please head back to the lobby and join the other team, Thank you."] call BIS_fnc_WL2_blockScreen;
+		"BlockScreen" setDebriefingText ["Switch Teams", "It seems that the teams are not balanced, please head back to the lobby and join the other team, Thank you.", "Teams are imbalanced."];
+		endMission "BlockScreen";
+		forceEnd;
 	};
 
-	_text = toLower (name player);
-	_list = getArray (missionConfigFile >> "adminFilter");
+	private _text = toLower (name player);
+	private _list = getArray (missionConfigFile >> "adminFilter");
 	if ((_list findIf {
 		[_x, _text] call BIS_fnc_inString
 	}) != -1) exitWith {
 		["client_init"] call BIS_fnc_endLoadingScreen;
-		player removeItem "ItemMap";
-		player removeItem "ItemRadio";
-		[player] joinSilent BIS_WL_wrongTeamGroup;
-		enableRadio false;
-		enableSentences false;
-		0 fadeSpeech 0;
-		0 fadeRadio 0;
-		{
-			_x enableChannel [false, false]
-		} forEach [0, 2, 3, 4, 5];
-		[localize "STR_A3_nameFilter", localize "STR_A3_nameFilter_info"] call BIS_fnc_WL2_blockScreen;
+		"BlockScreen" setDebriefingText ["Admin", localize "STR_A3_nameFilter_info", localize "STR_A3_nameFilter"];
+		endMission "BlockScreen";
+		forceEnd;
 	};
 };
 

@@ -16,4 +16,6 @@ class CfgDebriefing
 		pictureBackground = "\A3\Map_Altis\data\ui_Altis_ca.paa";
 		pictureColor[] = {0,0.5,0,1};
 	};
+
+	class BlockScreen {};
 };
