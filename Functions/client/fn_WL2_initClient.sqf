@@ -279,11 +279,13 @@ call BIS_fnc_WL2_targetResetHandle;
 };
 
 [player, "maintenance", {
-	(player nearObjects ["All", 30]) findIf {
-		(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportRepair") > 0) || {
-			(getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "transportAmmo") > 0)
-		}
-	} != -1
+	private _nearbyVehicles = (player nearObjects ["All", WL_MAINTENANCE_RADIUS]) select {
+		private _config = configFile >> "CfgVehicles" >> typeOf _x;
+		private _isRepair = getNumber (_config >> "transportRepair") > 0;
+		private _isAmmo = getNumber (_config >> "transportAmmo") > 0;
+		(_isRepair || _isAmmo) && alive _x
+	};
+	count _nearbyVehicles > 0
 }] call BIS_fnc_WL2_hintHandle;
 
 0 spawn BIS_fnc_WL2_selectedTargetsHandle;
