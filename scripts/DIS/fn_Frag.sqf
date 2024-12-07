@@ -25,26 +25,29 @@ while { alive _projectile } do {
 
 		// Don't detonate prematurely if we're still approaching target
 		if (_distanceToTarget > _lastDistance) then {
-			_lastDistance = _distanceToTarget;
 			break;
 		};
 		if (_distanceToTarget < _range) then {
-			_lastDistance = _distanceToTarget;
 			break;
 		};
 	};
 
-	_lastDistance = _distanceToTarget;
+	_lastDistance = _distanceToTarget min _lastDistance;
 };
 
 if (!_frag) exitWith {};
 
 // Vanilla explosion
 private _projectilePosition = getPos _projectile;
-// private _targetPosition = getPos _target;
 
-if !(isNull _target) then {
+if (!(isNull _target) && _lastDistance < _proxRange) then {
 	systemChat format ["SAM detonated %1 meters from target.", round _lastDistance];
+} else {
+	private _objectsNearby = _projectile nearObjects _proxRange;
+	if (count _objectsNearby > 0) then {
+		_target = _objectsNearby # 0;
+		systemChat format ["SAM detonated %1 meters from target.", round (_projectile distance _target)];
+	};
 };
 
 triggerAmmo _projectile;

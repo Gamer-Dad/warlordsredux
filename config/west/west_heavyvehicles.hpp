@@ -47,40 +47,40 @@ class HeavyVehicles {
         };
     }; // "BLUFOR Gorgon"
 
-    class B_APC_Wheeled_03_up_F {
-        name = "AFV-4 Gorgon UP";
-        description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.<br/>Armament: 14Rnd 80mm x2, 1000Rnd 20mm x2";
-        spawn = "B_APC_Wheeled_03_cannon_F";
-        cost = 3000;
-        requirements[] = {};
-        rearm = 500;
-        killReward = 300;
-        capValue = 3;
-        aps = 2;
+    // class B_APC_Wheeled_03_up_F {
+    //     name = "AFV-4 Gorgon UP";
+    //     description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.<br/>Armament: 14Rnd 80mm x2, 1000Rnd 20mm x2";
+    //     spawn = "B_APC_Wheeled_03_cannon_F";
+    //     cost = 3000;
+    //     requirements[] = {};
+    //     rearm = 500;
+    //     killReward = 300;
+    //     capValue = 3;
+    //     aps = 2;
 
-        class Gunner: WLTurretDefaults {
-            turret[] = { 0 };
-            removeMagazines[] = {
-                "2Rnd_GAT_missiles",
-                "60Rnd_30mm_APFSDS_shells_Tracer_Yellow",
-                "140Rnd_30mm_MP_shells_Tracer_Yellow"
-            };
-            removeWeapons[] = {
-                "missiles_titan",
-                "autocannon_30mm_CTWS"
-            };
-            addMagazines[] = {
-                "1000Rnd_20mm_shells",
-                "1000Rnd_20mm_shells",
-                "14Rnd_80mm_rockets",
-                "14Rnd_80mm_rockets"
-            };
-            addWeapons[] = {
-                "gatling_20mm_VTOL_01",
-                "rockets_Skyfire"
-            };
-        };
-    };
+    //     class Gunner: WLTurretDefaults {
+    //         turret[] = { 0 };
+    //         removeMagazines[] = {
+    //             "2Rnd_GAT_missiles",
+    //             "60Rnd_30mm_APFSDS_shells_Tracer_Yellow",
+    //             "140Rnd_30mm_MP_shells_Tracer_Yellow"
+    //         };
+    //         removeWeapons[] = {
+    //             "missiles_titan",
+    //             "autocannon_30mm_CTWS"
+    //         };
+    //         addMagazines[] = {
+    //             "1000Rnd_20mm_shells",
+    //             "1000Rnd_20mm_shells",
+    //             "14Rnd_80mm_rockets",
+    //             "14Rnd_80mm_rockets"
+    //         };
+    //         addWeapons[] = {
+    //             "gatling_20mm_VTOL_01",
+    //             "rockets_Skyfire"
+    //         };
+    //     };
+    // };
 
     class B_APC_Wheeled_01_cannon_F {
         cost = 3200;
@@ -93,7 +93,7 @@ class HeavyVehicles {
 
     class B_APC_Wheeled_01_cannon_up_F {
         name = "AMV-7 Marshall UP";
-        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a 105mm cannon.<br/>Armament: 20Rnd 105mm HEAT x2";
+        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a 30mm cannon.<br/>Armament: 1000Rnd 30mm x2";
         spawn = "B_APC_Wheeled_01_cannon_F";
         cost = 3500;
         requirements[] = {};
@@ -112,14 +112,45 @@ class HeavyVehicles {
                 "autocannon_40mm_CTWS"
             };
             addMagazines[] = {
-                "20Rnd_105mm_HEAT_MP_T_Red",
-                "20Rnd_105mm_HEAT_MP_T_Red"
+                "1000Rnd_Gatling_30mm_Plane_CAS_01_F",
+                "1000Rnd_Gatling_30mm_Plane_CAS_01_F"
             };
             addWeapons[] = {
-                "cannon_105mm_VTOL_01"
+                "Gatling_30mm_Plane_CAS_01_F"
             };
         };
     };
+
+    // class B_AFV_Wheeled_01_export_cannon_F {
+    //     cost = 3500;
+    //     name = "Rhino MGS (Export)";
+    //     spawn = "B_AFV_Wheeled_01_up_cannon_F";
+    //     requirements[] = {};
+    //     rearm = 500;
+    //     killReward = 400;
+    //     capValue = 4;
+    //     aps = 2;
+
+    //     class Gunner: WLTurretDefaults {
+    //         turret[] = { 0 };
+    //         removeMagazines[] = {
+    //             "12Rnd_120mm_APFSDS_shells_Tracer_Red",
+    //             "8Rnd_120mm_HE_shells_Tracer_Red",
+    //             "8Rnd_120mm_HEAT_MP_T_Red",
+    //             "4Rnd_120mm_LG_cannon_missiles"
+    //         };
+    //         removeWeapons[] = {
+    //             "cannon_120mm"
+    //         };
+    //         addMagazines[] = {
+    //             "40Rnd_105mm_APFSDS_T_Red",
+    //             "20Rnd_105mm_HEAT_MP_T_Red"
+    //         };
+    //         addWeapons[] = {
+    //             "cannon_105mm_VTOL_01"
+    //         };
+    //     };
+    // };
 
     class B_AFV_Wheeled_01_cannon_F {
         cost = 4500;
