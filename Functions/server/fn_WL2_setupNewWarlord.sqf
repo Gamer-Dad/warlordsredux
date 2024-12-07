@@ -4,6 +4,15 @@ _warlord setVariable ["BIS_WL_detectedByServer", true];
 _owner = owner _warlord;
 
 private _uid = getPlayerUID _warlord;
+while {_uid == ""} do {
+	_uid = getPlayerUID _warlord;
+	if (_uid == "") then {
+		private _playerId = getPlayerID _warlord;
+		_uid = _playerId getUserInfo 2;
+	};
+	sleep 0.5;
+};
+
 private _pFunds = (serverNamespace getVariable "fundsDatabase") getOrDefault [_uid, -1];
 if (_pFunds == -1) then {
 	1000 call BIS_fnc_WL2_fundsDatabaseWrite;
