@@ -47,43 +47,40 @@ class HeavyVehicles {
         };
     }; // "BLUFOR Gorgon"
 
-    // class B_APC_Wheeled_03_sam_F {
-    //     name = "AFV-4 Gorgon AD";
-    //     description = "AFV-4 Gorgon AD is a variant of the AFV-4 Gorgon armed with a SAAMI launcher.<br/>Armament: 4Rnd SAAMI x6, 1000Rnd 20mm x2";
-    //     spawn = "B_APC_Wheeled_03_cannon_F";
-    //     cost = 3000;
-    //     requirements[] = {};
-    //     rearm = 500;
-    //     killReward = 300;
-    //     capValue = 3;
-    //     aps = 2;
+    class B_APC_Wheeled_03_up_F {
+        name = "AFV-4 Gorgon UP";
+        description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.<br/>Armament: 14Rnd 80mm x2, 1000Rnd 20mm x2";
+        spawn = "B_APC_Wheeled_03_cannon_F";
+        cost = 3000;
+        requirements[] = {};
+        rearm = 500;
+        killReward = 300;
+        capValue = 3;
+        aps = 2;
 
-    //     class Gunner: WLTurretDefaults {
-    //         turret[] = { 0 };
-    //         removeMagazines[] = {
-    //             "2Rnd_GAT_missiles",
-    //             "60Rnd_30mm_APFSDS_shells_Tracer_Yellow",
-    //             "140Rnd_30mm_MP_shells_Tracer_Yellow"
-    //         };
-    //         removeWeapons[] = {
-    //             "missiles_titan",
-    //             "autocannon_30mm_CTWS"
-    //         };
-    //         addMagazines[] = {
-    //             "1000Rnd_20mm_shells",
-    //             "1000Rnd_20mm_shells",
-    //             "4Rnd_70mm_SAAMI_missiles",
-    //             "4Rnd_70mm_SAAMI_missiles",
-    //             "4Rnd_70mm_SAAMI_missiles",
-    //             "4Rnd_70mm_SAAMI_missiles",
-    //             "4Rnd_70mm_SAAMI_missiles"
-    //         };
-    //         addWeapons[] = {
-    //             "gatling_20mm_VTOL_01",
-    //             "missiles_SAAMI"
-    //         };
-    //     };
-    // };
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            removeMagazines[] = {
+                "2Rnd_GAT_missiles",
+                "60Rnd_30mm_APFSDS_shells_Tracer_Yellow",
+                "140Rnd_30mm_MP_shells_Tracer_Yellow"
+            };
+            removeWeapons[] = {
+                "missiles_titan",
+                "autocannon_30mm_CTWS"
+            };
+            addMagazines[] = {
+                "1000Rnd_20mm_shells",
+                "1000Rnd_20mm_shells",
+                "14Rnd_80mm_rockets",
+                "14Rnd_80mm_rockets"
+            };
+            addWeapons[] = {
+                "gatling_20mm_VTOL_01",
+                "rockets_Skyfire"
+            };
+        };
+    };
 
     class B_APC_Wheeled_01_cannon_F {
         cost = 3200;
@@ -96,7 +93,7 @@ class HeavyVehicles {
 
     class B_APC_Wheeled_01_cannon_up_F {
         name = "AMV-7 Marshall UP";
-        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a 20mm autocannon.<br/>Armament: 1000Rnd 20mm x2";
+        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a 105mm cannon.<br/>Armament: 20Rnd 105mm HEAT x2";
         spawn = "B_APC_Wheeled_01_cannon_F";
         cost = 3500;
         requirements[] = {};
@@ -115,10 +112,11 @@ class HeavyVehicles {
                 "autocannon_40mm_CTWS"
             };
             addMagazines[] = {
-                "2000Rnd_20mm_shells"
+                "20Rnd_105mm_HEAT_MP_T_Red",
+                "20Rnd_105mm_HEAT_MP_T_Red"
             };
             addWeapons[] = {
-                "gatling_20mm"
+                "cannon_105mm_VTOL_01"
             };
         };
     };
