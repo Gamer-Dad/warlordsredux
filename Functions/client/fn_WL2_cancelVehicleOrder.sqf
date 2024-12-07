@@ -6,8 +6,6 @@ private _isInHomeBase = player inArea (_homeBase getVariable "objectAreaComplete
 private _nearbyEnemies = count _enemiesNearPlayer > 0 && !_isInHomeBase;
 private _isInOwnedSector = (BIS_WL_sectorsArray # 0) findIf {player inArea (_x getVariable "objectAreaComplete")} == -1;
 
-BIS_WL_spacePressed ||
-BIS_WL_backspacePressed ||
 vehicle player != player ||
 !alive player ||
 lifeState player == "INCAPACITATED" ||

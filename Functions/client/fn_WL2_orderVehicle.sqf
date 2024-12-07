@@ -56,6 +56,8 @@ if (_class isKindOf "Man") then {
 
 		waitUntil {
 			sleep 0.1;
+			BIS_WL_spacePressed ||
+			BIS_WL_backspacePressed ||
 			[_originalPosition] call BIS_fnc_WL2_cancelVehicleOrder;
 		};
 
