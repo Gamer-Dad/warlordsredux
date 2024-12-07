@@ -49,28 +49,14 @@ if (_class isKindOf "Man") then {
 	}];
 
 	uiNamespace setVariable ["BIS_WL_deployKeyHandle", _deployKeyHandle];
+	private _originalPosition = getPosATL player;
 
-	0 spawn {
-		private _originalPosition = getPosATL player;
+	[_originalPosition] spawn {
+		params ["_originalPosition"];
 
 		waitUntil {
 			sleep 0.1;
-
-			private _enemiesNearPlayer = (allPlayers inAreaArray [player, 100, 100]) select {_x != player && BIS_WL_playerSide != side group _x && alive _x};
-			private _homeBase = BIS_WL_playerSide call BIS_fnc_WL2_getSideBase;
-			private _isInHomeBase = player inArea (_homeBase getVariable "objectAreaComplete");
-			private _nearbyEnemies = count _enemiesNearPlayer > 0 && !_isInHomeBase;
-			private _isInOwnedSector = (BIS_WL_sectorsArray # 0) findIf {player inArea (_x getVariable "objectAreaComplete")} == -1;
-
-			BIS_WL_spacePressed ||
-			BIS_WL_backspacePressed ||
-			vehicle player != player ||
-			!alive player ||
-			lifeState player == "INCAPACITATED" ||
-			_nearbyEnemies ||
-			(getPosATL player) select 2 > 1 ||
-			_isInOwnedSector ||
-			(_originalPosition distance2D player) > 100
+			[_originalPosition] call BIS_fnc_WL2_cancelVehicleOrder;
 		};
 
 		if !(BIS_WL_spacePressed) then {
@@ -89,7 +75,8 @@ if (_class isKindOf "Man") then {
 
 	[player, "assembly", false] call BIS_fnc_WL2_hintHandle;
 
-	if (BIS_WL_spacePressed) then {
+	private _canStillOrderVehicle = !([_originalPosition] call BIS_fnc_WL2_cancelVehicleOrder);
+	if (BIS_WL_spacePressed && _canStillOrderVehicle) then {
 		playSound "assemble_target";
 		[player, "orderAsset", "vehicle", [(_p # 0), (_p # 1), 0], _orderedClass, direction player] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
 	} else {

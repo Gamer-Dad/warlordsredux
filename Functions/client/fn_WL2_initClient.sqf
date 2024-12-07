@@ -6,6 +6,7 @@ BIS_fnc_WL2_announcer = compileFinal preprocessFileLineNumbers "Functions\client
 BIS_fnc_WL2_askForgiveness = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_askForgiveness.sqf";
 BIS_fnc_WL2_assetMapControl = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_assetMapControl.sqf";
 BIS_fnc_WL2_betty = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_betty.sqf";
+BIS_fnc_WL2_cancelVehicleOrder = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_cancelVehicleOrder.sqf";
 BIS_fnc_WL2_clientEH = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_clientEH.sqf";
 BIS_fnc_WL2_cpBalance = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_cpBalance.sqf";
 BIS_fnc_WL2_deathInfo = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_deathInfo.sqf";
