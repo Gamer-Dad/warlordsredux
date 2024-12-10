@@ -252,26 +252,6 @@ class HeavyVehicles {
         };
     }; // "M2A1 Slammer UP"
 
-    class B_MBT_03_cannon_F {
-        cost = 8000;
-        name = "M52 Kuma";
-        spawn = "I_MBT_03_cannon_F";
-        requirements[] = {};
-        textures[] = {
-            "Img\camo\kuma01.jpg",
-            "Img\camo\kuma02.jpg",
-            "Img\camo\kuma03.jpg"
-        };
-        rearm = 600;
-        killReward = 500;
-        capValue = 4;
-        aps = 3;
-
-        disallowMagazines[] = {
-            "4Rnd_120mm_LG_cannon_missiles"
-        };
-    };
-
     class B_APC_Tracked_01_AA_UP_F {
         name = "IFV-6X Puma";
         description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.<br/>Armament: 680Rnd 35mm x2, 4Rnd Defender";
@@ -298,6 +278,26 @@ class HeavyVehicles {
             addWeapons[] = {
                 "weapon_mim145Launcher"
             };
+        };
+    };
+
+    class B_MBT_03_cannon_F {
+        cost = 8000;
+        name = "M52 Kuma";
+        spawn = "I_MBT_03_cannon_F";
+        requirements[] = {};
+        textures[] = {
+            "Img\camo\kuma01.jpg",
+            "Img\camo\kuma02.jpg",
+            "Img\camo\kuma03.jpg"
+        };
+        rearm = 600;
+        killReward = 500;
+        capValue = 4;
+        aps = 3;
+
+        disallowMagazines[] = {
+            "4Rnd_120mm_LG_cannon_missiles"
         };
     };
 
