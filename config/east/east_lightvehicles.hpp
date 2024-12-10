@@ -72,9 +72,17 @@ class LightVehicles {
         capValue = 1;
     }; // "Ifrit"
 
-    class B_Truck_01_flatbed_F {
+    class O_Truck_01_flatbed_F {
         cost = 500;
+        name = "HEMTT Flatbed";
+        spawn = "B_Truck_01_flatbed_F";
         requirements[] = {};
+        textures[] = {
+            "\a3\soft_f_Exp\truck_01\data\truck_01_ext_01_olive_co.paa",
+            "\a3\soft_f_Exp\truck_01\data\truck_01_ext_02_olive_co.paa",
+            "\a3\Soft_F_Enoch\Truck_01\Data\truck_01_ammo_pacific_co.paa",
+            "\a3\Soft_F_Enoch\Truck_01\Data\Truck_01_cargo_pacific_CO.paa"
+        };
         killReward = 80;
         capValue = 1;
     }; // "HEMTT Flatbed"

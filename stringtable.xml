@@ -1177,22 +1177,22 @@
             <Chinesesimp>更改日志。</Chinesesimp>
             <Chinese>更改日志。</Chinese>
         </Key>
-         <Key ID="STR_MRTM_welcomeInteract_06">
-            <Original>Third Party Scripts.</Original>
-            <English>Third Party Scripts.</English>
-            <Czech>Skripty třetích stran.</Czech>
-            <French>Scripts de tiers.</French>
-            <German>Skripte von Drittanbietern.</German>
-            <Italian>Script di terze parti.</Italian>
-            <Polish>Skrypty stron trzecich.</Polish>
-            <Portuguese>Scripts de terceiros.</Portuguese>
-            <Russian>Скрипты третьих лиц.</Russian>
-            <Spanish>Scripts de terceros.</Spanish>
-            <Turkish>Üçüncü Taraf Komut Dosyaları.</Turkish>
-            <Korean>제3자 스크립트.</Korean>
-            <Japanese>サードパーティースクリプト。</Japanese>
-            <Chinesesimp>第三方脚本。</Chinesesimp>
-            <Chinese>第三方脚本。</Chinese>
+        <Key ID="STR_MRTM_welcomeInteract_06">
+            <Original>Credits</Original>
+            <English>Credits</English>
+            <Czech>Kredity</Czech>
+            <French>Crédits</French>
+            <German>Credits</German>
+            <Italian>Crediti</Italian>
+            <Polish>Kredyty</Polish>
+            <Portuguese>Créditos</Portuguese>
+            <Russian>Кредиты</Russian>
+            <Spanish>Créditos</Spanish>
+            <Turkish>Krediler</Turkish>
+            <Korean>크레딧</Korean>
+            <Japanese>クレジット</Japanese>
+            <Chinesesimp>致谢</Chinesesimp>
+            <Chinese>致谢</Chinese>
         </Key>
         <Key ID="STR_MRTM_welcomeInteract_07">
             <Original>Welcome to Warlords Redux!</Original>

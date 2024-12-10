@@ -86,6 +86,10 @@ class FixedWing {
     class I_Plane_Fighter_03_dynamicLoadout_F {
         cost = 15000;
         requirements[] = {"A"};
+        textures[] = {
+            "\a3\Air_F_Gamma\Plane_Fighter_03\Data\Plane_Fighter_03_body_1_brownhex_CO.paa",
+            "\a3\Air_F_Gamma\Plane_Fighter_03\Data\Plane_Fighter_03_body_2_brownhex_CO.paa"
+        };
         rearm = 900;
         killReward = 600;
     }; // "A-143 Buzzard"

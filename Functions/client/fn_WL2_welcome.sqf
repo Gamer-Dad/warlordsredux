@@ -96,7 +96,7 @@ while {dialog} do {
 			_groupKey = actionKeysNames "user3";
 
 			_control ctrlSetStructuredText composeText [
-			localize "STR_MRTM_welcomeInteract_02", lineBreak, 
+			localize "STR_MRTM_welcomeInteract_02", lineBreak,
 			"", lineBreak,
 			parseText format [localize "STR_MRTM_welcomeInteract_10"], lineBreak,
 			parseText "<a href='https://www.youtube.com/watch?v=qKfCpmqnmQ4'>Walords Redux Guide by GamerDad</a>", lineBreak,
@@ -113,7 +113,7 @@ while {dialog} do {
 			""
 			];
 		};
-		case "theCom": { 
+		case "theCom": {
 			_control ctrlSetStructuredText composeText [
 			localize "STR_MRTM_welcomeInteract_03", lineBreak,
 			localize "STR_MRTM_welcomeInteract_15", lineBreak,
@@ -140,13 +140,13 @@ while {dialog} do {
 			"", lineBreak
 			];
 		};
-		case "discord": { 
+		case "discord": {
 			_control ctrlSetStructuredText composeText [
 			localize "STR_MRTM_welcomeInteract_04", lineBreak,
-			"", lineBreak, 
+			"", lineBreak,
 			localize "STR_MRTM_welcomeInteract_19", lineBreak,
 			localize "STR_MRTM_welcomeInteract_20", lineBreak,
-			"", lineBreak, 
+			"", lineBreak,
 			parseText "<a href='https://discord.gg/grmzsZE4ua'>Discord.</a>"
 			];
 		};
@@ -159,7 +159,7 @@ while {dialog} do {
 				parseText format ["<a href='https://github.com/Gamer-Dad/warlordsredux.altis/blob/master-altis/Update_Notes.txt'>%1</a>", "Visit our github to view the complete changelog." splitString " " joinString toString [160]], lineBreak
 			];
 		};
-		case "scripts": { 
+		case "scripts": {
 			_control ctrlSetStructuredText composeText [
 			"GF Earplugs:", lineBreak,
 			"We use George Floros's earplug script wich allows you to lower your volume by the press of 1 button.", lineBreak,
@@ -168,6 +168,10 @@ while {dialog} do {
 			"Vehicle Unflip:", lineBreak,
 			"Oh no did your vehicle flip over? Simply walk up to it and use your scroll wheel to unflip the vehicle.", lineBreak,
 			"Note: Static defenses may experience difficulty flipping over.", lineBreak,
+			"", lineBreak,
+			"Textures:", lineBreak,
+			"NATO Kuma textures are from A3 Aegis Open Source Mod (heavily modified for size/compression).", lineBreak,
+			parseText "<a href='https://github.com/senicluxus/A3_Aegis_Public_Releases'>ArmA 3 Aegis Project</a>", lineBreak,
 			""
 			];
 		};

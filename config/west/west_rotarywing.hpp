@@ -77,13 +77,20 @@ class RotaryWing {
         killReward = 200;
     }; // "AH-9 Pawnee"
 
-    class I_Heli_light_03_dynamicLoadout_F {
+    class B_Heli_light_03_dynamicLoadout_F {
         cost = 6000;
+        name = "WY-55 Hellcat";
+        spawn = "I_Heli_light_03_dynamicLoadout_F";
         requirements[] = {"H"};
+        textures[] = {
+            "\A3\Air_F_Enoch\Heli_Light_03\data\Heli_Light_03_base_EAF_CO.paa",
+            "\a3\Supplies_F_Enoch\Ammoboxes\Data\AmmoBox_EAF_CO.paa",
+            "\a3\Supplies_F_Enoch\Ammoboxes\Data\AmmoBox_signs_EAF_CA.paa"
+        };
         offset[] = {0, 9, 0};
         rearm = 300;
         killReward = 300;
-    }; // "WY-55 Hellcat"
+    };
 
     class B_Heli_Attack_01_dynamicLoadout_F {
         cost = 13000;

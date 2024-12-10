@@ -202,9 +202,8 @@ if (_displayClass == "OSD") then {
 		_purchase_frame_topleft ctrlSetPosition [_xDef + (_wDef * 0.227), _yDef + (_hDef * 0.117), _wDef * 0.035, _hDef * 0.05];
 		_purchase_frame_topright ctrlSetPosition [_xDef + (_wDef * 0.739), _yDef + (_hDef * 0.117), _wDef * 0.035, _hDef * 0.05];
 		_purchase_frame_bottomleft ctrlSetPosition [_xDef + (_wDef * 0.227), _yDef + (_hDef * 0.834), _wDef * 0.035, _hDef * 0.05];
-
 		_purchase_frame_bottomright ctrlSetPosition [_xDef + (_wDef * 0.739), _yDef + (_hDef * 0.834), _wDef * 0.035, _hDef * 0.05];
-		_purchase_frame_bottomright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BR_ca.paa";
+
 		_purchase_category ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.195), _wDef * 3 / 32, _hDef * 0.5];
 		_purchase_items ctrlSetPosition [_xDef + (_wDef * 11 / 32), _yDef + (_hDef * 0.195), _wDef * 5 / 32, _hDef * 0.5];
 		_purchase_info ctrlSetPosition [_xDef + (_wDef / 4), _yDef + (_hDef * 0.695), _wDef / 2, _hDef * 0.11];
@@ -226,6 +225,7 @@ if (_displayClass == "OSD") then {
 		_purchase_frame_topleft ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_TL_ca.paa";
 		_purchase_frame_topright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_TR_ca.paa";
 		_purchase_frame_bottomleft ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BL_ca.paa";
+		_purchase_frame_bottomright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BR_ca.paa";
 
 		{_x ctrlSetFade 1; _x ctrlEnable false; _x ctrlCommit 0} forEach [
 			_purchase_transfer_background,

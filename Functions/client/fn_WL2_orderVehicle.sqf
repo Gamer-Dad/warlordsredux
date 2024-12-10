@@ -20,15 +20,16 @@ if (_class isKindOf "Man") then {
 		_offset = [0, 8, 0];
 	};
 
-	_asset = createSimpleObject [_class, (AGLToASL (player modelToWorld _offset)), true];
+	private _asset = createSimpleObject [_class, AGLToASL (player modelToWorld _offset), true];
 
 	_asset setDir direction player;
 	_asset lock 2;
-	_asset attachTo [player, _offset];
-	_h = (position _asset) # 2;
-	detach _asset;
-	_offset_tweaked = [_offset select 0, _offset select 1, _h];
-	_asset attachTo [player, _offset_tweaked];
+
+	private _textureHashmap = missionNamespace getVariable ["WL2_textures", createHashMap];
+	private _assetTextures = _textureHashmap getOrDefault [_orderedClass, []];
+	{
+		_asset setObjectTextureGlobal [_forEachIndex, _x];
+	} forEach _assetTextures;
 
 	[player, "assembly"] call BIS_fnc_WL2_hintHandle;
 
@@ -51,7 +52,21 @@ if (_class isKindOf "Man") then {
 	uiNamespace setVariable ["BIS_WL_deployKeyHandle", _deployKeyHandle];
 	private _originalPosition = getPosATL player;
 
-	[_originalPosition] spawn {
+	[_asset, _offset] spawn {
+		params ["_asset", "_offset"];
+
+		private _boundingBoxHeight = (boundingBoxReal _asset) # 0 # 2;
+		while { !(isNull _asset) && !(BIS_WL_spacePressed) && !(BIS_WL_backspacePressed) } do {
+			private _assetPos = player modelToWorld _offset;
+			private _assetHeight = getTerrainHeightASL [_assetPos # 0, _assetPos # 1];
+			private _playerHeight = (getPosASL player) # 2;
+			private _offset_tweaked = [_offset # 0, _offset # 1, _assetHeight - _playerHeight - _boundingBoxHeight];
+			_asset attachTo [player, _offset_tweaked];
+			sleep 1;
+		};
+	};
+
+	[_originalPosition, _asset] spawn {
 		params ["_originalPosition"];
 
 		waitUntil {

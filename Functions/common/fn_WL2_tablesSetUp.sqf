@@ -6,6 +6,8 @@ private _spawnHashMap = createHashMap;
 private _costHashMap = createHashMap;
 private _rearmTimerHashMap = createHashMap;
 private _killRewardHashMap = createHashMap;
+private _texturesHashMap = createHashMap;
+private _teamHashMap = createHashMap;
 
 private _structureHashMap = createHashMap;
 private _capValueHashMap = createHashMap;
@@ -29,6 +31,7 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 	private _requisitionPreset = missionConfigFile >> "CfgWLRequisitionPresets" >>_x;
 	private _requisitionSides = configProperties [_requisitionPreset];
 	{
+		private _requisitionSide = _x;
 		private _requisitionCategories = configProperties [_x];
 		{
 			private _requisitionClasses = configProperties [_x];
@@ -40,6 +43,8 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 				private _requisitionCost = getNumber (_x >> "cost");
 				private _requisitionRearmTime = getNumber (_x >> "rearm");
 				private _requisitionKillReward = getNumber (_x >> "killReward");
+				private _requisitionTextures = getArray (_x >> "textures");
+
 				private _requisitionStructure = getNumber (_x >> "killReward");
 				private _requisitionCapValue = getNumber (_x >> "capValue");
 				private _requisitionAps = getNumber (_x >> "aps");
@@ -81,6 +86,10 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 
 				if (_requisitionKillReward != 0) then {
 					_killRewardHashMap set [_requistitonName, _requisitionKillReward];
+				};
+
+				if (count _requisitionTextures > 0) then {
+					_texturesHashMap set [_requistitonName, _requisitionTextures];
 				};
 
 				if (_requisitionStructure != 0) then {
@@ -142,6 +151,8 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 				if (count _requisitionTurretOverrides > 0) then {
 					_turretOverridesHashMap set [_requistitonName, _requisitionTurretOverrides];
 				};
+
+				_teamHashMap set [_requistitonName, configName _requisitionSide];
 			} forEach _requisitionClasses;
 		} forEach _requisitionCategories;
 	} forEach _requisitionSides;
@@ -179,10 +190,13 @@ if (isServer) then {
 	];
 };
 
+missionNamespace setVariable ["WL2_teams", _teamHashMap];
+
 missionNamespace setVariable ["WL2_nameOverrides", _nameHashMap];
 missionNamespace setVariable ["WL2_descriptions", _descriptionHashMap];
 missionNamespace setVariable ["WL2_spawnClass", _spawnHashMap];
 missionNamespace setVariable ["WL2_aps", _apsHashMap];
+missionNamespace setVariable ["WL2_textures", _texturesHashMap];
 
 missionNamespace setVariable ["WL2_demolishable", _demolishableHashMap];
 missionNamespace setVariable ["WL2_structure", _structureHashMap];

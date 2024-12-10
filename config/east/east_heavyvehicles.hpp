@@ -95,6 +95,41 @@ class HeavyVehicles {
         };
     }; // "ZSU-39 Tigris"
 
+    class O_APC_Tracked_02_heavy_F {
+        name = "BMP-K Kamysh";
+        spawn = "O_APC_Tracked_02_cannon_F";
+        description = "BMP-K Kamysh is a variant of the BTR-K Kamysh armed with a 105mm cannon.<br/>Armament: 40Rnd 105mm APFSDS-T, 5Rnd GAT x2";
+        cost = 5500;
+        requirements[] = {};
+        rearm = 500;
+        killReward = 350;
+        capValue = 3;
+        aps = 2;
+
+        disallowMagazines[] = {
+            "4Rnd_GAA_missiles"
+        };
+
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            removeMagazines[] = {
+                "2Rnd_GAT_missiles_O"
+            };
+            removeWeapons[] = {
+                "missiles_titan"
+            };
+            addMagazines[] = {
+                "5Rnd_GAT_missiles",
+                "5Rnd_GAT_missiles",
+                "40Rnd_105mm_APFSDS_T_Red"
+            };
+            addWeapons[] = {
+                "missiles_titan",
+                "cannon_105mm_VTOL_01"
+            };
+        };
+    };
+
     class O_MBT_02_cannon_F {
         cost = 7500;
         requirements[] = {};
@@ -201,6 +236,11 @@ class HeavyVehicles {
     class I_Truck_02_MRL_F {
         cost = 18000;
         requirements[] = {};
+        textures[] = {
+            "\A3\soft_f_beta\Truck_02\Data\Truck_02_kab_opfor_co.paa",
+            "\a3\soft_f_beta\truck_02\data\truck_02_int_co.paa",
+            "\a3\soft_f_gamma\truck_02\data\truck_02_mrl_OPFOR_co.paa"
+        };
         rearm = 1800;
         killReward = 600;
         capValue = 4;

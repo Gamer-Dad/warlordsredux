@@ -20,6 +20,12 @@ class HeavyVehicles {
     class B_APC_Wheeled_03_cannon_F {
         cost = 2900;
         requirements[] = {};
+        textures[] = {
+            "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext_co.paa",
+            "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext2_co.paa",
+            "\A3\armor_f_gamma\APC_Wheeled_03\Data\rcws30_co.paa",
+            "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext_alpha_co.paa"
+        };
         rearm = 500;
         killReward = 300;
         capValue = 3;
@@ -45,7 +51,7 @@ class HeavyVehicles {
                 "missiles_titan"
             };
         };
-    }; // "BLUFOR Gorgon"
+    }; // "AFV-4 Gorgon"
 
     // class B_APC_Wheeled_03_up_F {
     //     name = "AFV-4 Gorgon UP";
@@ -53,6 +59,13 @@ class HeavyVehicles {
     //     spawn = "B_APC_Wheeled_03_cannon_F";
     //     cost = 3000;
     //     requirements[] = {};
+    //     textures[] = {
+    //         "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext_co.paa",
+    //         "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext2_co.paa",
+    //         "\A3\armor_f_gamma\APC_Wheeled_03\Data\rcws30_co.paa",
+    //         "\A3\armor_f_gamma\APC_Wheeled_03\Data\apc_wheeled_03_ext_alpha_co.paa"
+    //     };
+
     //     rearm = 500;
     //     killReward = 300;
     //     capValue = 3;
@@ -152,6 +165,23 @@ class HeavyVehicles {
     //     };
     // };
 
+    // class B_APC_tracked_03_cannon_F {
+    //     name = "FV-720 Mora";
+    //     spawn = "I_APC_tracked_03_cannon_F";
+    //     cost = 3600;
+    //     requirements[] = {};
+    //     textures[] = {
+    //         "A3\Armor_F_Enoch\apc_tracked_03\data\apc_tracked_03_ext_eaf_co.paa",
+    //         "A3\Armor_F_Enoch\apc_tracked_03\data\apc_tracked_03_ext2_eaf_co.paa",
+    //         "A3\Armor_F_Enoch\apc_tracked_03\Data\camonet_EAF_green_CO.paa",
+    //         "A3\Armor_F_Enoch\apc_tracked_03\data\cage_EAF_CO.paa"
+    //     };
+    //     rearm = 500;
+    //     killReward = 400;
+    //     capValue = 4;
+    //     aps = 2;
+    // };
+
     class B_AFV_Wheeled_01_cannon_F {
         cost = 4500;
         requirements[] = {};
@@ -221,6 +251,26 @@ class HeavyVehicles {
             "4Rnd_120mm_LG_cannon_missiles"
         };
     }; // "M2A1 Slammer UP"
+
+    class B_MBT_03_cannon_F {
+        cost = 8000;
+        name = "M52 Kuma";
+        spawn = "I_MBT_03_cannon_F";
+        requirements[] = {};
+        textures[] = {
+            "Img\camo\kuma01.jpg",
+            "Img\camo\kuma02.jpg",
+            "Img\camo\kuma03.jpg"
+        };
+        rearm = 600;
+        killReward = 500;
+        capValue = 4;
+        aps = 3;
+
+        disallowMagazines[] = {
+            "4Rnd_120mm_LG_cannon_missiles"
+        };
+    };
 
     class B_APC_Tracked_01_AA_UP_F {
         name = "IFV-6X Puma";

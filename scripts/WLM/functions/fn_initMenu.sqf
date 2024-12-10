@@ -7,7 +7,7 @@ private _display = findDisplay WLM_DISPLAY;
 if (isNull _display) then {
     _display = createDialog ["WLM_PylonUI", true];
     // _display = findDisplay 46 createDisplay "WLM_PylonUI";
-    cutRsc ["RscStatic", "PLAIN"];
+    // cutRsc ["RscStatic", "PLAIN"];
 };
 
 private _assetConfig = configFile >> "CfgVehicles" >> typeOf _asset;

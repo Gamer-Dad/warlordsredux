@@ -43,6 +43,12 @@ private _asset = if (_isUav) then {
 
 _asset setDir _dir;
 
+private _textureHashmap = missionNamespace getVariable ["WL2_textures", createHashMap];
+private _assetTextures = _textureHashmap getOrDefault [_orderedClass, []];
+{
+	_asset setObjectTextureGlobal [_forEachIndex, _x];
+} forEach _assetTextures;
+
 waitUntil {sleep 0.1; !(isNull _asset)};
 _asset enableWeaponDisassembly false;
 _asset setVehicleReportRemoteTargets true;

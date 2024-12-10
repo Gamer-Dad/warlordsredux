@@ -9,6 +9,7 @@ class CfgVehicleClassName {
     spawn = text;                    // If the CfgVehicleClassName is a variant, this is the base class to spawn.
     requirements[] = array;          // Requirements for deployment (A = Airport, H = Helipad, W = Harbor).
     offset[] = array;                // Offset for placing the vehicle after buying, only valid for some vehicle types.
+    textures[] = array;                  // Skin textures for the vehicle.
 
     rearm = number;                  // Rearm timer in seconds.
     killReward = number;             // CP reward for destroying the vehicle.

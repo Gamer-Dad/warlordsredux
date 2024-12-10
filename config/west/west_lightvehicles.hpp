@@ -239,8 +239,16 @@ class LightVehicles {
         };
     };
 
-    class O_T_Truck_03_device_ghex_F {
+    class B_T_Truck_03_device_F {
         cost = 1500;
+        name = "Tempest (Device)";
+        spawn = "O_T_Truck_03_device_ghex_F";
+        textures[] = {
+            "#(argb,8,8,3)color(0.80,0.76,0.66,0.15)",
+            "#(argb,8,8,3)color(0.2,0.25,0.25,0.15)",
+            "#(argb,8,8,3)color(0.2,0.25,0.3,0.15)",
+            "#(argb,8,8,3)color(0.6,0.6,0.4,0.15)"
+        };
         requirements[] = {};
         killReward = 200;
         capValue = 1;
