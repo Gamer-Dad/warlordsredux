@@ -289,7 +289,8 @@ class HeavyVehicles {
         textures[] = {
             "Img\camo\kuma01.jpg",
             "Img\camo\kuma02.jpg",
-            "Img\camo\kuma03.jpg"
+            "Img\camo\kuma03.jpg",
+            "\a3\Armor_F\Data\camonet_NATO_Desert_CO.paa"
         };
         rearm = 600;
         killReward = 500;
