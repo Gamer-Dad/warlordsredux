@@ -309,8 +309,8 @@ if (_action == "updateZeus") exitWith {
 };
 
 if (_action == "droneExplode") then {
-	private _drone = _param1;
-	_expl = createVehicle ["IEDUrbanBig_Remote_Ammo", getPos _drone, [], 0, "FLY"];
+	private _drone = vehicle _param1;
+	private _expl = createVehicle ["IEDUrbanBig_Remote_Ammo", getPos _drone, [], 0, "FLY"];
 	_expl setShotParents [_drone, _sender];
 	triggerAmmo _expl;
 	deleteVehicle _drone;

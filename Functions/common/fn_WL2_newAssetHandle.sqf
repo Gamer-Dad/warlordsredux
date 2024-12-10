@@ -116,7 +116,8 @@ if (isPlayer _owner) then {
 						},
 						{},
 						{
-							(getConnectedUAVUnit player) addEventHandler ["Killed", { params ["_unit", "_killer", "_instigator", "_useEffects"];
+							(getConnectedUAVUnit player) addEventHandler ["Killed", {
+								params ["_unit", "_killer", "_instigator", "_useEffects"];
 								[player, "droneExplode", _unit] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
 							}];
 							[
