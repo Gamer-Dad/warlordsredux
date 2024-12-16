@@ -215,8 +215,15 @@ if (_ret) then {
 				_tooltip = localize "STR_A3_WL_popup_appropriate_sector_selection";
 			};
 
-			if (_requirements findIf {!(_x in _servicesAvailable)} >= 0) exitWith {_ret = false; _tooltip = localize "STR_A3_WL_airdrop_restr1"};
-			if (_className isKindOf "Man" && BIS_WL_matesAvailable <= 0) exitWith {_ret = false; _tooltip = localize "STR_A3_WL_airdrop_restr2"};
+			if (_requirements findIf {!(_x in _servicesAvailable)} >= 0) exitWith {
+				_ret = false;
+				_tooltip = localize "STR_A3_WL_airdrop_restr1"
+			};
+
+			if (_className isKindOf "Man" && BIS_WL_matesAvailable <= 0) exitWith {
+				_ret = false;
+				_tooltip = localize "STR_A3_WL_airdrop_restr2"
+			};
 
 			if (_category == "Strategy") exitWith {};
 
@@ -235,7 +242,7 @@ if (_ret) then {
 				_tooltip = localize "STR_A3_WL_fasttravel_restr3";
 			};
 
-			if (_visitedSectorID == -1) exitWith {
+			if (!("A" in _requirements) && _visitedSectorID == -1) exitWith {
 				_ret = false;
 				_tooltip = localize "STR_A3_WL_ftVehicle_restr1";
 			};
@@ -256,11 +263,6 @@ if (_ret) then {
 					_ret = false;
 					_tooltip = format [localize "STR_A3_WL_tip_max_autonomous", (getMissionConfigValue ["BIS_WL_autonomous_limit", 2])];
 				};
-			};
-
-			if (!("A" in _requirements) && _visitedSectorID == -1) exitWith {
-				_ret = false;
-				_tooltip = localize "STR_A3_WL_ftVehicle_restr1";
 			};
 
 			if (_class == "Land_Communication_F") then {
