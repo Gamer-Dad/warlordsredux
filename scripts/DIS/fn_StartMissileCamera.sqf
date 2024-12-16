@@ -1,9 +1,11 @@
 #include "SAM.inc"
 params ["_projectile", "_unit"];
 
+private _disableCamera = profileNamespace getVariable ["MRTM_disableMissileCameras", false];
 private _isDisconnected = unitIsUAV _unit && isNull (getConnectedUAV player);
+private _pipDisabled = (getVideoOptions getOrDefault ["pipQualityName", "None"]) == "Disabled";
 
-if (!(profileNamespace getVariable ["MRTM_disableMissileCameras", false]) && !_isDisconnected) then {
+if (!_disableCamera && !_isDisconnected && !_pipDisabled) then {
     private _existingProcess = uiNamespace getVariable ["APS_Camera_Process", objNull];
     private _existingCam = uiNamespace getVariable ["APS_Camera_Cam", objNull];
 

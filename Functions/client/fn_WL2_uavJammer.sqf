@@ -113,13 +113,18 @@ private _side = side _owner;
 [_asset] spawn {
     params ["_asset"];
 
-    private _priority = missionNamespace getVariable ["BIS_WL_filmGrainPriority", 2000];
-    private _filmGrain = ppEffectCreate ["filmGrain", _priority];
-    _filmGrain ppEffectAdjust [1, 0];
-    _filmGrain ppEffectEnable false;
-    _filmGrain ppEffectForceInNVG true;
-    _filmGrain ppEffectCommit 0;
-    missionNamespace setVariable ["BIS_WL_filmGrainPriority", _priority + 1];
+    private _initFilmGrain = {
+        private _priority = missionNamespace getVariable ["BIS_WL_filmGrainPriority", 2000];
+        private _effect = ppEffectCreate ["filmGrain", _priority];
+        _effect ppEffectAdjust [1, 0];
+        _effect ppEffectEnable false;
+        _effect ppEffectForceInNVG true;
+        _effect ppEffectCommit 0;
+        missionNamespace setVariable ["BIS_WL_filmGrainPriority", _priority + 1];
+        _effect;
+    };
+
+    private _filmGrain = call _initFilmGrain;
 
     private _display = uiNamespace getVariable ["RscJammingIndicator", objNull];
     if (isNull _display) then {
@@ -160,6 +165,11 @@ private _side = side _owner;
             };
         };
         _filmGrain ppEffectCommit 0;
+
+        private _exploitActive = !(ppEffectCommitted _filmGrain);
+        if (_exploitActive) then {
+            _filmGrain = call _initFilmGrain;
+        };
 
         private _thermalDisabled = equipmentDisabled _asset # 1;
         if (_jammerStrength > WL_JAMMER_SENSOR_THRESHOLD && !_thermalDisabled) then {
