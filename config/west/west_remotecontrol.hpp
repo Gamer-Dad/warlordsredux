@@ -80,9 +80,9 @@ class RemoteControl {
 
     class B_UGV_01_rcws_UP_F {
         name = "UGV Stomper UP";
-        description = "UGV Stomper UP is a variant of the UGV Stomper armed with a 30mm autocannon.<br/>Armament: 140Rnd 30mm MP, 60Rnd 30mm APFSDS";
+        description = "UGV Stomper UP is a variant of the UGV Stomper armed with a 30mm autocannon.<br/>Armament: 60Rnd 20mm HE x2, 60Rnd 20mm AP x2";
         spawn = "B_UGV_01_rcws_F";
-        cost = 1500;
+        cost = 1200;
         requirements[] = {};
         offset[] = {0, 5, 0};
         rearm = 300;
@@ -97,11 +97,13 @@ class RemoteControl {
                 "GMG_40mm"
             };
             addMagazines[] = {
-                "140Rnd_30mm_MP_shells_Tracer_Red",
-                "60Rnd_30mm_APFSDS_shells_Tracer_Red"
+                "60Rnd_20mm_HE_shells",
+                "60Rnd_20mm_HE_shells",
+                "60Rnd_20mm_AP_shells",
+                "60Rnd_20mm_AP_shells"
             };
             addWeapons[] = {
-                "autocannon_30mm_CTWS"
+                "cannon_20mm"
             };
         };
     };
