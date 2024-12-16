@@ -1,7 +1,7 @@
 params ["_m"];
 
-_side = BIS_WL_playerSide;
-_sideN = [east, west] find _side;
+private _side = BIS_WL_playerSide;
+private _sideN = [east, west] find _side;
 if !(isNull BIS_WL_highlightedSector) then {
 	_m drawIcon [
 		"A3\ui_f\data\map\groupicons\selector_selectedMission_ca.paa",

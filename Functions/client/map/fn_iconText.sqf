@@ -6,6 +6,13 @@ private _continue = if (_gps) then {true} else {(ctrlMapScale _control) < 0.3};
 
 if (_continue) then {
 	private _vehicleDisplayName = [_asset] call BIS_fnc_WL2_getAssetTypeName;
+
+	private _ammo = _asset getVariable ["WLM_ammoCargo", 0];
+	if (_ammo > 0) then {
+		private _ammoDisplay = (_ammo call BIS_fnc_numberText) regexReplace [" ", ","];
+		_vehicleDisplayName = format ["%1 [%2 kg]", _vehicleDisplayName, _ammoDisplay];
+	};
+
 	if (unitIsUAV _asset) then {
 		if (isUAVConnected _asset) then {
 			private _op = (UAVControl _asset) select 0;

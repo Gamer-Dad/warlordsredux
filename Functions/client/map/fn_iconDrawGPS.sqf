@@ -5,8 +5,8 @@ if (
 	{(visibleMap)}
 ) exitWith {};
 
-_side = BIS_WL_playerSide;
-_sideN = [east, west] find _side;
+private _side = BIS_WL_playerSide;
+private _sideN = [east, west] find _side;
 {
 	private _revealTrigger = _x getVariable "BIS_WL_revealTrigger";
 	{
