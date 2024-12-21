@@ -3,7 +3,14 @@
 params ["_target"];
 
 private _displayName = [_target] call BIS_fnc_WL2_getAssetTypeName;
-_result = [format ["Are you sure you would like to delete: %1", _displayName], "Delete asset", true, true] call BIS_fnc_guiMessage;
+private _assetSector = BIS_WL_allSectors select { _target inArea (_x getVariable "objectAreaComplete") };
+private _assetLocation = if (count _assetSector > 0) then {
+	(_assetSector # 0) getVariable ["BIS_WL_name", str (mapGridPosition _target)];
+} else {
+	mapGridPosition _target;
+};
+
+_result = [format ["Are you sure you would like to delete: %1 @ %2", _displayName, _assetLocation], "Delete asset", true, true] call BIS_fnc_guiMessage;
 
 if (_result) then {
 	playSound "AddItemOK";

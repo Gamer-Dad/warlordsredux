@@ -30,8 +30,9 @@ private _asset = if (_isUav) then {
 // 	} forEach _textures;
 // };
 
-private _originalIsBuyable = (serverNamespace getVariable ["WL2_costs", createHashMap]) getOrDefault [_class, 0] != 0;
-if (_class != _orderedClass && _originalIsBuyable) then {
+private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_class, "UNKNOWN"];
+private _variant = _class != _orderedClass && _spawnClassTeam == (str BIS_WL_playerSide);
+if (_variant) then {
 	private _side = side group _sender;
 	private _sideFlag = if (_side == west) then {
 		"\A3\Data_F_Exp\Flags\flag_CTRG_CO.paa"

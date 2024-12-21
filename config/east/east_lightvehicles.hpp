@@ -168,7 +168,7 @@ class LightVehicles {
 
     class O_LSV_02_AT_M_F {
         name = "Qilin (AT-M)";
-        description = "Qilin (AT-M) is a variant of the Qilin armed with a Firefist AT missile launcher.<br/>Armament: 2Rnd Firefist x5";
+        description = "Qilin (AT-M) is a variant of the Qilin armed with a Firefist AT missile launcher.";
         spawn = "O_LSV_02_AT_F";
         cost = 1200;
         requirements[] = {};
@@ -210,7 +210,7 @@ class LightVehicles {
 
     class O_MRAP_02_gmg_m_F {
         name = "Ifrit-M Autocannon";
-        description = "Ifrit-M is a variant of the Ifrit armed with a 20mm autocannon.<br/>Armament: 60Rnd 20mm HE x6, 60Rnd 20mm AP x3, 200Rnd 127mm x3";
+        description = "Ifrit-M is a variant of the Ifrit armed with a 20mm autocannon.";
         spawn = "O_MRAP_02_gmg_F";
         cost = 1500;
         requirements[] = {};

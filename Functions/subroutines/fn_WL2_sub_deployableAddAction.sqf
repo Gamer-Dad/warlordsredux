@@ -5,6 +5,12 @@ private _deployActionId = _asset addAction [
 	{
 		_this params ["_asset", "_caller", "_deployActionId"];
 
+        private _speed = speed _asset;
+        if (_speed > 5) exitWith {
+            systemChat "Cannot load/unload deployable while moving!";
+            playSound "AddItemFailed";
+        };
+
         private _assetLoadedItem = _asset getVariable ["WL2_loadedItem", objNull];
         if (isNull _assetLoadedItem) then {
             private _eligibilityQuery = [_asset, _caller] call BIS_fnc_WL2_sub_deployableEligibility;
@@ -20,6 +26,9 @@ private _deployActionId = _asset addAction [
 
                 if ((_asset canVehicleCargo _assetToLoad) # 0) then {
                     _asset setVehicleCargo _assetToLoad;
+                    private _offset = _asset getRelPos _assetToLoad;
+                    objNull setVehicleCargo _assetToLoad;
+                    _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
                 } else {
                     private _offset = _eligibilityQuery # 2;
                     _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
@@ -44,12 +53,6 @@ private _deployActionId = _asset addAction [
                 _asset setVariable ["WL2_children", _assetChildren, [2, clientOwner]];
             };
         } else {
-            private _speed = speed _asset;
-            if (_speed > 5) exitWith {
-                systemChat "Cannot unload deployable while moving!";
-                playSound "AddItemFailed";
-            };
-
             private _desiredPosRelative = [8, 0, 0];
             private _desiredPosRelativeHigh = [0, 0, 1] vectorAdd _desiredPosRelative;
             private _desiredPosWorld = _asset modelToWorld _desiredPosRelative;
@@ -125,6 +128,9 @@ private _deployActionId = _asset addAction [
             if ((locked _assetLoadedItem) != 2) then {
                 _assetLoadedItem setVehicleLock "LOCKED";
             };
+            {
+                moveOut _x;
+            } forEach (crew _assetLoadedItem);
         };
 
         private _actionIcon = if (isNull (_asset getVariable ["WL2_loadedItem", objNull])) then {

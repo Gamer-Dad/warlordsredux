@@ -10,7 +10,7 @@ class HeavyVehicles {
 
     class O_APC_Wheeled_02_rcws_v2_m_F {
         name = "MSE-3M Marid Autocannon";
-        description = "MSE-3M Marid is a variant of the MSE-3 Marid armed with a 30mm autocannon.<br/>Armament: 250Rnd 30mm HE x2, 250Rnd 30mm APDS x2";
+        description = "MSE-3M Marid is a variant of the MSE-3 Marid armed with a 30mm autocannon.";
         spawn = "O_APC_Wheeled_02_rcws_v2_F";
         cost = 2600;
         requirements[] = {};
@@ -98,7 +98,7 @@ class HeavyVehicles {
     // class O_APC_Tracked_02_heavy_F {
     //     name = "BMP-K Kamysh";
     //     spawn = "O_APC_Tracked_02_cannon_F";
-    //     description = "BMP-K Kamysh is a variant of the BTR-K Kamysh armed with a 105mm cannon.<br/>Armament: 40Rnd 105mm APFSDS-T, 5Rnd GAT x2";
+    //     description = "BMP-K Kamysh is a variant of the BTR-K Kamysh armed with a 105mm cannon.";
     //     cost = 5500;
     //     requirements[] = {};
     //     rearm = 500;
@@ -144,7 +144,7 @@ class HeavyVehicles {
 
     class O_APC_Tracked_02_AA_M_F {
         name = "ZSU-49 Euphrates";
-        description = "ZSU-49 Euphrates is a variant of the ZSU-39 Tigris armed with Rhea missiles.<br/>Armament: 680Rnd 35mm AA x2, 4Rnd Rhea";
+        description = "ZSU-49 Euphrates is a variant of the ZSU-39 Tigris armed with Rhea missiles.";
         spawn = "O_APC_Tracked_02_AA_F";
         cost = 8000;
         requirements[] = {};
@@ -191,7 +191,7 @@ class HeavyVehicles {
 
     class O_MBT_04_nato_F {
         name = "T-140N Yukon";
-        description = "T-140N Yukon is a variant of the T-140 Angara armed with a NATO 120mm cannon.<br/>Armament: 4Rnd 120mm ATGM LG x8";
+        description = "T-140N Yukon is a variant of the T-140 Angara armed with a NATO 120mm cannon.";
         spawn = "O_MBT_04_command_F";
         cost = 13500;
         requirements[] = {};

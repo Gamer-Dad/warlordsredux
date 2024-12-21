@@ -26,7 +26,9 @@ if (_assetApsType == 3) then {
 		" is inactive.";
 	});
 } else {
-	_text = _text + format[" Charges: %1/%2", _vehicle getVariable ["apsAmmo", 0], _vehicle call APS_fnc_getMaxAmmo];
+	private _apsAmmo = _vehicle getVariable ["apsAmmo", 0];
+	_apsAmmo = _apsAmmo max 0;
+	_text = _text + format[" Charges: %1/%2", _apsAmmo, _vehicle call APS_fnc_getMaxAmmo];
 };
 
 private _apsDisplay = uiNamespace getVariable ["RscWLAPSDisplay", objNull];

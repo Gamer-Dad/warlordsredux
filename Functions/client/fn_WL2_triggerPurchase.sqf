@@ -81,24 +81,13 @@ switch (_className) do {
                     sleep 0.2;
                     private _asset = _x;
 
-                    private _displayName = [_asset] call BIS_fnc_WL2_getAssetTypeName;
-                    private _assetSector = BIS_WL_allSectors select { _asset inArea (_x getVariable "objectAreaComplete") };
-                    private _assetLocation = if (count _assetSector > 0) then {
-                        (_assetSector # 0) getVariable ["BIS_WL_name", str (mapGridPosition _asset)];
+                    if (unitIsUAV _asset) then {
+                        _asset call BIS_fnc_WL2_deleteAssetFromMap;
                     } else {
-                        mapGridPosition _asset;
-                    };
-                    _result = [format ["Would you would like to delete: %1 @ %2", _displayName, _assetLocation], "Delete asset", true, true] call BIS_fnc_guiMessage;
-
-                    if (_result) then {
-                        if (unitIsUAV _asset) then {
-                            private _group = group effectiveCommander _asset;
-                            {_asset deleteVehicleCrew _x} forEach crew _asset;
-                            deleteGroup _group;
+                        if ((crew _asset) findIf {alive _x} == -1) then {
+                            _asset call BIS_fnc_WL2_deleteAssetFromMap;
                         };
-
-                        deleteVehicle _asset;
-                    };
+                    }
                 } forEach _allAssets;
             };
         };

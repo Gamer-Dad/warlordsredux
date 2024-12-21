@@ -102,7 +102,9 @@ private _savedLoadoutHandled = FALSE;
 				} else {
 					if (_category in ["LightVehicles", "HeavyVehicles", "RotaryWing", "FixedWing", "RemoteControl", "AirDefense", "SectorDefense", "Naval"]) then {
 						_text = getText (_class >> "Library" >> "LibTextDesc");
-						if (_text == "") then {_text = getText (_class >> "Armory" >> "description")};
+						if (_text == "") then {
+							_text = getText (_class >> "Armory" >> "description");
+						};
 						if (_text == "") then {
 							_validClassArr = "toLower getText (_x >> 'vehicle') == toLower _entryClass" configClasses (configFile >> "CfgHints");
 							if (count _validClassArr > 0) then {
@@ -154,12 +156,23 @@ private _savedLoadoutHandled = FALSE;
 
 				if (_text != "") then {
 					_textNew = (_text splitString "$") # 0;
-					if (_textNew != _text) then {_text = localize _textNew} else {_text = _textNew};
+					if (_textNew != _text) then {
+						_text = localize _textNew
+					} else {
+						_text = _textNew
+					};
+					_text = _text regexReplace ["\. ", "="];
+					_text = ((_text splitString "=") # 0) + ".";
 				};
 
 				private _description = _descriptionMap getOrDefault [_className, ""];
 				if (_description != "") then {
 					_text = _description;
+				};
+
+				if (_category in ["LightVehicles", "HeavyVehicles", "RotaryWing", "FixedWing", "RemoteControl", "AirDefense", "SectorDefense", "Naval"]) then {
+					private _vehicleWeapons = [_className, _actualClassName] call BIS_fnc_WL2_getVehicleWeapons;
+					_text = _text + "<br/><t color='#ffffff' shadow='0' size='1.2'>Armament</t><br/>" + _vehicleWeapons;
 				};
 
 				if (_text == "") then {_text = " "};

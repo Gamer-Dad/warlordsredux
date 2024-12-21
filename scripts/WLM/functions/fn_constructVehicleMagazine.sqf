@@ -34,31 +34,9 @@ _asset setVariable ["WLM_savedMagazines", _savedMagazines];
 
 private _assetDefaultMagazines = _asset getVariable ["BIS_WL_defaultMagazines", []];
 
-private _menuTextOverrides = call WLM_fnc_menuTextOverrides;
+// private _menuTextOverrides = call WLM_fnc_menuTextOverrides;
 private _assetActualType = _asset getVariable ["WL2_orderedClass", typeOf _asset];
 private _disallowListForVehicle = missionNamespace getVariable ["WL2_disallowMagazinesForVehicle", createHashMap];
-
-private _getMagazineName = {
-    params ["_magazine"];
-    if (_magazine == "EMPTY") exitWith {
-        "EMPTY";
-    };
-
-    private _magazineName = getText (configFile >> "CfgMagazines" >> _magazine >> "displayName");
-    if (_magazineName == "") then {
-        _magazineName = _magazine;
-    };
-
-    private _overrideMagazineName = (_menuTextOverrides # 0) getOrDefault [_magazine, "No Override"];
-    if (_overrideMagazineName != "No Override") then {
-        _magazineName = _overrideMagazineName;
-    };
-
-    private _magSize = getNumber (configFile >> "CfgMagazines" >> _magazine >> "count");
-    _magazineName = format ["%1 (%2)", _magazineName, _magSize];
-
-    _magazineName;
-};
 
 private _getMagazineTooltip = {
     params ["_magazine"];
@@ -69,7 +47,7 @@ private _getMagazineTooltip = {
         _cacheResponse;
     };
 
-    private _magazineName = [_magazine] call _getMagazineName;
+    private _magazineName = [_magazine] call BIS_fnc_WL2_getMagazineName;
     private _magazineConfig = configFile >> "CfgMagazines" >> _magazine;
     private _magazineDescription = "";
 
@@ -366,7 +344,7 @@ private _getMagazineTooltip = {
             };
 
             private _magazineClass = _x;
-            private _magazineName = [_magazineClass] call _getMagazineName;
+            private _magazineName = [_magazineClass] call BIS_fnc_WL2_getMagazineName;
             private _selectBox = _display ctrlCreate ["WLM_PylonSelect", WLM_PYLON_START + _index, _ctrlGroup];
 
             private _firstSelectBoxItem = _selectBox lbAdd "EMPTY";
@@ -380,7 +358,7 @@ private _getMagazineTooltip = {
             {
                 private _magSize = getNumber (configFile >> "CfgMagazines" >> _x >> "count");
                 if (_magSize <= _ammoRemaining) then {
-                    private _allowedMagazine = [_x] call _getMagazineName;
+                    private _allowedMagazine = [_x] call BIS_fnc_WL2_getMagazineName;
                     private _selectBoxItem = _selectBox lbAdd _allowedMagazine;
                     _selectBox lbSetTooltip [_selectBoxItem, [_x] call _getMagazineTooltip];
                     _selectBox lbSetData [_selectBoxItem, _x];

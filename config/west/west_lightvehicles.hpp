@@ -160,7 +160,7 @@ class LightVehicles {
 
     class B_LSV_01_AT_UP_F {
         name = "Prowler (AT UP)";
-        description = "Prowler (AT UP) is a variant of the Prowler armed with a 5-mag Titan AT launcher.<br/>Armament: 5Rnd Titan AT x2";
+        description = "Prowler (AT UP) is a variant of the Prowler armed with a 5-mag Titan AT launcher.";
         spawn = "B_LSV_01_AT_F";
         cost = 1200;
         requirements[] = {};
@@ -202,7 +202,7 @@ class LightVehicles {
 
     class B_MRAP_01_gmg_up_F {
         name = "Hunter UP Autocannon";
-        description = "Hunter UP is a variant of the Hunter armed with a 20mm autocannon.<br/>Armament: 60Rnd 20mm HE x6, 60Rnd 20mm AP x3, 200Rnd 127mm x3";
+        description = "Hunter UP is a variant of the Hunter armed with a 20mm autocannon.";
         spawn = "B_MRAP_01_gmg_F";
         cost = 1500;
         requirements[] = {};

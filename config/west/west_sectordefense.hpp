@@ -227,7 +227,7 @@ class SectorDefense {
 
     class B_static_AA_UP_F {
         name = "Static AA Launcher (UP)";
-        description = "Static AA Launcher (UP) is a variant of the Static AA Launcher armed with SAAMI missiles.<br/>Armament: 4Rnd SAAMI x3";
+        description = "Static AA Launcher (UP) is a variant of the Static AA Launcher armed with SAAMI missiles.";
         spawn = "B_static_AA_F";
         cost = 600;
         requirements[] = {};

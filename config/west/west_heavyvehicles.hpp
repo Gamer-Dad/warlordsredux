@@ -55,7 +55,7 @@ class HeavyVehicles {
 
     // class B_APC_Wheeled_03_up_F {
     //     name = "AFV-4 Gorgon UP";
-    //     description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.<br/>Armament: 14Rnd 80mm x2, 1000Rnd 20mm x2";
+    //     description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.";
     //     spawn = "B_APC_Wheeled_03_cannon_F";
     //     cost = 3000;
     //     requirements[] = {};
@@ -96,7 +96,7 @@ class HeavyVehicles {
     // };
 
     class B_APC_Wheeled_01_cannon_F {
-        cost = 3200;
+        cost = 2900;
         requirements[] = {};
         rearm = 500;
         killReward = 300;
@@ -106,9 +106,9 @@ class HeavyVehicles {
 
     class B_APC_Wheeled_01_cannon_up_F {
         name = "AMV-7 Marshall UP";
-        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a 30mm cannon.<br/>Armament: 1000Rnd 30mm x2";
+        description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a larger magazine 40mm cannon.";
         spawn = "B_APC_Wheeled_01_cannon_F";
-        cost = 3500;
+        cost = 3200;
         requirements[] = {};
         rearm = 500;
         killReward = 300;
@@ -125,11 +125,13 @@ class HeavyVehicles {
                 "autocannon_40mm_CTWS"
             };
             addMagazines[] = {
-                "1000Rnd_Gatling_30mm_Plane_CAS_01_F",
-                "1000Rnd_Gatling_30mm_Plane_CAS_01_F"
+                "240Rnd_40mm_GPR_Tracer_Red_shells",
+                "240Rnd_40mm_GPR_Tracer_Red_shells",
+                "160Rnd_40mm_APFSDS_Tracer_Red_shells",
+                "160Rnd_40mm_APFSDS_Tracer_Red_shells"
             };
             addWeapons[] = {
-                "Gatling_30mm_Plane_CAS_01_F"
+                "autocannon_40mm_VTOL_01"
             };
         };
     };
@@ -254,7 +256,7 @@ class HeavyVehicles {
 
     class B_APC_Tracked_01_AA_UP_F {
         name = "IFV-6X Puma";
-        description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.<br/>Armament: 680Rnd 35mm x2, 4Rnd Defender";
+        description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.";
         spawn = "B_APC_Tracked_01_AA_F";
         cost = 8000;
         requirements[] = {};
@@ -304,7 +306,7 @@ class HeavyVehicles {
 
     // class B_MBT_01_TUSK_Railgun_F {
     //     name = "M2X Slammer (Railgun)";
-    //     description = "M2X Slammer (Railgun) is a variant of the M2A1 Slammer armed with a railgun.<br/>Armament: 60Rnd 75mm APFSDS x2";
+    //     description = "M2X Slammer (Railgun) is a variant of the M2A1 Slammer armed with a railgun.";
     //     spawn = "B_MBT_01_TUSK_F";
     //     cost = 13000;
     //     requirements[] = {};
