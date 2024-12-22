@@ -96,7 +96,10 @@ switch (_action) do {
             if (_playerId == (_squad select 1)) then {
                 private _hasAnyRemaining = count _members > 0;
                 if (_hasAnyRemaining) then {
-                    _squad set [1, _members select 0];
+                    private _newSquadLeader = _members select 0;
+                    private _newSLPlayer = allPlayers select { getPlayerID _x == _newSquadLeader } select 0;
+                    ["promoted", [_newSquadLeader]] remoteExec ["SQD_fnc_client", _newSLPlayer];
+                    _squad set [1, _newSquadLeader];
                 };
             };
         } forEach _squads;
@@ -117,6 +120,10 @@ switch (_action) do {
             _return = 1;
         } else {
             private _squad = _squads select 0;
+
+            private _newSLPlayer = allPlayers select { getPlayerID _x == _playerId } select 0;
+            ["promoted", [_newSquadLeader]] remoteExec ["SQD_fnc_client", _newSLPlayer];
+
             _squad set [1, _playerId];
             _message = format ["Player %1 promoted to Squad Leader of %2", _playerId, (_squad select 0)];
             _return = 0;

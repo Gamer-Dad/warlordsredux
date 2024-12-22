@@ -103,6 +103,13 @@ switch (_action) do {
 
         ["promote", [_player]] remoteExec ["SQD_fnc_server", 2];
     };
+    case "promoted": {
+        systemChat "You have been promoted to squad leader.";
+
+        private _sound = playSoundUI ["a3\music_f_tank\maintheme_f_tank.ogg", 1, 1, false, 1.7];
+        sleep 2.8;
+        stopSound _sound;
+    };
     case "kick": {
         private _selection = tvCurSel TREE;
         if (isNil "_selection") exitWith {
