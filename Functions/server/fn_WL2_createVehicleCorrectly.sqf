@@ -7,6 +7,8 @@ _asset = createVehicle [_class, [_posX, _posY, _posZ-50], [], 0, "CAN_COLLIDE"];
 _asset setDir _direction;
 _asset setVehiclePosition [_pos, [], 0, "CAN_COLLIDE"];
 _asset setDamage 0;
+_asset lock true;
+_asset enableWeaponDisassembly false;
 
 private _textureHashmap = missionNamespace getVariable ["WL2_textures", createHashMap];
 private _assetTextures = _textureHashmap getOrDefault [_orderedClass, []];

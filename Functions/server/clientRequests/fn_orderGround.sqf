@@ -30,10 +30,12 @@ private _asset = if (_isUav) then {
 // 	} forEach _textures;
 // };
 
+waitUntil {sleep 0.1; !(isNull _asset)};
+
 private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_class, "UNKNOWN"];
-private _variant = _class != _orderedClass && _spawnClassTeam == (str BIS_WL_playerSide);
+private _side = side group _sender;
+private _variant = _class != _orderedClass && _spawnClassTeam == (str _side);
 if (_variant) then {
-	private _side = side group _sender;
 	private _sideFlag = if (_side == west) then {
 		"\A3\Data_F_Exp\Flags\flag_CTRG_CO.paa"
 	} else {
@@ -54,8 +56,6 @@ if (_variant) then {
 		_asset forceFlagTexture _sideFlag;
 	};
 };
-
-waitUntil {sleep 0.1; !(isNull _asset)};
 
 private _turretOverrides = missionNamespace getVariable ["WL2_turretOverrides", createHashMap];
 private _turretOverridesForVehicle = _turretOverrides getOrDefault [_orderedClass, []];
@@ -124,13 +124,13 @@ private _defaultMags = magazinesAllTurrets _asset;
 _asset setVariable ["BIS_WL_defaultMagazines", _defaultMags, true];
 _asset setVariable ["WLM_savedDefaultMags", _defaultMags, true];
 
-_asset enableWeaponDisassembly false;
-
 private _smallFlareMags = (_asset magazinesTurret [-1]) select {_x == "120Rnd_CMFlare_Chaff_Magazine"};
 if (count _smallFlareMags == 1) then {
 	_asset removeMagazineTurret ["120Rnd_CMFlare_Chaff_Magazine", [-1]];
 	_asset addMagazineTurret ["240Rnd_CMFlare_Chaff_Magazine", [-1]]
 };
+
+_asset lock false;
 
 _owner = owner _sender;
 _asset setVariable ["BIS_WL_ownerAsset", (getPlayerUID _sender), [2, _owner]];

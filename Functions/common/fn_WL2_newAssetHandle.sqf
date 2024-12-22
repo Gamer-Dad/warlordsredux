@@ -73,6 +73,13 @@ if (isPlayer _owner) then {
 			case "B_T_VTOL_01_vehicle_F": {
 				_asset call BIS_fnc_WL2_sub_logisticsAddAction;
 			};
+			case "B_Heli_Transport_01_F";
+			case "B_Heli_Transport_03_F";
+			case "O_Heli_Light_02_unarmed_F";
+			case "O_Heli_Light_02_dynamicLoadout_F";
+			case "O_Heli_Transport_04_F": {
+				_asset call BIS_fnc_WL2_sub_slingAddAction;
+			};
 
 			// Radars
 			case "B_Radar_System_01_F";

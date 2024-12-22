@@ -4,9 +4,12 @@ private _callerUID = getPlayerUID _caller;
 private _callerID = getPlayerID _caller;
 private _loadedItem = _asset getVariable ["WL2_loadedItem", objNull];
 private _loadedVehicles = getVehicleCargo _asset;
-private _hasLoadedItem = !isNull _loadedItem || count _loadedVehicles > 0;
+private _slingLoadedVehicle = getSlingLoad _asset;
+private _hasLoadedItem = !isNull _loadedItem || count _loadedVehicles > 0 || !isNull _slingLoadedVehicle;
 
-private _nearLoadableEntities = (_asset nearEntities 30) select {isNull attachedTo _x};
+private _nearLoadableEntities = (_asset nearEntities 30) select {
+    (isNull attachedTo _x) && (count ropesAttachedTo _x == 0);
+};
 private _loadableHashmap = missionNamespace getVariable ["WL2_loadable", createHashMap];
 private _nearLoadable = _nearLoadableEntities select {
     private _ownerUID = _x getVariable ["BIS_WL_ownerUavAsset", "123"];

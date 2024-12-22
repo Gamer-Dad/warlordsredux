@@ -75,6 +75,7 @@ BIS_fnc_WL2_airburst = compileFinal preprocessFileLineNumbers "Functions\client\
 BIS_fnc_WL2_repackMagazines = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_repackMagazines.sqf";
 
 BIS_fnc_WL2_sub_arsenalSetup = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_arsenalSetup.sqf";
+BIS_fnc_WL2_sub_attachVehicle = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_attachVehicle.sqf";
 BIS_fnc_WL2_sub_dazzlerAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_dazzlerAction.sqf";
 BIS_fnc_WL2_sub_demolish = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_demolish.sqf";
 BIS_fnc_WL2_sub_deployableAddAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_deployableAddAction.sqf";
@@ -90,6 +91,7 @@ BIS_fnc_WL2_sub_purchaseMenuSetItemsList = compileFinal preprocessFileLineNumber
 BIS_fnc_WL2_sub_radarOperate = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_radarOperate.sqf";
 BIS_fnc_WL2_sub_rearmAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_rearmAction.sqf";
 BIS_fnc_WL2_sub_removeAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_removeAction.sqf";
+BIS_fnc_WL2_sub_slingAddAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_slingAddAction.sqf";
 BIS_fnc_WL2_sub_vehicleLockAction = compileFinal preprocessFileLineNumbers "Functions\subroutines\fn_WL2_sub_vehicleLockAction.sqf";
 
 MRTM_fnc_settingsinit = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_settingsinit.sqf";
