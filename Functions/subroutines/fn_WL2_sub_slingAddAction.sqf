@@ -33,21 +33,10 @@ private _slingActionId = _asset addAction [
                 playSoundUI ["a3\sounds_f\air\sfx\sl_4hooksunlock.wss"];
 
                 // Ensure mass change occurs after ropes are created
-                [_asset, _assetToLoad] spawn {
-                    params ["_asset", "_assetToLoad"];
-                    sleep 5;
-                    _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
-                    _assetToLoad setMass (getMass _asset / 10);
-                };
+                _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
+                [_assetToLoad, getMass _asset / 10] remoteExec ["setMass", _assetToLoad];
             };
         } else {
-            private _assetLoadLocation = getPosASL _assetLoadedItem;
-            private _isPosInWater = surfaceIsWater [_assetLoadLocation # 0, _assetLoadLocation # 1];
-            if (_isPosInWater) exitWith {
-                systemChat "Deploying in water is not allowed!";
-                playSound "AddItemFailed";
-            };
-
             [_asset, _assetLoadedItem, false] call BIS_fnc_WL2_sub_attachVehicle;
             playSoundUI ["a3\sounds_f\air\sfx\sl_4hookslock.wss"];
         };

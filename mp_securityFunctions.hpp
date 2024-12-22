@@ -181,5 +181,9 @@ class CfgRemoteExec {
 		class setVelocityModelSpace {
 			allowedTargets = 2;
 		};
+
+		class setMass {
+			allowedTargets = 0;
+		};
 	};
 };

@@ -51,20 +51,4 @@ if (_isAttaching) then {
     _asset setVariable ["WL2_children", _assetChildren, [2, clientOwner]];
 
     _childAsset setVariable ["WL2_wasDeployed", true, true];
-
-    [_childAsset] spawn {
-        params ["_childAsset"];
-        private _location = getPosASL _childAsset;
-        private _height = _location # 2;
-        private _fallTime = 15 + sqrt (_height / 5);
-
-        sleep _fallTime;
-
-        _location = getPosASL _childAsset;
-        private _isPosInWater = surfaceIsWater [_location # 0, _location # 1];
-        if (_isPosInWater) exitWith {
-            systemChat "Asset deployed into water has been destroyed!";
-            _childAsset setDamage 1;
-        };
-    };
 };

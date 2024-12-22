@@ -12,7 +12,14 @@ private _isConnectable = player isUAVConnectable [_uav, true];
 private _isLockedFromSquad = _uav getVariable ["BIS_WL_lockedFromSquad", false];
 
 private _isTransporting = _uav getVariable ["WL2_transporting", false];
-private _disableConnection = ((!_isInMySquad || _isLockedFromSquad) && _ownerUnit != player) || _isTransporting;
+
+private _uavLocation = getPosASL _uav;
+private _isPosInWater = surfaceIsWater [_uavLocation # 0, _uavLocation # 1];
+if (_isPosInWater) then {
+    _uav setDamage 1;
+    deleteVehicle _uav;
+};
+private _disableConnection = ((!_isInMySquad || _isLockedFromSquad) && _ownerUnit != player) || _isTransporting || _isPosInWater;
 
 if (_disableConnection) then {
     _uav setVariable ["WL_canConnectUav", false];
