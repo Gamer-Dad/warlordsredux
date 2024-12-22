@@ -13,11 +13,8 @@ if (_isAttaching) then {
 
     _asset setVariable ["WL2_loadedItem", _childAsset];
     _childAsset setVariable ["WL2_autonomousBeforeLoad", isAutonomous _childAsset];
-    _childAsset setVariable ["WL2_massBeforeLoad", getMass _childAsset];
     _childAsset setVariable ["WL2_transporting", true, true];
     [_childAsset] remoteExec ["BIS_fnc_WL2_uavConnectRefresh", 0];
-
-    _childAsset setMass (getMass _asset / 10);
 
     private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
     {

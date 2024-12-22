@@ -30,6 +30,9 @@ private _slingActionId = _asset addAction [
                 private _slingRope3 = ropeCreate [_asset, "slingload0", _assetToLoad, [_offset, -_offset, 0], 15];
                 private _slingRope4 = ropeCreate [_asset, "slingload0", _assetToLoad, [-_offset, _offset, 0], 15];
 
+                _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
+                _assetToLoad setMass (getMass _asset / 10);
+
                 playSoundUI ["a3\sounds_f\air\sfx\sl_4hooksunlock.wss"];
             };
         } else {
