@@ -30,10 +30,15 @@ private _slingActionId = _asset addAction [
                 private _slingRope3 = ropeCreate [_asset, "slingload0", _assetToLoad, [_offset, -_offset, 0], 15];
                 private _slingRope4 = ropeCreate [_asset, "slingload0", _assetToLoad, [-_offset, _offset, 0], 15];
 
-                _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
-                _assetToLoad setMass (getMass _asset / 10);
-
                 playSoundUI ["a3\sounds_f\air\sfx\sl_4hooksunlock.wss"];
+
+                // Ensure mass change occurs after ropes are created
+                [_asset, _assetToLoad] spawn {
+                    params ["_asset", "_assetToLoad"];
+                    sleep 5;
+                    _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
+                    _assetToLoad setMass (getMass _asset / 10);
+                };
             };
         } else {
             private _assetLoadLocation = getPosASL _assetLoadedItem;
