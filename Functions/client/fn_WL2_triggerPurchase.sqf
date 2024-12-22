@@ -80,14 +80,7 @@ switch (_className) do {
                 {
                     sleep 0.2;
                     private _asset = _x;
-
-                    if (unitIsUAV _asset) then {
-                        _asset call BIS_fnc_WL2_deleteAssetFromMap;
-                    } else {
-                        if ((crew _asset) findIf {alive _x} == -1) then {
-                            _asset call BIS_fnc_WL2_deleteAssetFromMap;
-                        };
-                    }
+                    _asset call BIS_fnc_WL2_deleteAssetFromMap;
                 } forEach _allAssets;
             };
         };

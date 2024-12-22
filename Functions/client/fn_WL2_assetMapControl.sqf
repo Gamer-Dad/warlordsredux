@@ -83,20 +83,7 @@ addMissionEventHandler ["Map", {
 			if (_alt && _shift) then {
 				if !(isNull _asset) then {
 					_vehicles = (missionNamespace getVariable [format ["BIS_WL_ownedVehicles_%1", getPlayerUID player], []]);
-					if ((_asset in _vehicles) && count crew _asset > 0) then {
-						if (unitIsUAV _asset) then {
-							_asset spawn BIS_fnc_WL2_deleteAssetFromMap;
-						} else {
-							if ((crew _asset) findIf {alive _x} != -1) then {
-								playSound "AddItemFailed";
-								[toUpper localize "STR_A3_WL_popup_asset_not_empty"] spawn BIS_fnc_WL2_smoothText;
-							} else {
-								_asset spawn BIS_fnc_WL2_deleteAssetFromMap;
-							};
-						};
-					} else {
-						_asset spawn BIS_fnc_WL2_deleteAssetFromMap;
-					};
+					_asset spawn BIS_fnc_WL2_deleteAssetFromMap;
 				};
 			};
 		}];
