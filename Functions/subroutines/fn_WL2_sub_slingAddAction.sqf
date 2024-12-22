@@ -34,7 +34,7 @@ private _slingActionId = _asset addAction [
 
                 // Ensure mass change occurs after ropes are created
                 _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
-                [_assetToLoad, getMass _asset / 10] remoteExec ["setMass", _assetToLoad];
+                [_assetToLoad, getMass _asset / 3] remoteExec ["setMass", _assetToLoad];
             };
         } else {
             [_asset, _assetLoadedItem, false] call BIS_fnc_WL2_sub_attachVehicle;
@@ -73,12 +73,18 @@ private _slingActionId = _asset addAction [
             {
                 moveOut _x;
             } forEach (crew _assetLoadedItem);
+        } else {
+            {
+                if (ropeUnwound _x) then {
+                    ropeDestroy _x;
+                };
+            } forEach (ropes _asset);
         };
 
-        private _actionIcon = if (isNull (_asset getVariable ["WL2_loadedItem", objNull])) then {
-            '\A3\ui_f\data\map\markers\handdrawn\start_CA.paa'
-        } else {
+        private _actionIcon = if (_hasLoad) then {
             '\A3\ui_f\data\map\markers\handdrawn\end_CA.paa'
+        } else {
+            '\A3\ui_f\data\map\markers\handdrawn\start_CA.paa'
         };
 
         _asset setUserActionText [_slingActionId, _actionText, format ["<img size='3' image='%1'/>", _actionIcon]];

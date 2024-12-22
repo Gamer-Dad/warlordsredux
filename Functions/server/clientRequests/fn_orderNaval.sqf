@@ -10,6 +10,8 @@ private _defaultMags = magazinesAllTurrets _asset;
 _asset setVariable ["BIS_WL_defaultMagazines", _defaultMags, true];
 _asset setVariable ["WLM_savedDefaultMags", _defaultMags, true];
 
+_asset lock false;
+
 _owner = owner _sender;
 _asset setVariable ["BIS_WL_ownerAsset", (getPlayerUID _sender), [2, _owner]];
 [_asset] call BIS_fnc_WL2_lastHitHandler;

@@ -96,10 +96,10 @@ private _deployActionId = _asset addAction [
             } forEach (crew _assetLoadedItem);
         };
 
-        private _actionIcon = if (isNull (_asset getVariable ["WL2_loadedItem", objNull])) then {
-            '\A3\ui_f\data\map\markers\handdrawn\start_CA.paa'
-        } else {
+        private _actionIcon = if (_hasLoad) then {
             '\A3\ui_f\data\map\markers\handdrawn\end_CA.paa'
+        } else {
+            '\A3\ui_f\data\map\markers\handdrawn\start_CA.paa'
         };
 
         _asset setUserActionText [_deployActionId, _actionText, format ["<img size='3' image='%1'/>", _actionIcon]];

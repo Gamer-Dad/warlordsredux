@@ -14,7 +14,7 @@ private _isLockedFromSquad = _uav getVariable ["BIS_WL_lockedFromSquad", false];
 private _isTransporting = _uav getVariable ["WL2_transporting", false];
 
 private _uavLocation = getPosASL _uav;
-private _isPosInWater = surfaceIsWater [_uavLocation # 0, _uavLocation # 1];
+private _isPosInWater = surfaceIsWater [_uavLocation # 0, _uavLocation # 1] && _uavLocation # 2 < 3;
 if (_isPosInWater) then {
     _uav setDamage 1;
     deleteVehicle _uav;
