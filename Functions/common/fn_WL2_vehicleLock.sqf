@@ -1,26 +1,46 @@
-params ["_asset", ["_toggle", true], ["_forceLock", false]];
+params ["_asset", "_lockActionId"];
 
-private _locking = false;
-if (_toggle) then {
-    if (unitIsUAV _asset) then {
-        private _wasLockedBefore = _asset getVariable ["BIS_WL_lockedFromSquad", false];
-        _locking = !_wasLockedBefore;
-        _asset setVariable ["BIS_WL_lockedFromSquad", _locking, true];
-    } else {
-        _locking = (locked _asset) != 2;
-        _asset lock _locking;
+private _isUAV = unitIsUAV _asset;
+private _accessControl = _asset getVariable ["WL2_accessControl", 0];
+
+private _color = switch (_accessControl) do {
+    case 0;
+    case 1: {
+        "#4bff58";
     };
-} else {
-    _locking = _forceLock;
-    if (unitIsUAV _asset) then {
-        _asset setVariable ["BIS_WL_lockedFromSquad", _forceLock, true];
-    } else {
-        _asset lock _forceLock;
+    case 2;
+    case 3: {
+        "#00ffff";
+    };
+    case 4;
+    case 5: {
+        "#ff4b4b";
     };
 };
 
-if (_locking) then {
-    playSound3D ["a3\sounds_f\vehicles\air\noises\sl_1hooklock.wss", _asset, false, getPosASL _asset, 1, 1, 0, 0];
-} else {
-    playSound3D ["a3\sounds_f\vehicles\air\noises\sl_1hookunlock.wss", _asset, false, getPosASL _asset, 1, 1, 0, 0];
+private _lockLabel = switch (_accessControl) do {
+    case 0: {
+        "Access: All";
+    };
+    case 1: {
+        "Access: All (Passenger Only)";
+    };
+    case 2: {
+        "Access: Squad";
+    };
+    case 3: {
+        "Access: Squad (Passenger Only)";
+    };
+    case 4: {
+        "Access: Personal";
+    };
+    case 5: {
+        "Access: Locked";
+    };
 };
+
+private _lockIcon = "a3\modules_f\data\iconunlock_ca.paa";
+
+_asset setUserActionText [_lockActionId, format ["<t color = '%1'>%2</t>", _color, _lockLabel], format ["<img size='2' image='%1'/>", _lockIcon]];
+
+_asset call BIS_fnc_WL2_uavConnectRefresh;

@@ -17,4 +17,8 @@ waitUntil {
     local _assetToLoad || !alive _assetToLoad || !alive _asset;
 };
 
-[_assetToLoad, getMass _asset / 3] remoteExec ["setMass", 0];
+private _maxCargoMass = getNumber (configFile >> "CfgVehicles" >> typeOf _asset >> "slingLoadMaxCargoMass");
+
+private _newMass = (_maxCargoMass * 0.7) min (getMass _assetToLoad);
+
+[_assetToLoad, _newMass] remoteExec ["setMass", 0];

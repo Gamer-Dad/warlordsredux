@@ -12,6 +12,7 @@ if !(isDedicated) then {
 };
 /*******************************END OF SCRIPTS****************************/
 
+BIS_fnc_WL2_accessControl = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_accessControl.sqf";
 BIS_fnc_WL2_findSpawnPositions = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_findSpawnPositions.sqf";
 BIS_fnc_WL2_getSideBase = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_getSideBase.sqf";
 BIS_fnc_WL2_getAssetSide = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_getAssetSide.sqf";

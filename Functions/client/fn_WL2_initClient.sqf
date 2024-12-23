@@ -530,3 +530,68 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 	sleep 5;
 	[] call MRTM_fnc_updateViewDistance;
 };
+
+0 spawn {
+	inGameUISetEventHandler ["Action", '
+		params ["_target", "_caller", "_index", "_name", "_text", "_priority", "_showWindow", "_hideOnUse", "_shortcut", "_visibility", "_eventName"];
+		switch (_name) do {
+			case "MoveToDriver": {
+				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to move to the driver seat.";
+					true;
+				} else {
+					false;
+				};
+			};
+			case "MoveToTurret": {
+				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to move to the gunner seat.";
+					true;
+				} else {
+					false;
+				};
+			};
+			case "MoveToCargo": {
+				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to enter the vehicle.";
+					true;
+				} else {
+					false;
+				};
+			};
+			case "GetInDriver": {
+				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to get in the driver seat.";
+					true;
+				} else {
+					false;
+				};
+			};
+			case "GetInTurret": {
+				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to get in the gunner seat.";
+					true;
+				} else {
+					false;
+				};
+			};
+			case "GetInCargo": {
+				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
+				if (!_access) then {
+					systemChat "You are not allowed to enter the vehicle.";
+					true;
+				} else {
+					false;
+				};
+			};
+			default {
+				false;
+			};
+		};
+	'];
+};

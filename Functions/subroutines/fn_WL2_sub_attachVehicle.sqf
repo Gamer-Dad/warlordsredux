@@ -16,6 +16,8 @@ if (_isAttaching) then {
     _childAsset setVariable ["WL2_transporting", true, true];
     [_childAsset] remoteExec ["BIS_fnc_WL2_uavConnectRefresh", 0];
 
+    [_childAsset, false] remoteExec ["setAutonomous", _childAsset];
+
     private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
     {
         _x forgetTarget _childAsset;
@@ -37,7 +39,8 @@ if (_isAttaching) then {
     _childAsset setVehicleLock "UNLOCKED";
 
     private _wasAutonomous = _childAsset getVariable ["WL2_autonomousBeforeLoad", false];
-    _childAsset setAutonomous _wasAutonomous;
+    [_childAsset, _wasAutonomous] remoteExec ["setAutonomous", _childAsset];
+
     _childAsset setVariable ["WL2_transporting", false, true];
     [_childAsset] call BIS_fnc_WL2_uavConnectRefresh;
 
@@ -46,8 +49,6 @@ if (_isAttaching) then {
     private _assetChildren = _asset getVariable ["WL2_children", []];
     _assetChildren = _assetChildren - [_childAsset];
     _asset setVariable ["WL2_children", _assetChildren, [2, clientOwner]];
-
-    _childAsset setVariable ["WL2_wasDeployed", true, true];
 
     private _massBeforeLoad = _childAsset getVariable ["WL2_massDefault", 1000];
     [_childAsset, _massBeforeLoad] remoteExec ["setMass", 0];

@@ -12,18 +12,9 @@ private _nearLoadableEntities = (_asset nearEntities 30) select {
 };
 private _loadableHashmap = missionNamespace getVariable ["WL2_loadable", createHashMap];
 private _nearLoadable = _nearLoadableEntities select {
-    private _ownerUID = _x getVariable ["BIS_WL_ownerUavAsset", "123"];
-    if (_ownerUID == "123") then {
-        _ownerUID = _x getVariable ["BIS_WL_ownerAsset", "123"];
-    };
-    private _owner = _ownerUID call BIS_fnc_getUnitByUid;
-    private _ownerID = getPlayerID _owner;
-
-    private _areInSquad = ["areInSquad", [_callerID, _ownerID]] call SQD_fnc_client;
-    private _isLockedFromSquad = _x getVariable ["BIS_WL_lockedFromSquad", false];
     private _assetActualType = _x getVariable ["WL2_orderedClass", typeOf _x];
-
-    _assetActualType in _loadableHashmap && (_ownerID == _callerID || (_areInSquad && !_isLockedFromSquad));
+    private _access = [_asset, _caller, "tow"] call BIS_fnc_WL2_accessControl;
+    _assetActualType in _loadableHashmap && _access;
 };
 private _hasNearLoadable = count _nearLoadable > 0;
 

@@ -35,13 +35,13 @@ switch (_className) do {
     case "forfeitVote": {0 spawn BIS_fnc_WL2_orderForfeit};
     case "LockVehicles": {
         {
-            [_x, false, true] remoteExec ["BIS_fnc_WL2_vehicleLock", _x];
+            _x setVariable ["WL2_accessControl", 5, true];
         } forEach ((missionNamespace getVariable [format ["BIS_WL_ownedVehicles_%1", getPlayerUID player], []]) select {alive _x && {(!(typeOf _x == "B_Truck_01_medical_F")) && {!(typeOf _x == "O_Truck_03_medical_F") && {!(typeOf _x == "B_Slingload_01_Medevac_F") && {!(typeOf _x == "Land_Pod_Heli_Transport_04_medevac_F")}}}}});
         [toUpper localize "STR_A3_WL_feature_lock_all_msg"] spawn BIS_fnc_WL2_smoothText;
     };
     case "UnlockVehicles": {
         {
-            [_x, false, false] remoteExec ["BIS_fnc_WL2_vehicleLock", _x];
+            _x setVariable ["WL2_accessControl", 0, true];
         } forEach ((missionNamespace getVariable [format ["BIS_WL_ownedVehicles_%1", getPlayerUID player], []]) select {alive _x});
         [toUpper localize "STR_A3_WL_feature_unlock_all_msg"] spawn BIS_fnc_WL2_smoothText;
     };

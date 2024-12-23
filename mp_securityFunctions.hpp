@@ -189,5 +189,9 @@ class CfgRemoteExec {
 		class setMass {
 			allowedTargets = 0;
 		};
+
+		class setAutonomous {
+			allowedTargets = 0;
+		};
 	};
 };
