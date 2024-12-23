@@ -32,6 +32,7 @@ if (isPlayer _owner) then {
 		_asset call APS_fnc_SetupProjectiles;
 		_asset setVariable ["BIS_WL_nextRepair", 0];
 		_asset setVariable ["BIS_WL_ownerAssetSide", _side, true];
+		_asset setVariable ["WL2_massDefault", getMass _asset];
 
 		_var = format ["BIS_WL_ownedVehicles_%1", getPlayerUID player];
 		_vehicles = missionNamespace getVariable [_var, []];

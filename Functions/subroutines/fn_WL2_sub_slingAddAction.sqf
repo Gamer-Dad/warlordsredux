@@ -21,20 +21,9 @@ private _slingActionId = _asset addAction [
 
                 [_asset, _assetToLoad, true] call BIS_fnc_WL2_sub_attachVehicle;
 
-                private _bounds = boundingBoxReal [_assetToLoad, "FireGeometry"];
-                private _sphere = _bounds # 2;
-
-                private _offset = (_sphere / 2) min 1;
-                private _slingRope1 = ropeCreate [_asset, "slingload0", _assetToLoad, [_offset, _offset, 0], 15];
-                private _slingRope2 = ropeCreate [_asset, "slingload0", _assetToLoad, [-_offset, -_offset, 0], 15];
-                private _slingRope3 = ropeCreate [_asset, "slingload0", _assetToLoad, [_offset, -_offset, 0], 15];
-                private _slingRope4 = ropeCreate [_asset, "slingload0", _assetToLoad, [-_offset, _offset, 0], 15];
-
                 playSoundUI ["a3\sounds_f\air\sfx\sl_4hooksunlock.wss"];
 
-                // Ensure mass change occurs after ropes are created
-                _assetToLoad setVariable ["WL2_massBeforeLoad", getMass _assetToLoad];
-                [_assetToLoad, getMass _asset / 3] remoteExec ["setMass", _assetToLoad];
+                [_asset, _assetToLoad] remoteExec ["BIS_fnc_WL2_slingloadInit", _asset];
             };
         } else {
             [_asset, _assetLoadedItem, false] call BIS_fnc_WL2_sub_attachVehicle;
@@ -58,9 +47,9 @@ private _slingActionId = _asset addAction [
         private _hasLoad = !isNull _assetLoadedItem || !isNull (getSlingLoad _asset);
 
         private _actionText = if (_hasLoad) then {
-            "Detach slingloadable";
+            "Detach deployable";
         } else {
-            "Attach slingloadable";
+            "Attach deployable";
         };
 
         if (_hasLoad) then {

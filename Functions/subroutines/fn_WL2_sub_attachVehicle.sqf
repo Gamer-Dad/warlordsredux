@@ -41,9 +41,6 @@ if (_isAttaching) then {
     _childAsset setVariable ["WL2_transporting", false, true];
     [_childAsset] call BIS_fnc_WL2_uavConnectRefresh;
 
-    private _massBeforeLoad = _childAsset getVariable ["WL2_massBeforeLoad", 1000];
-    _childAsset setMass _massBeforeLoad;
-
     _asset setVariable ["WL2_loadedItem", objNull];
 
     private _assetChildren = _asset getVariable ["WL2_children", []];
@@ -51,4 +48,7 @@ if (_isAttaching) then {
     _asset setVariable ["WL2_children", _assetChildren, [2, clientOwner]];
 
     _childAsset setVariable ["WL2_wasDeployed", true, true];
+
+    private _massBeforeLoad = _childAsset getVariable ["WL2_massDefault", 1000];
+    [_childAsset, _massBeforeLoad] remoteExec ["setMass", 0];
 };

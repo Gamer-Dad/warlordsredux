@@ -29,6 +29,7 @@ BIS_fnc_WL2_missionEndHandle = compileFinal preprocessFileLineNumbers "Functions
 BIS_fnc_WL2_newAssetHandle = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_newAssetHandle.sqf";
 BIS_fnc_WL2_parsePurchaseList = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_parsePurchaseList.sqf";
 BIS_fnc_WL2_reloadOverride = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_reloadOverride.sqf";
+BIS_fnc_WL2_slingloadInit = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_slingloadInit.sqf";
 BIS_fnc_WL2_sortSectorArrays = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_sortSectorArrays.sqf";
 BIS_fnc_WL2_tablesSetUp = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_tablesSetUp.sqf";
 BIS_fnc_WL2_uavConnectRefresh = compileFinal preprocessFileLineNumbers "Functions\common\fn_WL2_uavConnectRefresh.sqf";
