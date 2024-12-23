@@ -36,11 +36,12 @@ for "_i" from 0 to ((lbSize _purchase_items) - 1) do {
 	_details set [7, _category];
 	_availability = _details call BIS_fnc_WL2_sub_purchaseMenuAssetAvailability;
 
-	private _spawnClass = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_className, _className];
-	private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_spawnClass, "UNKNOWN"];
-	private _variant = _spawnClass != _className && _spawnClassTeam == (str BIS_WL_playerSide);
+	// private _spawnClass = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_className, _className];
+	// private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_spawnClass, "UNKNOWN"];
+	// private _variant = _spawnClass != _className && _spawnClassTeam == (str BIS_WL_playerSide);
+	private _variant = missionNamespace getVariable ["WL2_variant", createHashMap] getOrDefault [_className, 0];
 	if !(_availability # 0) then {
-		private _color = if (_variant) then {
+		private _color = if (_variant != 0) then {
 			[0.5, 0.42, 0.25, 1]
 		} else {
 			[0.5, 0.5, 0.5, 1]
@@ -49,7 +50,7 @@ for "_i" from 0 to ((lbSize _purchase_items) - 1) do {
 		_purchase_items lbSetColor [_i, _color];
 		_purchase_items lbSetTooltip [_i, _availability # 1];
 	} else {
-		private _color = if (_variant) then {
+		private _color = if (_variant != 0) then {
 			[1, 0.85, 0.5, 1]
 		} else {
 			[1, 1, 1, 1]

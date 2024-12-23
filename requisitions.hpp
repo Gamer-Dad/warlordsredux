@@ -7,6 +7,7 @@ class CfgVehicleClassName {
 
     cost = number;                   // Cost of the vehicle, not shown in buy menu if 0.
     spawn = text;                    // If the CfgVehicleClassName is a variant, this is the base class to spawn.
+    variant = number (0|1);          // If the vehicle is a variant, set this to 1.
     requirements[] = array;          // Requirements for deployment (A = Airport, H = Helipad, W = Harbor).
     offset[] = array;                // Offset for placing the vehicle after buying, only valid for some vehicle types.
     textures[] = array;                  // Skin textures for the vehicle.

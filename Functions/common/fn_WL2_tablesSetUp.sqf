@@ -7,7 +7,7 @@ private _costHashMap = createHashMap;
 private _rearmTimerHashMap = createHashMap;
 private _killRewardHashMap = createHashMap;
 private _texturesHashMap = createHashMap;
-private _teamHashMap = createHashMap;
+private _variantHashMap = createHashMap;
 
 private _structureHashMap = createHashMap;
 private _capValueHashMap = createHashMap;
@@ -40,6 +40,7 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 				private _requisitionNameOverride = getText (_x >> "name");
 				private _requisitionDescription = getText (_x >> "description");
 				private _requisitionSpawn = getText (_x >> "spawn");
+				private _requisitionVariant = getNumber (_x >> "variant");
 				private _requisitionCost = getNumber (_x >> "cost");
 				private _requisitionRearmTime = getNumber (_x >> "rearm");
 				private _requisitionKillReward = getNumber (_x >> "killReward");
@@ -74,6 +75,10 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 
 				if (_requisitionSpawn != "") then {
 					_spawnHashMap set [_requistitonName, _requisitionSpawn];
+				};
+
+				if (_requisitionVariant != 0) then {
+					_variantHashMap set [_requistitonName, _requisitionVariant];
 				};
 
 				if (_requisitionCost != 0) then {
@@ -151,8 +156,6 @@ private _requisitionPresets = BIS_WL_purchaseListTemplate;
 				if (count _requisitionTurretOverrides > 0) then {
 					_turretOverridesHashMap set [_requistitonName, _requisitionTurretOverrides];
 				};
-
-				_teamHashMap set [_requistitonName, configName _requisitionSide];
 			} forEach _requisitionClasses;
 		} forEach _requisitionCategories;
 	} forEach _requisitionSides;
@@ -190,11 +193,10 @@ if (isServer) then {
 	];
 };
 
-missionNamespace setVariable ["WL2_teams", _teamHashMap];
-
 missionNamespace setVariable ["WL2_nameOverrides", _nameHashMap];
 missionNamespace setVariable ["WL2_descriptions", _descriptionHashMap];
 missionNamespace setVariable ["WL2_spawnClass", _spawnHashMap];
+missionNamespace setVariable ["WL2_variant", _variantHashMap];
 missionNamespace setVariable ["WL2_aps", _apsHashMap];
 missionNamespace setVariable ["WL2_textures", _texturesHashMap];
 

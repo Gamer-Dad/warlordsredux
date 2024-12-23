@@ -1,8 +1,18 @@
 class FixedWing {
+    class O_Plane_Civil_01_F {
+        name = "Caesar BTT";
+        description = "Caesar BTT is a light unarmed aircraft.";
+        spawn = "C_Plane_Civil_01_F";
+        cost = 800;
+        requirements[] = {"A"};
+        killReward = 200;
+    };
+
     class O_Plane_Caesar_hmggmg_01_F {
         name = "Caesar BTT (HMG/GMG)";
         description = "Caesar BTT (HMG/GMG) is a variant of the Caesar BTT armed with a HMG and GMG.";
         spawn = "C_Plane_Civil_01_F";
+        variant = 1;
         cost = 1500;
         rearm = 300;
 
@@ -31,6 +41,7 @@ class FixedWing {
         name = "Caesar BTT (Rocket)";
         description = "Caesar BTT (Rocket) is a variant of the Caesar BTT armed with rockets.";
         spawn = "C_Plane_Civil_01_F";
+        variant = 1;
         cost = 1800;
         rearm = 400;
 
@@ -56,6 +67,7 @@ class FixedWing {
         name = "Caesar BTT (Bomb)";
         description = "Caesar BTT (Bomb) is a variant of the Caesar BTT armed with a pair of Mk82 bombs.";
         spawn = "C_Plane_Civil_01_F";
+        variant = 1;
         cost = 2000;
         rearm = 400;
 

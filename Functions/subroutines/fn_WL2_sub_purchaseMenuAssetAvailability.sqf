@@ -242,7 +242,7 @@ if (_ret) then {
 				_tooltip = localize "STR_A3_WL_fasttravel_restr3";
 			};
 
-			if (!("A" in _requirements) && _visitedSectorID == -1) exitWith {
+			if (!("A" in _requirements) && !("W" in _requirements) && _visitedSectorID == -1) exitWith {
 				_ret = false;
 				_tooltip = localize "STR_A3_WL_ftVehicle_restr1";
 			};

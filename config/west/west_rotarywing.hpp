@@ -25,6 +25,7 @@ class RotaryWing {
         name = "UH-80 Ghost Hawk UP";
         description = "UH-80 Ghost Hawk UP is a variant of the UH-80 Ghost Hawk armed with 20mm autocannons.";
         spawn = "B_Heli_Transport_01_F";
+        variant = 1;
         cost = 2000;
         requirements[] = {"H"};
         offset[] = {0, 11, 0};

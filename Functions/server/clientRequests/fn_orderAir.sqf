@@ -43,6 +43,17 @@ private _asset = if (_isUav) then {
 
 _asset setDir _dir;
 
+private _side = side group _sender;
+private _variant = missionNamespace getVariable ["WL2_variant", createHashMap] getOrDefault [_orderedClass, 0];
+if (_variant != 0) then {
+	private _sideFlag = if (_side == west) then {
+		"\A3\Ui_f\data\Map\Markers\Flags\nato_ca.paa"
+	} else {
+		"\A3\Ui_f\data\Map\Markers\Flags\CSAT_ca.paa"
+	};
+	_asset forceFlagTexture _sideFlag;
+};
+
 private _textureHashmap = missionNamespace getVariable ["WL2_textures", createHashMap];
 private _assetTextures = _textureHashmap getOrDefault [_orderedClass, []];
 {

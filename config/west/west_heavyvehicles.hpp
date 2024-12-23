@@ -57,6 +57,7 @@ class HeavyVehicles {
     //     name = "AFV-4 Gorgon UP";
     //     description = "AFV-4 Gorgon UP is a variant of the AFV-4 Gorgon armed with a Skyfire launcher.";
     //     spawn = "B_APC_Wheeled_03_cannon_F";
+    //     variant = 1;
     //     cost = 3000;
     //     requirements[] = {};
     //     textures[] = {
@@ -108,6 +109,7 @@ class HeavyVehicles {
         name = "AMV-7 Marshall UP";
         description = "AMV-7 Marshall UP is a variant of the AMV-7 Marshall armed with a larger magazine 40mm cannon.";
         spawn = "B_APC_Wheeled_01_cannon_F";
+        variant = 1;
         cost = 3200;
         requirements[] = {};
         rearm = 500;
@@ -140,6 +142,7 @@ class HeavyVehicles {
     //     cost = 3500;
     //     name = "Rhino MGS (Export)";
     //     spawn = "B_AFV_Wheeled_01_up_cannon_F";
+    //     variant = 1;
     //     requirements[] = {};
     //     rearm = 500;
     //     killReward = 400;
@@ -258,6 +261,7 @@ class HeavyVehicles {
         name = "IFV-6X Puma";
         description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.";
         spawn = "B_APC_Tracked_01_AA_F";
+        variant = 1;
         cost = 8000;
         requirements[] = {};
         rearm = 450;
@@ -308,6 +312,7 @@ class HeavyVehicles {
     //     name = "M2X Slammer (Railgun)";
     //     description = "M2X Slammer (Railgun) is a variant of the M2A1 Slammer armed with a railgun.";
     //     spawn = "B_MBT_01_TUSK_F";
+    //     variant = 1;
     //     cost = 13000;
     //     requirements[] = {};
     //     rearm = 600;

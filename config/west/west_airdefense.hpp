@@ -52,6 +52,7 @@ class AirDefense {
     //     name = "MIM-145 Defender (UP)";
     //     description = "Long range surface-to-air missile system, capable of engaging aircraft and helicopters, upgraded for more ammo. Effective range: >10km.";
     //     spawn = "B_SAM_System_03_F";
+    //     variant = 1;
 
     //     cost = 12000;
     //     requirements[] = {};
@@ -75,6 +76,7 @@ class AirDefense {
     //     name = "Mk21 Centurion (UP)";
     //     description = "Medium range surface-to-air missile system, capable of engaging aircraft and helicopters, upgraded for more ammo. Effective range: ~10km.";
     //     spawn = "B_SAM_System_02_F";
+    //     variant = 1;
 
     //     cost = 20000;
     //     requirements[] = {};

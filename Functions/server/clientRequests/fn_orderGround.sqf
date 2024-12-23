@@ -32,14 +32,13 @@ private _asset = if (_isUav) then {
 
 waitUntil {sleep 0.1; !(isNull _asset)};
 
-private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_class, "UNKNOWN"];
 private _side = side group _sender;
-private _variant = _class != _orderedClass && _spawnClassTeam == (str _side);
-if (_variant) then {
+private _variant = missionNamespace getVariable ["WL2_variant", createHashMap] getOrDefault [_orderedClass, 0];
+if (_variant != 0) then {
 	private _sideFlag = if (_side == west) then {
-		"\A3\Data_F_Exp\Flags\flag_CTRG_CO.paa"
+		"\A3\Ui_f\data\Map\Markers\Flags\nato_ca.paa"
 	} else {
-		"\A3\Data_F_Exp\Flags\flag_VIPER_CO.paa"
+		"\A3\Ui_f\data\Map\Markers\Flags\CSAT_ca.paa"
 	};
 
 	private _flagMap = missionNamespace getVariable ["WL2_flagOffsets", createHashMap];

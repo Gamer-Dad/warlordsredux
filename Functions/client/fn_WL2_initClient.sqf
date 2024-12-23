@@ -526,3 +526,7 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 	};
 };
 
+0 spawn {
+	sleep 5;
+	[] call MRTM_fnc_updateViewDistance;
+};

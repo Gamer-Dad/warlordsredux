@@ -12,6 +12,7 @@ class HeavyVehicles {
         name = "MSE-3M Marid Autocannon";
         description = "MSE-3M Marid is a variant of the MSE-3 Marid armed with a 30mm autocannon.";
         spawn = "O_APC_Wheeled_02_rcws_v2_F";
+        variant = 1;
         cost = 2600;
         requirements[] = {};
         rearm = 500;
@@ -99,6 +100,7 @@ class HeavyVehicles {
     //     name = "BMP-K Kamysh";
     //     spawn = "O_APC_Tracked_02_cannon_F";
     //     description = "BMP-K Kamysh is a variant of the BTR-K Kamysh armed with a 105mm cannon.";
+    //     variant = 1;
     //     cost = 5500;
     //     requirements[] = {};
     //     rearm = 500;
@@ -146,6 +148,7 @@ class HeavyVehicles {
         name = "ZSU-49 Euphrates";
         description = "ZSU-49 Euphrates is a variant of the ZSU-39 Tigris armed with Rhea missiles.";
         spawn = "O_APC_Tracked_02_AA_F";
+        variant = 1;
         cost = 8000;
         requirements[] = {};
         rearm = 450;
@@ -193,6 +196,7 @@ class HeavyVehicles {
         name = "T-140N Yukon";
         description = "T-140N Yukon is a variant of the T-140 Angara armed with a NATO 120mm cannon.";
         spawn = "O_MBT_04_command_F";
+        variant = 1;
         cost = 13500;
         requirements[] = {};
         flagOffset[] = {-0.69, -3.1, 1.8};

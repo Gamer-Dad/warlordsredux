@@ -117,6 +117,7 @@ class SectorDefense {
     //     name = "Mk30X Minigun (Raised)";
     //     cost = 250;
     //     spawn = "B_G_HMG_02_high_F";
+    //     variant = 1;
     //     requirements[] = {};
     //     rearm = 300;
     //     killReward = 100;
@@ -227,8 +228,9 @@ class SectorDefense {
 
     class B_static_AA_UP_F {
         name = "Static AA Launcher (UP)";
-        description = "Static AA Launcher (UP) is a variant of the Static AA Launcher armed with SAAMI missiles.";
+        description = "Static AA Launcher (UP) is an upgraded variant of the Static AA Launcher.";
         spawn = "B_static_AA_F";
+        variant = 1;
         cost = 600;
         requirements[] = {};
         offset[] = {0, 3, 0};

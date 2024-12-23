@@ -40,6 +40,7 @@ class RemoteControl {
         name = "AR-2 Darter UP";
         description = "AR-2 Darter UP is a variant of the AR-2 Darter armed with a 45ACP SMG.";
         spawn = "B_UAV_01_F";
+        variant = 1;
         cost = 1200;
         requirements[] = {};
         offset[] = {0, 3, 0};
@@ -82,6 +83,7 @@ class RemoteControl {
         name = "UGV Stomper UP";
         description = "UGV Stomper UP is a variant of the UGV Stomper armed with a 30mm autocannon.";
         spawn = "B_UGV_01_rcws_F";
+        variant = 1;
         cost = 1200;
         requirements[] = {};
         offset[] = {0, 5, 0};

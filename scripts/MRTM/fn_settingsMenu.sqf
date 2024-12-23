@@ -16,7 +16,7 @@ while { alive player } do {
         _previousVehicle = _currentVehicle;
         _previousDroneState = _uavControl # 1;
     };
-    
+
     private _isConnectable = _connectedUAV getVariable ["WL_canConnectUav", false];
     if (!_isConnectable) then {
         player connectTerminalToUAV objNull;
