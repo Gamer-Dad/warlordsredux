@@ -1,7 +1,7 @@
 params ["_asset", "_childAsset", "_isAttaching"];
 
 if (_isAttaching) then {
-    _childAsset setVehicleLock "UNLOCKED";
+    _childAsset setVehicleLock "LOCKED";
     {
         moveOut _x;
     } forEach (crew _childAsset);
