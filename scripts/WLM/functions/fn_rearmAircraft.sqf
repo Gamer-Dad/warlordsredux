@@ -15,6 +15,11 @@ if (_cooldown > 0 || _amount <= 0) exitWith {
     playSound "AddItemFailed";
 };
 
+if (player distance _asset > WL_MAINTENANCE_RADIUS) exitWith {
+    systemChat "You are too far away from the vehicle to rearm it.";
+    playSound "AddItemFailed";
+};
+
 private _pylonsInfo = getAllPylonsInfo _asset;
 
 private _display = findDisplay WLM_DISPLAY;
