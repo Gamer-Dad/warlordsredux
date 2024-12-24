@@ -13,7 +13,7 @@ private _assetLocation = if (count _assetSector > 0) then {
 _result = [format ["Are you sure you would like to delete: %1 @ %2", _displayName, _assetLocation], "Delete asset", true, true] call BIS_fnc_guiMessage;
 
 if (_result) then {
-	if (!unitIsUAV _target && (crew _target) findIf {alive _x} >= 0) exitWith {
+	if (!(unitIsUAV _target) && !(_target isKindOf "Man") && (crew _target) findIf {alive _x} >= 0) exitWith {
 		[toUpper localize "STR_A3_WL_popup_asset_not_empty"] spawn BIS_fnc_WL2_smoothText;
 		playSound "AddItemFailed";
 	};

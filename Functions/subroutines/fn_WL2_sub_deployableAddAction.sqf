@@ -86,7 +86,7 @@ private _deployActionId = _asset addAction [
 
         if (_hasLoad) then {
             if (isAutonomous _assetLoadedItem) then {
-                _assetLoadedItem setAutonomous false;
+				[_asset, false] remoteExec ["setAutonomous", 0];
             };
             if ((locked _assetLoadedItem) != 2) then {
                 _assetLoadedItem setVehicleLock "LOCKED";

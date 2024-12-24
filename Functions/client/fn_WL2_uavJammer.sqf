@@ -62,7 +62,9 @@ private _side = side _owner;
             if (getPosATL _asset # 2 > 1) then {
                 _asset setDamage (damage _asset + 0.1);
             } else {
-                _asset setAutonomous false;
+                if (isAutonomous _asset) then {
+                    [_asset, false] remoteExec ["setAutonomous", 0];
+                };
                 if (!isNull _controller) then {
                     _controller connectTerminalToUAV objNull;
                 };
@@ -100,7 +102,9 @@ private _side = side _owner;
                 _asset setDamage [(damage _asset + 0.1), true, _closestJammer];
             } else {
                 // all others, disable control
-                _asset setAutonomous false;
+                if (isAutonomous _asset) then {
+                    [_asset, false] remoteExec ["setAutonomous", 0];
+                };
                 if (!isNull _controller) then {
                     _controller connectTerminalToUAV objNull;
                 };
