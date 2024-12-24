@@ -595,3 +595,44 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 		};
 	'];
 };
+
+0 spawn {
+	while { !BIS_WL_missionEnd } do {
+		waitUntil {
+			sleep 1;
+			!isNull findDisplay 160
+		};
+
+		while { !isNull findDisplay 160 } do {
+			private _selectBox = findDisplay 160 displayCtrl 117;
+
+			private _size = lbSize _selectBox;
+
+			for "_i" from 1 to (_size - 1) do {
+				private _text = _selectBox lbText _i;
+				private _data = _text splitString "#";
+
+				if (count _data >= 2) then {
+					private _playerName = _data # 0;
+					private _assetType = _data # 1;
+
+					_selectBox lbSetText [_i, format ["[%1] %2", _playerName, _assetType]];
+
+					if (_playerName == name player) then {
+						_selectBox lbSetColor [_i, [0, 1, 0, 1]];
+					} else {
+						private _player = allPlayers select { name _x == _playerName } select 0;
+						private _isInMySquad = ["isInMySquad", [getPlayerID _player]] call SQD_fnc_client;
+
+						if (_isInMySquad) then {
+							_selectBox lbSetColor [_i, [0, 1, 1, 1]];
+						};
+					};
+				};
+			};
+			lbSort _selectBox;
+
+			sleep 0.1;
+		};
+	};
+};

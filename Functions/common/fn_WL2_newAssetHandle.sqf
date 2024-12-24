@@ -165,6 +165,12 @@ if (isPlayer _owner) then {
 			[_asset, _owner] spawn BIS_fnc_WL2_uavJammer;
 			_asset setVariable ["WL_canConnectUav", true];
 
+			private _assetGrp = group _asset;
+			private _assetTypeName = [_asset] call BIS_fnc_WL2_getAssetTypeName;
+			_assetGrp setGroupIdGlobal [format ["%1#%2#%3", name _owner, _assetTypeName, groupId _assetGrp]];
+
+			_asset setVariable ["WL2_accessControl", 2, true];
+
 			[_asset] call BIS_fnc_WL2_uavConnectRefresh;
 		};
 

@@ -18,7 +18,12 @@
 				private _variableName = format ["BIS_WL_targetVote_%1", getPlayerID _player];
 				private _vote = missionNamespace getVariable [_variableName, objNull];
 				private _voteName = format ["%1", _vote];
-				if !(isNull _vote) then {
+				private _availableSectors = if (isNil "BIS_WL_sectorsArrays") then {
+					[];
+				} else {
+					(BIS_WL_sectorsArrays # _sideIndex) # 1;
+				};
+				if (!(isNull _vote) && (_vote in _availableSectors)) then {
 					private _squadVotingPower = ["getSquadVotingPower", [getPlayerUID _x]] call SQD_fnc_server;
 					private _voteCount = _squadVotingPower + (_votesByPlayers getOrDefault [_voteName, [objNull, 0]] select 1);
 					_votesByPlayers set [_voteName, [_vote, _voteCount]];
