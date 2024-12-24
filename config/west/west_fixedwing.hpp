@@ -136,7 +136,7 @@ class FixedWing {
         killReward = 1000;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_HARM_x1"
+            "PylonRack_Missile_HARM_x1"
         };
     }; // "F/A-181 Black Wasp II"
 
@@ -147,7 +147,7 @@ class FixedWing {
         killReward = 1000;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_HARM_x1"
+            "PylonRack_Missile_HARM_x1"
         };
     }; // "F/A-181 Black Wasp II (Stealth)"
 };

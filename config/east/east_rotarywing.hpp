@@ -44,7 +44,7 @@ class RotaryWing {
 
         allowPylonMagazines[] = {
             "PylonRack_12Rnd_PG_missiles",
-            "PylonMissile_Missile_KH58_x1"
+            "PylonMissile_Missile_KH58_INT_x1"
         };
     }; // "Mi-48 Kajman"
 };

@@ -120,6 +120,10 @@ class FixedWing {
         killReward = 1100;
 
         allowPylonMagazines[] = {
+            "PylonMissile_Missile_KH58_INT_x1"
+        };
+
+        disallowMagazines[] = {
             "PylonMissile_Missile_KH58_x1"
         };
     }; // "To-201 Shikra (Stealth)"
@@ -131,6 +135,10 @@ class FixedWing {
         killReward = 1100;
 
         allowPylonMagazines[] = {
+            "PylonMissile_Missile_KH58_INT_x1"
+        };
+
+        disallowMagazines[] = {
             "PylonMissile_Missile_KH58_x1"
         };
     }; // "To-201 Shikra"

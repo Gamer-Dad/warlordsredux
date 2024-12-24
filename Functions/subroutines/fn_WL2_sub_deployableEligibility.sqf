@@ -14,7 +14,7 @@ private _loadableHashmap = missionNamespace getVariable ["WL2_loadable", createH
 private _nearLoadable = _nearLoadableEntities select {
     private _assetActualType = _x getVariable ["WL2_orderedClass", typeOf _x];
     private _access = [_x, _caller, "tow"] call BIS_fnc_WL2_accessControl;
-    _assetActualType in _loadableHashmap && _access;
+    (_assetActualType in _loadableHashmap) && (_access # 0);
 };
 private _hasNearLoadable = count _nearLoadable > 0;
 

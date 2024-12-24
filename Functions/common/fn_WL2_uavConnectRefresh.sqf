@@ -14,7 +14,7 @@ if (_isPosInWater) then {
 };
 
 private _access = [_uav, player, "drone"] call BIS_fnc_WL2_accessControl;
-private _disableConnection = (!_access) || _isTransporting || _isPosInWater;
+private _disableConnection = !(_access # 0) || _isTransporting || _isPosInWater;
 private _isConnectable = player isUAVConnectable [_uav, true];
 
 if (_disableConnection) then {

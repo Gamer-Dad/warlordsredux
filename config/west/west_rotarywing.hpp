@@ -101,7 +101,7 @@ class RotaryWing {
         killReward = 550;
 
         allowPylonMagazines[] = {
-            "PylonMissile_Missile_HARM_x1"
+            "PylonRack_Missile_HARM_x1"
         };
     }; // "AH-99 Blackfoot"
 };

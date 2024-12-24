@@ -535,10 +535,21 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 	inGameUISetEventHandler ["Action", '
 		params ["_target", "_caller", "_index", "_name", "_text", "_priority", "_showWindow", "_hideOnUse", "_shortcut", "_visibility", "_eventName"];
 		switch (_name) do {
+			case "MoveToPilot": {
+				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
+				if !(_access # 0) then {
+					systemChat format ["Pilot seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
+					true;
+				} else {
+					false;
+				};
+			};
 			case "MoveToDriver": {
 				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to move to the driver seat.";
+				if !(_access # 0) then {
+					systemChat format ["Driver seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -546,8 +557,9 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			case "MoveToTurret": {
 				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to move to the gunner seat.";
+				if !(_access # 0) then {
+					systemChat format ["Turret seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -555,8 +567,19 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			case "MoveToCargo": {
 				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to enter the vehicle.";
+				if !(_access # 0) then {
+					systemChat format ["Passenger seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
+					true;
+				} else {
+					false;
+				};
+			};
+			case "GetInPilot": {
+				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
+				if !(_access # 0) then {
+					systemChat format ["Pilot seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -564,8 +587,9 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			case "GetInDriver": {
 				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to get in the driver seat.";
+				if !(_access # 0) then {
+					systemChat format ["Driver seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -573,8 +597,9 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			case "GetInTurret": {
 				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to get in the gunner seat.";
+				if !(_access # 0) then {
+					systemChat format ["Turret seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -582,8 +607,9 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			case "GetInCargo": {
 				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
-				if (!_access) then {
-					systemChat "You are not allowed to enter the vehicle.";
+				if !(_access # 0) then {
+					systemChat format ["Passenger seat locked. (%1)", _access # 1];
+					playSoundUI ["AddItemFailed"];
 					true;
 				} else {
 					false;
@@ -632,7 +658,7 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 			};
 			lbSort _selectBox;
 
-			sleep 0.1;
+			sleep 0.2;
 		};
 	};
 };
