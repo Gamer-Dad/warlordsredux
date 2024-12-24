@@ -13,7 +13,7 @@ private _nearLoadableEntities = (_asset nearEntities 30) select {
 private _loadableHashmap = missionNamespace getVariable ["WL2_loadable", createHashMap];
 private _nearLoadable = _nearLoadableEntities select {
     private _assetActualType = _x getVariable ["WL2_orderedClass", typeOf _x];
-    private _access = [_asset, _caller, "tow"] call BIS_fnc_WL2_accessControl;
+    private _access = [_x, _caller, "tow"] call BIS_fnc_WL2_accessControl;
     _assetActualType in _loadableHashmap && _access;
 };
 private _hasNearLoadable = count _nearLoadable > 0;
