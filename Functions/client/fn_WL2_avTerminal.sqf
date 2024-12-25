@@ -10,12 +10,15 @@ while { !BIS_WL_missionEnd } do {
         waitUntil { lbSize _selectBox != 0 || isNull findDisplay 160 };
 
         private _size = lbSize _selectBox;
+        private _changes = false;
 
         for "_i" from 1 to (_size - 1) do {
             private _text = _selectBox lbText _i;
             private _data = _text splitString "#";
 
             if (count _data >= 2) then {
+                _changes = true;
+
                 private _playerName = _data # 0;
                 private _assetType = _data # 1;
 
@@ -33,7 +36,10 @@ while { !BIS_WL_missionEnd } do {
                 };
             };
         };
-        lbSort _selectBox;
+
+        if (_changes) then {
+            lbSort _selectBox;
+        };
 
         sleep 0.001;
     };
