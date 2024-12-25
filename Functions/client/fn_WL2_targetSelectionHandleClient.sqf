@@ -70,22 +70,20 @@ while {!BIS_WL_missionEnd} do {
 
 			while { isNull WL_TARGET_FRIENDLY && !BIS_WL_missionEnd && !BIS_WL_resetTargetSelection_client } do {
 				_voteLocked = missionNamespace getVariable ["voteLocked", true];
-				if (_voteLocked) then {break};
+				if (_voteLocked) then {
+					break;
+				};
 
 				private _sortedVoteList = missionNamespace getVariable [_voteTallyDisplayVar, []];
 				private _mostVoted = missionNamespace getVariable [_mostVotedVar, []];
 				private _eta = if (count _mostVoted > 0) then {
 					round (_mostVoted # 1 - serverTime);
 				} else {
-					0;
+					-1;
 				};
-				private _etaDisplay = if (_eta > 0) then {
-					format ["[%1s]", _eta];
-				} else {
-					"";
-				};
+				private _etaDisplay = format ["<t size='1.2' align='center'>%1 s</t><br/>", _eta max 0];
 
-				private _displayText = format ["<t size='1.8' align='center'>%1 %2</t><br/>", localize "STR_WL2_VOTE_IN_PROGRESS", _etaDisplay];
+				private _displayText = format ["<t size='1.8' align='center'>%1</t><br/>%2", localize "STR_WL2_VOTE_IN_PROGRESS", _etaDisplay];
 				{
 					private _vote = _x # 0;
 					private _voteCount = _x # 1;
@@ -103,8 +101,15 @@ while {!BIS_WL_missionEnd} do {
 				} forEach _sortedVoteList;
 
 				_indicator ctrlSetStructuredText (parseText _displayText);
-				_indicatorBackground ctrlSetPositionH (0.09 + (count _sortedVoteList) * 0.04);
+				_indicatorBackground ctrlSetPositionH (0.13 + (count _sortedVoteList) * 0.04);
+				_indicatorBackground ctrlSetBackgroundColor [0, 0, 0, 0.7];
 				_indicatorBackground ctrlCommit 0;
+
+				if !(profileNamespace getVariable ["MRTM_muteVoiceInformer", false]) then {
+					if (_eta <= 10 && _eta >= 0) then {
+						playSoundUI ["a3\ui_f\data\sound\readout\readouthideclick1.wss", 6 - (_eta / 2)];
+					};
+				};
 
 				sleep WL_TIMEOUT_STANDARD;
 			};
