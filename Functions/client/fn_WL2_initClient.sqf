@@ -5,6 +5,7 @@
 BIS_fnc_WL2_announcer = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_announcer.sqf";
 BIS_fnc_WL2_askForgiveness = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_askForgiveness.sqf";
 BIS_fnc_WL2_assetMapControl = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_assetMapControl.sqf";
+BIS_fnc_WL2_avTerminal = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_avTerminal.sqf";
 BIS_fnc_WL2_betty = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_betty.sqf";
 BIS_fnc_WL2_cancelVehicleOrder = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_cancelVehicleOrder.sqf";
 BIS_fnc_WL2_clientEH = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_clientEH.sqf";
@@ -20,7 +21,10 @@ BIS_fnc_WL2_groupIconLeaveHandle = compileFinal preprocessFileLineNumbers "Funct
 BIS_fnc_WL2_handleEnemyCapture = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_handleEnemyCapture.sqf";
 BIS_fnc_WL2_handleBuyMenuKeypress = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_handleBuyMenuKeypress.sqf";
 BIS_fnc_WL2_handleKeypress = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_handleKeypress.sqf";
+BIS_fnc_WL2_handleKillFeedUpdate = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_handleKillFeedUpdate.sqf";
+BIS_fnc_WL2_handleSelectionState = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_handleSelectionState.sqf";
 BIS_fnc_WL2_hintHandle = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_hintHandle.sqf";
+BIS_fnc_WL2_interceptAction = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_interceptAction.sqf";
 BIS_fnc_WL2_killRewardClient = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_killRewardClient.sqf";
 BIS_fnc_WL2_mapControlHandle = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_mapControlHandle.sqf";
 BIS_fnc_WL2_mapIcons = compileFinal preprocessFileLineNumbers "Functions\client\map\fn_WL2_mapIcons.sqf";
@@ -409,256 +413,15 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 	};
 };
 
-0 spawn {
-	private _previousState = BIS_WL_currentSelection;
-	private _lastFullUpdate = -1;
-	while { !BIS_WL_missionEnd } do {
-		sleep 0.1;
-		if (_previousState == BIS_WL_currentSelection && _lastFullUpdate + 2 > serverTime) then {
-			continue;
-		};
+0 spawn BIS_fnc_WL2_handleSelectionState;
 
-		// state changed or full update every 2s
-		_previousState = BIS_WL_currentSelection;
-		_lastFullUpdate = serverTime;
-		switch (BIS_WL_currentSelection) do {
-			case WL_ID_SELECTION_NONE;
-			case WL_ID_SELECTION_ORDERING_NAVAL: {
-				BIS_WL_selection_availableSectors = [];
-				BIS_WL_selection_showLinks = false;
-				BIS_WL_selection_dimSectors = false;
-			};
-			case WL_ID_SELECTION_VOTING;
-			case WL_ID_SELECTION_VOTED: {
-				BIS_WL_selection_availableSectors = BIS_WL_sectorsArray # 1;
-				BIS_WL_selection_showLinks = true;
-				BIS_WL_selection_dimSectors = true;
-			};
-			case WL_ID_SELECTION_FAST_TRAVEL: {
-				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 2) select {
-					(_x getVariable ["BIS_WL_owner", independent]) == (side (group player))
-				};
-				BIS_WL_selection_showLinks = false;
-				BIS_WL_selection_dimSectors = true;
-			};
-			case WL_ID_SELECTION_FAST_TRAVEL_CONTESTED: {
-				BIS_WL_selection_availableSectors = [WL_TARGET_FRIENDLY];
-				BIS_WL_selection_showLinks = false;
-				BIS_WL_selection_dimSectors = true;
-			};
-			case WL_ID_SELECTION_ORDERING_AIRCRAFT: {
-				BIS_WL_selection_availableSectors = (BIS_WL_sectorsArray # 0) select {
-					BIS_WL_orderedAssetRequirements isEqualTo (BIS_WL_orderedAssetRequirements arrayIntersect (_x getVariable "BIS_WL_services"))
-				};
-				BIS_WL_selection_showLinks = false;
-				BIS_WL_selection_dimSectors = true;
-			};
-			case WL_ID_SELECTION_SCAN: {
-				private _allScannableSectors = BIS_WL_sectorsArray # 3;
-				private _lastScanEligible = serverTime - (getMissionConfigValue ["BIS_WL_scanCooldown", 300]);
-				private _availableSectors = _allScannableSectors select {
-					_x getVariable [format ["BIS_WL_lastScanEnd_%1", BIS_WL_playerSide], -9999] < _lastScanEligible
-				};
-				BIS_WL_selection_availableSectors = _availableSectors;
-				BIS_WL_selection_showLinks = false;
-				BIS_WL_selection_dimSectors = true;
-			};
-		};
-
-		if (BIS_WL_selection_showLinks) then {
-			{
-				_x setMarkerAlphaLocal WL_CONNECTING_LINE_ALPHA_MAX;
-			} forEach BIS_WL_sectorLinks;
-		} else {
-			{
-				_x setMarkerAlphaLocal 0;
-			} forEach BIS_WL_sectorLinks;
-		};
-
-		{
-			private _alpha = if (BIS_WL_selection_dimSectors && !(_x in BIS_WL_selection_availableSectors)) then {
-				WL_CONNECTING_LINE_ALPHA_MIN;
-			} else {
-				1;
-			};
-			((_x getVariable "BIS_WL_markers") # 0) setMarkerAlphaLocal _alpha;
-			((_x getVariable "BIS_WL_markers") # 1) setMarkerAlphaLocal _alpha;
-		} forEach BIS_WL_allSectors;
-	};
-};
-
-0 spawn {
-	private _scoreControl = (findDisplay 46) ctrlCreate ["RscStructuredText", -1];
-
-	private _blockW = safeZoneW / 1000;
-	private _blockH = safeZoneH / (1000 / (getResolution # 4));
-
-	private _displayW = _blockW * 180;
-	private _displayH = _blockH * 54;
-	private _displayX = safeZoneW + safeZoneX - _displayW - (_blockW * 10);
-	private _displayY = safeZoneH + safeZoneY - _displayH - (_blockH * 50);
-
-	_scoreControl ctrlSetPosition [_displayX - (_blockW * 110), _displayY - (_blockH * 16 * 3 + _blockH * 30), _blockW * 160, _blockH * 16 * 4];
-	_scoreControl ctrlCommit 0;
-
-	uiNamespace setVariable ["WL_scoreControl", _scoreControl];
-	uiNamespace setVariable ["WL_killRewardMap", createHashMap];
-
-	while { !BIS_WL_missionEnd } do {
-		private _killRewards = uiNamespace getVariable ["WL_killRewardMap", []];
-		private _killFeedDirty = false;
-		private _newKillRewardMap = createHashMap;
-		{
-			private _killRewardTimestamp = _y # 3;
-			if ((_killRewardTimestamp + 10) > serverTime) then {
-				_newKillRewardMap set [_x, _y];
-			} else {
-				_killFeedDirty = true;
-			};
-		} forEach _killRewards;
-
-		if (_killFeedDirty) then {
-			uiNamespace setVariable ["WL_killRewardMap", _newKillRewardMap];
-			[_newKillRewardMap] call BIS_fnc_WL2_updateKillFeed;
-		};
-
-		sleep 1;
-	};
-};
+0 spawn BIS_fnc_WL2_handleKillFeedUpdate;
 
 0 spawn {
 	sleep 5;
 	[] call MRTM_fnc_updateViewDistance;
 };
 
-0 spawn {
-	inGameUISetEventHandler ["Action", '
-		params ["_target", "_caller", "_index", "_name", "_text", "_priority", "_showWindow", "_hideOnUse", "_shortcut", "_visibility", "_eventName"];
-		switch (_name) do {
-			case "MoveToPilot": {
-				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Pilot seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "MoveToDriver": {
-				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Driver seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "MoveToTurret": {
-				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Turret seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "MoveToCargo": {
-				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Passenger seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "GetInPilot": {
-				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Pilot seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "GetInDriver": {
-				private _access = [_target, _caller, "driver"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Driver seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "GetInTurret": {
-				private _access = [_target, _caller, "gunner"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Turret seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			case "GetInCargo": {
-				private _access = [_target, _caller, "cargo"] call BIS_fnc_WL2_accessControl;
-				if !(_access # 0) then {
-					systemChat format ["Passenger seat locked. (%1)", _access # 1];
-					playSoundUI ["AddItemFailed"];
-					true;
-				} else {
-					false;
-				};
-			};
-			default {
-				false;
-			};
-		};
-	'];
-};
+0 spawn BIS_fnc_WL2_interceptAction;
 
-0 spawn {
-	while { !BIS_WL_missionEnd } do {
-		waitUntil {
-			sleep 1;
-			!isNull findDisplay 160
-		};
-
-		while { !isNull findDisplay 160 } do {
-			private _selectBox = findDisplay 160 displayCtrl 117;
-
-			private _size = lbSize _selectBox;
-
-			for "_i" from 1 to (_size - 1) do {
-				private _text = _selectBox lbText _i;
-				private _data = _text splitString "#";
-
-				if (count _data >= 2) then {
-					private _playerName = _data # 0;
-					private _assetType = _data # 1;
-
-					_selectBox lbSetText [_i, format ["[%1] %2", _playerName, _assetType]];
-
-					if (_playerName == name player) then {
-						_selectBox lbSetColor [_i, [0, 1, 0, 1]];
-					} else {
-						private _player = allPlayers select { name _x == _playerName } select 0;
-						private _isInMySquad = ["isInMySquad", [getPlayerID _player]] call SQD_fnc_client;
-
-						if (_isInMySquad) then {
-							_selectBox lbSetColor [_i, [0, 1, 1, 1]];
-						};
-					};
-				};
-			};
-			lbSort _selectBox;
-
-			sleep 0.2;
-		};
-	};
-};
+0 spawn BIS_fnc_WL2_avTerminal;

@@ -33,23 +33,6 @@
 			private _sortedVoteList = (toArray _votesByPlayers) # 1; // discard keys
 			_sortedVoteList = [_sortedVoteList, [], { _x # 1  }, "DESCEND"] call BIS_fnc_sortBy;
 
-			private _display = format ["<t size='1.8' align='center'>%1</t><br/>", localize "STR_WL2_VOTE_IN_PROGRESS"];
-			{
-				private _vote = _x # 0;
-				private _voteCount = _x # 1;
-
-				private _sectorName = _vote getVariable ["BIS_WL_name", "???"];
-				private _isSectorRevealed = _side in (_vote getVariable ["BIS_WL_revealedBy", []]);
-
-				private _color = if (_isSectorRevealed) then {
-					private _sectorOwner = _vote getVariable ["BIS_WL_owner", independent];
-					['#004d99', '#7f0400', '#007f04'] # ([west, east, independent] find _sectorOwner);
-				} else {
-					'#ffff00';
-				};
-				_display = _display + format ["<t size='1.2' align='center' color='%1' shadow='2'>%2: %3 pts</t><br/>", _color, _vote getVariable "BIS_WL_name", _voteCount];
-			} forEach _sortedVoteList;
-
 			private _maxVotedSector = if (count _sortedVoteList > 0) then {
 				_firstSector  = _sortedVoteList # 0;
 				_firstSector # 0 // return sector object
@@ -57,7 +40,7 @@
 				objNull
 			};
 
-			[_maxVotedSector, _display, count _sortedVoteList];
+			[_maxVotedSector, _sortedVoteList];
 		};
 
 		private _wipeVotes = {
@@ -75,7 +58,7 @@
 			call _wipeVotes;
 
 			_calculation = call _calculateMostVotedSector;
-			missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], [_calculation # 1, _calculation # 2], true];
+			missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], _calculation # 1, true];
 
 			waitUntil {
 				sleep WL_TIMEOUT_SHORT;
@@ -102,8 +85,8 @@
 
 					if (serverTime >= _nextUpdate) then {
 						_calculation = call _calculateMostVotedSector;
-						missionNamespace setVariable [format ["BIS_WL_mostVoted_%1", _side], [_calculation # 0, _votingEnd], TRUE];
-						missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], [_calculation # 1, _calculation # 2], TRUE];
+						missionNamespace setVariable [format ["BIS_WL_mostVoted_%1", _side], [_calculation # 0, _votingEnd], true];
+						missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], _calculation # 1, true];
 						_nextUpdate = serverTime + WL_TIMEOUT_STANDARD;
 					};
 
@@ -115,7 +98,7 @@
 					[_side, _calculation # 0] call BIS_fnc_WL2_selectTarget;
 
 					call _wipeVotes;
-					missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], ["", 0], TRUE];
+					missionNamespace setVariable [format ["BIS_WL_sectorVoteTallyDisplay_%1", _side], [], true];
 
 					["server", TRUE] call BIS_fnc_WL2_updateSectorArrays;
 

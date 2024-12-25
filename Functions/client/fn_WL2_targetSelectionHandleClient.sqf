@@ -1,8 +1,6 @@
 #include "..\warlords_constants.inc"
 
 {_x setMarkerAlphaLocal 0} forEach BIS_WL_sectorLinks;
-_mostVotedVar = format ["BIS_WL_mostVoted_%1", BIS_WL_playerSide];
-_voteTallyDisplayVar = format ["BIS_WL_sectorVoteTallyDisplay_%1", BIS_WL_playerSide];
 
 while {!BIS_WL_missionEnd} do {
 	private _lastTarget = WL_TARGET_FRIENDLY;
@@ -46,15 +44,20 @@ while {!BIS_WL_missionEnd} do {
 
 	["client"] call BIS_fnc_WL2_updateSectorArrays;
 
-	_mostVotedVar spawn {
-		waitUntil {count (missionNamespace getVariable [_this, []]) > 0};
-		_data = (missionNamespace getVariable _this);
-		["voting", [(_data # 1) - (getMissionConfigValue ["BIS_WL_sectorVotingDuration", 30]), _data # 1, _this]] spawn BIS_fnc_WL2_setOSDEvent;
+	0 spawn {
+		private _mostVotedVar = format ["BIS_WL_mostVoted_%1", BIS_WL_playerSide];
+
+		waitUntil {count (missionNamespace getVariable [_mostVotedVar, []]) > 0};
+		_data = (missionNamespace getVariable _mostVotedVar);
+		["voting", [(_data # 1) - (getMissionConfigValue ["BIS_WL_sectorVotingDuration", 30]), _data # 1, _mostVotedVar]] spawn BIS_fnc_WL2_setOSDEvent;
 	};
 
 	private _voteLocked = missionNamespace getVariable ["voteLocked", true];
 	if !(_voteLocked) then {
-		_voteTallyDisplayVar spawn {
+		0 spawn {
+			private _mostVotedVar = format ["BIS_WL_mostVoted_%1", BIS_WL_playerSide];
+			private _voteTallyDisplayVar = format ["BIS_WL_sectorVoteTallyDisplay_%1", BIS_WL_playerSide];
+
 			private _voteDisplay = uiNamespace getVariable ["RscWLVoteDisplay", objNull];
 			if (isNull _voteDisplay) then {
 				"VoteDisplay" cutRsc ["RscWLVoteDisplay", "PLAIN", -1, true, false];
@@ -68,9 +71,39 @@ while {!BIS_WL_missionEnd} do {
 			while { isNull WL_TARGET_FRIENDLY && !BIS_WL_missionEnd && !BIS_WL_resetTargetSelection_client } do {
 				_voteLocked = missionNamespace getVariable ["voteLocked", true];
 				if (_voteLocked) then {break};
-				private _voteText = missionNamespace getVariable [_this, ["", 0]];
-				_indicator ctrlSetStructuredText (parseText (_voteText # 0));
-				_indicatorBackground ctrlSetPositionH (0.09 + (_voteText # 1) * 0.04);
+
+				private _sortedVoteList = missionNamespace getVariable [_voteTallyDisplayVar, []];
+				private _mostVoted = missionNamespace getVariable [_mostVotedVar, []];
+				private _eta = if (count _mostVoted > 0) then {
+					round (_mostVoted # 1 - serverTime);
+				} else {
+					0;
+				};
+				private _etaDisplay = if (_eta > 0) then {
+					format ["[%1s]", _eta];
+				} else {
+					"";
+				};
+
+				private _displayText = format ["<t size='1.8' align='center'>%1 %2</t><br/>", localize "STR_WL2_VOTE_IN_PROGRESS", _etaDisplay];
+				{
+					private _vote = _x # 0;
+					private _voteCount = _x # 1;
+
+					private _sectorName = _vote getVariable ["BIS_WL_name", "???"];
+					private _isSectorRevealed = BIS_WL_playerSide in (_vote getVariable ["BIS_WL_revealedBy", []]);
+
+					private _color = if (_isSectorRevealed) then {
+						private _sectorOwner = _vote getVariable ["BIS_WL_owner", independent];
+						['#004d99', '#7f0400', '#007f04'] # ([west, east, independent] find _sectorOwner);
+					} else {
+						'#ffff00';
+					};
+					_displayText = _displayText + format ["<t size='1.2' align='center' color='%1' shadow='2'>%2: %3 pts</t><br/>", _color, _vote getVariable "BIS_WL_name", _voteCount];
+				} forEach _sortedVoteList;
+
+				_indicator ctrlSetStructuredText (parseText _displayText);
+				_indicatorBackground ctrlSetPositionH (0.09 + (count _sortedVoteList) * 0.04);
 				_indicatorBackground ctrlCommit 0;
 
 				sleep WL_TIMEOUT_STANDARD;
@@ -110,8 +143,8 @@ while {!BIS_WL_missionEnd} do {
 		BIS_WL_currentSelection = WL_ID_SELECTION_NONE;
 	};
 
-	missionNamespace setVariable [_mostVotedVar, []];
-	missionNamespace setVariable [format ["BIS_WL_targetVote_%1", getPlayerID player], objNull];
+	// missionNamespace setVariable [format ["BIS_WL_mostVoted_%1", BIS_WL_playerSide], []];
+	missionNamespace setVariable [format ["BIS_WL_targetVote_%1", getPlayerID player], objNull, 2];
 
 	if (BIS_WL_resetTargetSelection_client) then {
 		BIS_WL_resetTargetSelection_client = FALSE;

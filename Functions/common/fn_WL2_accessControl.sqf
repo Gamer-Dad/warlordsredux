@@ -8,6 +8,11 @@ private _ownerID = getPlayerID _owner;
 private _callerID = getPlayerID (leader _unit);
 private _isOwner = _ownerUID == getPlayerUID (leader _unit);
 
+private _isEnemy = (side group _unit) != _asset call BIS_fnc_WL2_getAssetSide;
+if (_isEnemy) exitWith {
+    [true, "Access: Enemy"];
+};
+
 private _access = false;
 private _message = "";
 switch (_accessControl) do {
