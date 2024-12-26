@@ -1,7 +1,6 @@
 params ["_asset", "_childAsset", "_isAttaching"];
 
 if (_isAttaching) then {
-    _childAsset setVehicleLock "LOCKED";
     {
         moveOut _x;
     } forEach (crew _childAsset);
@@ -17,6 +16,7 @@ if (_isAttaching) then {
     [_childAsset] remoteExec ["BIS_fnc_WL2_uavConnectRefresh", 0];
 
     [_childAsset, false] remoteExec ["setAutonomous", 0];
+    [_childAsset, true] remoteExec ["lock", _childAsset];
 
     private _enemyGroups = allGroups select {side _x == BIS_WL_enemySide};
     {
@@ -36,8 +36,6 @@ if (_isAttaching) then {
         ropeDestroy _x;
     } forEach _ropes;
 
-    _childAsset setVehicleLock "UNLOCKED";
-
     private _wasAutonomous = _childAsset getVariable ["WL2_autonomousBeforeLoad", false];
     [_childAsset, _wasAutonomous] remoteExec ["setAutonomous", 0];
 
@@ -52,4 +50,5 @@ if (_isAttaching) then {
 
     private _massBeforeLoad = _childAsset getVariable ["WL2_massDefault", 1000];
     [_childAsset, _massBeforeLoad] remoteExec ["setMass", 0];
+    [_childAsset, false] remoteExec ["lock", _childAsset];
 };

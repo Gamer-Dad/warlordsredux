@@ -8,8 +8,12 @@ private _side = side _owner;
 [_asset, _side] spawn {
     params ["_asset", "_side"];
     while { alive _asset } do {
-        private _jammerMarkers = missionNamespace getVariable ["BIS_WL_jammerMarkers", []];
-        private _allJammers = _jammerMarkers apply { _x # 0 };
+        private _allJammerMarkers = allMapMarkers select {
+            _x find "BIS_WL_jammerMarkerOuter_" == 0;
+        };
+        private _allJammers = _allJammerMarkers apply {
+            objectFromNetId (_x regexReplace ["BIS_WL_jammerMarkerOuter_", ""]);
+        };
         private _enemyJammers = _allJammers select {
             private _jammerOwnerSide = _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown];
             _jammerOwnerSide != _side;

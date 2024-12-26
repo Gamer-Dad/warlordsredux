@@ -14,7 +14,3 @@ if (_asset getVariable "BIS_WL_jammerActivated") then {
 } else {
     _outerMarkerName setMarkerAlpha 0;
 };
-
-private _jammerMarkers = missionNamespace getVariable ["BIS_WL_jammerMarkers", []];
-_jammerMarkers pushBack [_asset, _outerMarkerName];
-missionNamespace setVariable ["BIS_WL_jammerMarkers", _jammerMarkers, true];
