@@ -64,6 +64,7 @@ BIS_fnc_WL2_targetSelectionHandleClient = compileFinal preprocessFileLineNumbers
 BIS_fnc_WL2_teammatesAvailability = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_teammatesAvailability.sqf";
 BIS_fnc_WL2_timer = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_timer.sqf";
 BIS_fnc_WL2_triggerPurchase = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_triggerPurchase.sqf";
+BIS_fnc_WL2_updateJammerMarkers = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_updateJammerMarkers.sqf";
 BIS_fnc_WL2_wasMain = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_wasMain.sqf";
 BIS_fnc_WL2_welcome = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_welcome.sqf";
 BIS_fnc_WL2_zoneRestrictionHandleClient = compileFinal preprocessFileLineNumbers "Functions\client\fn_WL2_zoneRestrictionHandleClient.sqf";
@@ -425,3 +426,5 @@ missionNamespace setVariable [format ["BIS_WL2_minesDB_%1", getPlayerUID player]
 0 spawn BIS_fnc_WL2_interceptAction;
 
 0 spawn BIS_fnc_WL2_avTerminal;
+
+0 spawn BIS_fnc_WL2_updateJammerMarkers;

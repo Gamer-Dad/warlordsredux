@@ -266,8 +266,12 @@ if (_ret) then {
 			};
 
 			if (_class == "Land_Communication_F") then {
-				private _jammerMarkers = missionNamespace getVariable ["BIS_WL_jammerMarkers", []];
-				private _allJammers = _jammerMarkers apply { _x # 0 };
+				private _allJammerMarkers = allMapMarkers select {
+					_x find "BIS_WL_jammerMarkerOuter_" == 0;
+				};
+				private _allJammers = _allJammerMarkers apply {
+					objectFromNetId (_x regexReplace ["BIS_WL_jammerMarkerOuter_", ""]);
+				};
 				private _allTowersOnTeam = _allJammers select {
 					typeOf _x == "Land_Communication_F"
 					&& _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown] == BIS_WL_playerSide
