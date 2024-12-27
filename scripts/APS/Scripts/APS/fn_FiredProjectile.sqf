@@ -33,7 +33,7 @@ while {_continue && alive _projectile} do {
 
 	private _eligibleNearbyVehicles = (_projectile nearEntities [["LandVehicle"], _safeRadius]) select {
 		_x != _unit &&
-		[_x] call APS_fnc_Active;
+		[_x] call APS_fnc_active;
 	};
 	_eligibleNearbyVehicles = _eligibleNearbyVehicles select {
 		private _ownerSide = _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown];
@@ -60,11 +60,11 @@ while {_continue && alive _projectile} do {
 			if (_dazzleable && _isGuided) exitWith {
 				private _projectilePosition = getPosATL _projectile;
 				private _projectileDirection = _firedPosition getDir _x;
-				private _relativeDirection = [_projectileDirection, _x] call APS_fnc_RelDir2;
+				private _relativeDirection = [_projectileDirection, _x] call APS_fnc_relDir2;
 
-				_projectile spawn APS_fnc_MisguideMissile;
+				_projectile spawn APS_fnc_misguideMissile;
 
-				[_x, _relativeDirection, true] remoteExec ["APS_fnc_Report", _x];
+				[_x, _relativeDirection, true] remoteExec ["APS_fnc_report", _x];
 			};
 		} else {
 			if (_vehicleAPSType >= _projectileAPSType && {
@@ -84,7 +84,7 @@ while {_continue && alive _projectile} do {
 
 				private _projectilePosition = getPosATL _projectile;
 				private _projectileDirection = _firedPosition getDir _x;
-				private _relativeDirection = [_projectileDirection, _x] call APS_fnc_RelDir2;
+				private _relativeDirection = [_projectileDirection, _x] call APS_fnc_relDir2;
 
 				_projectile setPosWorld [0, 0, 0];
 				deleteVehicle _projectile;
@@ -95,7 +95,7 @@ while {_continue && alive _projectile} do {
 				_explosionPosition set [2, _explosionHeight];
 				createVehicle ["SmallSecondary", _explosionPosition, [], 0, "FLY"];
 
-				[_x, _relativeDirection, true, _gunner] remoteExec ["APS_fnc_Report", _x];
+				[_x, _relativeDirection, true, _gunner] remoteExec ["APS_fnc_report", _x];
 
 				private _ownerSide = _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown];
 				if (side _unit == _ownerSide) then {
@@ -107,7 +107,7 @@ while {_continue && alive _projectile} do {
 						hint localize "STR_A3_WL_aps_friendly_warning";
 					};
 				} else {
-					[_unit] remoteExec ["APS_fnc_ServerHandleAPS", 2];
+					[_unit] remoteExec ["APS_fnc_serverHandleAPS", 2];
 				};
 			};
 		};

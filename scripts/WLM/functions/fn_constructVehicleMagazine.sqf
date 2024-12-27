@@ -47,7 +47,7 @@ private _getMagazineTooltip = {
         _cacheResponse;
     };
 
-    private _magazineName = [_magazine] call BIS_fnc_WL2_getMagazineName;
+    private _magazineName = [_magazine] call WL2_fnc_getMagazineName;
     private _magazineConfig = configFile >> "CfgMagazines" >> _magazine;
     private _magazineDescription = "";
 
@@ -344,7 +344,7 @@ private _getMagazineTooltip = {
             };
 
             private _magazineClass = _x;
-            private _magazineName = [_magazineClass] call BIS_fnc_WL2_getMagazineName;
+            private _magazineName = [_magazineClass] call WL2_fnc_getMagazineName;
             private _selectBox = _display ctrlCreate ["WLM_PylonSelect", WLM_PYLON_START + _index, _ctrlGroup];
 
             private _firstSelectBoxItem = _selectBox lbAdd "EMPTY";
@@ -358,7 +358,7 @@ private _getMagazineTooltip = {
             {
                 private _magSize = getNumber (configFile >> "CfgMagazines" >> _x >> "count");
                 if (_magSize <= _ammoRemaining) then {
-                    private _allowedMagazine = [_x] call BIS_fnc_WL2_getMagazineName;
+                    private _allowedMagazine = [_x] call WL2_fnc_getMagazineName;
                     private _selectBoxItem = _selectBox lbAdd _allowedMagazine;
                     _selectBox lbSetTooltip [_selectBoxItem, [_x] call _getMagazineTooltip];
                     _selectBox lbSetData [_selectBoxItem, _x];

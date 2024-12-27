@@ -27,7 +27,7 @@ if ((_serverCheck && _adminCheck) || (!isDedicated && _adminCheck)) then {
 	if (isDedicated) then {
 		[_return] remoteExec ["MRTM_fnc_setReturnValue", remoteExecutedOwner];
 	} else {
-		_return spawn MRTM_fnc_setReturnValue;
+		[_return] spawn MRTM_fnc_setReturnValue;
 	};
 } else {
 	if (isDedicated) then {

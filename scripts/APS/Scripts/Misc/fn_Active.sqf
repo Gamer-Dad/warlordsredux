@@ -8,5 +8,5 @@ if (_apsType getOrDefault [_assetActualType, -1] == 3) then {		// is dazzler
 	private _isEngineHealthy = (_asset getHitPointDamage "hitEngine") < 0.5;
 	_isDazzlerActivated && _isEngineOn && _isEngineHealthy
 } else {
-	[_asset] call APS_fnc_HasCharges;
+	[_asset] call APS_fnc_hasCharges;
 };

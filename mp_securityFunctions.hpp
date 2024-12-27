@@ -4,15 +4,15 @@ class CfgRemoteExec {
 		mode = 1;
 		jip = 1;
 
-		class APS_fnc_Report {
+		class APS_fnc_report {
 			allowedTargets = 0;
 		};
 
-		class APS_fnc_ServerHandleAPS {
+		class APS_fnc_serverHandleAPS {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_handleClientRequest {
+		class WL2_fnc_handleClientRequest {
 			allowedTargets = 2;
 		};
 
@@ -20,15 +20,15 @@ class CfgRemoteExec {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_forfeitHandleServer {
+		class WL2_fnc_forfeitHandleServer {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_pingFix {
+		class WL2_fnc_pingFix {
 			allowedTargets = 1;
 		};
 
-		class BIS_fnc_WL2_sub_demolish {
+		class WL2_fnc_demolish {
 			allowedTargets = 0;
 		};
 
@@ -40,7 +40,7 @@ class CfgRemoteExec {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_forgiveTeamkill {
+		class WL2_fnc_forgiveTeamkill {
 			allowedTargets = 2;
 		};
 
@@ -48,35 +48,35 @@ class CfgRemoteExec {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_forfeitHandle {
+		class WL2_fnc_forfeitHandle {
 			allowedTargets = 0;
 		};
 
-		class BIS_fnc_WL2_killRewardHandle {
+		class WL2_fnc_killRewardHandle {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_dazzlerOn {
+		class WL2_fnc_dazzlerOn {
 			allowedTargets = 2;
 		};
 
-		class BIS_fnc_WL2_vehicleLock {
+		class WL2_fnc_vehicleLock {
 			allowedTargets = 0;
 		};
 
-		class BIS_fnc_WL2_reloadOverride {
+		class WL2_fnc_reloadOverride {
 			allowedTargets = 0;
 		};
 
-		class BIS_fnc_WL2_slingloadInit {
+		class WL2_fnc_slingloadInit {
 			allowedTargets = 0;
 		};
 
-		class BIS_fnc_WL2_uavConnectRefresh {
+		class WL2_fnc_uavConnectRefresh {
 			allowedTargets = 0;
 		};
 
-		class BIS_fnc_WL2_updateVehicleList {
+		class WL2_fnc_updateVehicleList {
 			allowedTargets = 2;
 		};
 

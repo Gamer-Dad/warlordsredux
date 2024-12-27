@@ -162,7 +162,7 @@ switch (_action) do {
             _return = 2;
         };
 
-        [player, "fastTravelSquadLeader"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];
+        [player, "fastTravelSquadLeader"] remoteExec ["WL2_fnc_handleClientRequest", 2];
 
         private _destination = getPosATL _squadLeader;
 

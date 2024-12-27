@@ -20,7 +20,7 @@ uiNamespace setVariable ["WLM_assetIsAircraft", _isAircraft];
 
 disableSerialization;
 
-private _assetTypeName = [_asset] call BIS_fnc_WL2_getAssetTypeName;
+private _assetTypeName = [_asset] call WL2_fnc_getAssetTypeName;
 
 if (_isAircraft) then {
     private _aircraftNameControl = _display displayCtrl WLM_VEHICLE_NAME;

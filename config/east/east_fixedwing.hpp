@@ -104,6 +104,17 @@ class FixedWing {
         };
         rearm = 900;
         killReward = 600;
+        class Pilot: WLTurretDefaults {
+            turret[] = { -1 };
+            removeMagazines[] = {
+                "120Rnd_CMFlare_Chaff_Magazine"
+            };
+            removeWeapons[] = {};
+            addMagazines[] = {
+                "240Rnd_CMFlare_Chaff_Magazine"
+            };
+            addWeapons[] = {};
+        };
     }; // "A-143 Buzzard"
 
     class O_Plane_CAS_02_dynamicLoadout_F {
@@ -111,6 +122,17 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 900;
+        class Pilot: WLTurretDefaults {
+            turret[] = { -1 };
+            removeMagazines[] = {
+                "120Rnd_CMFlare_Chaff_Magazine"
+            };
+            removeWeapons[] = {};
+            addMagazines[] = {
+                "240Rnd_CMFlare_Chaff_Magazine"
+            };
+            addWeapons[] = {};
+        };
     }; // "To-199 Neophron (CAS)"
 
     class O_Plane_Fighter_02_Stealth_F {

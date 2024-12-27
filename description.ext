@@ -1,4 +1,4 @@
-#include "Functions\warlords_constants.inc"
+#include "core\warlords_constants.inc"
 #include "ui\defines.hpp"
 #include "ui\controls.hpp"
 #include "scripts\WLM\ui\WLM_pylons.hpp"
@@ -56,7 +56,7 @@ BIS_WL_autonomous_limit = 2;
 BIS_WL_minAPSDist = 1000; //actual range = √x
 BIS_WL_maxAPSDist = 1600; //actual range = √x
 
-onPauseScript[] = {BIS_fnc_WL2_onPause};
+onPauseScript[] = {WL2_fnc_onPause};
 
 class Header
 {

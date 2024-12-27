@@ -20,7 +20,7 @@ private _type = switch (_vehicle getVariable "apsType") do {
 
 private _text = _type;
 if (_assetApsType == 3) then {
-	_text = _text + (if ([_vehicle] call APS_fnc_Active) then {
+	_text = _text + (if ([_vehicle] call APS_fnc_active) then {
 		" is active.";
 	} else {
 		" is inactive.";

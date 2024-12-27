@@ -16,7 +16,7 @@ if (isNull (findDisplay 8000)) then {
 disableSerialization;
 
 _display = findDisplay 8000;
-(_display displayCtrl 8001) ctrlSetStructuredText parseText format ["<a href='https://discord.gg/grmzsZE4ua'>%1</a> <t size='%3' valign='middle' align='right'>%2</t></t>", "Join the discord" splitString " " joinString toString [160], (name player), 1 call BIS_fnc_WL2_sub_purchaseMenuGetUIScale];
+(_display displayCtrl 8001) ctrlSetStructuredText parseText format ["<a href='https://discord.gg/grmzsZE4ua'>%1</a> <t size='%3' valign='middle' align='right'>%2</t></t>", "Join the discord" splitString " " joinString toString [160], (name player), 1 call WL2_fnc_purchaseMenuGetUIScale];
 {
 	ctrlSetText [(_x # 0), str (_x # 1)];
 } forEach [[8004, (profileNamespace getVariable ["MRTM_inf", 2000])], [8006, (profileNamespace getVariable ["MRTM_ground", 3000])], [8008, (profileNamespace getVariable ["MRTM_air", 4000])], [8010, (profileNamespace getVariable ["MRTM_drones", 4000])], [8014, (profileNamespace getVariable ["MRTM_objects", 2000])], [8016, (profileNamespace getVariable ["MRTM_rwr1", 0.3])], [8018, (profileNamespace getVariable ["MRTM_rwr2", 0.3])], [8020, (profileNamespace getVariable ["MRTM_rwr3", 0.2])], [8022, (profileNamespace getVariable ["MRTM_rwr4", 0.3])]];

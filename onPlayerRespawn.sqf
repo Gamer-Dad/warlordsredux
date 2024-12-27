@@ -17,7 +17,7 @@ _vics = missionNamespace getVariable [_var, []];
 if !(["(EU) #11", serverName] call BIS_fnc_inString) then {
 	player addAction [
 		"+$10K",
-		{[player, "10K"] remoteExec ["BIS_fnc_WL2_handleClientRequest", 2];}
+		{[player, "10K"] remoteExec ["WL2_fnc_handleClientRequest", 2];}
 	];
 };
 
@@ -26,7 +26,7 @@ private _squadActionId = player addAction[_squadActionText, { [true] call SQD_fn
 player setUserActionText [_squadActionId, _squadActionText, "<img size='2' image='\a3\ui_f\data\igui\cfg\simpletasks\types\meet_ca.paa'/>"];
 
 player setVariable ["BIS_WL_isOrdering", false, [2, clientOwner]];
-0 spawn BIS_fnc_WL2_factionBasedClientInit;
+0 spawn WL2_fnc_factionBasedClientInit;
 
 player addEventHandler ["HandleRating", {
 	params ["_unit", "_rating"];
@@ -44,9 +44,9 @@ if !((count _penaltyCheck) == 0) then {
 		saveProfileNamespace;
 	};
 	if ((_penaltySessionID == _sessionID ) && (_penaltyEnd > 0)) then {
-		_penaltyEnd spawn BIS_fnc_WL2_friendlyFireHandleClient;
+		_penaltyEnd spawn WL2_fnc_friendlyFireHandleClient;
 	};
 };
 
-call BIS_fnc_WL2_spectrumAction;
+call WL2_fnc_spectrumAction;
 0 spawn MRTM_fnc_settingsMenu;

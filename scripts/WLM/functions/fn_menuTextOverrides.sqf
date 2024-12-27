@@ -37,7 +37,15 @@ private _overrideMagazineNames = createHashMapFromArray [
     ["60Rnd_40mm_GPR_Tracer_Yellow_shells", "40 mm GPR Yellow"],
     ["40Rnd_40mm_APFSDS_Tracer_Red_shells", "40 mm APFSDS Red"],
     ["40Rnd_40mm_APFSDS_Tracer_Green_shells", "40 mm APFSDS Green"],
-    ["40Rnd_40mm_APFSDS_Tracer_Yellow_shells", "40 mm APFSDS Yellow"]
+    ["40Rnd_40mm_APFSDS_Tracer_Yellow_shells", "40 mm APFSDS Yellow"],
+    ["SmokeLauncherMag", "Smoke Launcher Ammo"],
+    ["SmokeLauncherMag_boat", "Smoke Launcher Ammo"],
+    ["168Rnd_CMFlare_Chaff_Magazine", "Countermeasures"],
+    ["240Rnd_CMFlare_Chaff_Magazine", "Countermeasures"],
+    ["120Rnd_CMFlare_Chaff_Magazine", "Countermeasures"],
+    ["192Rnd_CMFlare_Chaff_Magazine", "Countermeasures"],
+    ["1000Rnd_Gatling_30mm_Plane_CAS_01_F", "30mm Gatling"],
+    ["500Rnd_Cannon_30mm_Plane_CAS_02_F", "30mm Gatling"]
 ];
 
 // Override magazine descriptions

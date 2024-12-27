@@ -112,6 +112,17 @@ class FixedWing {
         requirements[] = {"A"};
         rearm = 900;
         killReward = 800;
+        class Pilot: WLTurretDefaults {
+            turret[] = { -1 };
+            removeMagazines[] = {
+                "120Rnd_CMFlare_Chaff_Magazine"
+            };
+            removeWeapons[] = {};
+            addMagazines[] = {
+                "240Rnd_CMFlare_Chaff_Magazine"
+            };
+            addWeapons[] = {};
+        };
     }; // "A-164 Wipeout (CAS)"
 
     class I_Plane_Fighter_04_F {

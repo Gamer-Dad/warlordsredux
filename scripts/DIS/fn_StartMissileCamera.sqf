@@ -19,6 +19,6 @@ if (!_disableCamera && !_isDisconnected && !_pipDisabled) then {
         "APS_Camera" cutFadeOut 0;
     };
 
-    private _missileCamera = [_projectile, _unit] spawn DIS_fnc_MissileCamera;
+    private _missileCamera = [_projectile, _unit] spawn DIS_fnc_missileCamera;
     uiNamespace setVariable ["APS_Camera_Process", _missileCamera];
 };

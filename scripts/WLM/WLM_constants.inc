@@ -1,4 +1,4 @@
-#include "..\..\Functions\warlords_constants.inc"
+#include "..\..\core\warlords_constants.inc"
 
 #define WLM_DISPLAY 5300
 #define WLM_BACKGROUND_PIC 5303

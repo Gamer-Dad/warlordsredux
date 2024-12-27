@@ -2,7 +2,7 @@ _this addEventHandler ["Fired", {
 	params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
 	WAS_fired = true;
 	if !((typeOf _projectile) in APS_ProjectileMap) exitWith { true };
-	_this spawn APS_fnc_FiredProjectile;
+	_this spawn APS_fnc_firedProjectile;
 
 	if (local _projectile && (_ammo == "ammo_Missile_HARM" || _ammo == "ammo_Missile_KH58")) then {
 		if (isNull (missileTarget _projectile)) then {
@@ -23,6 +23,6 @@ _this addEventHandler ["Fired", {
 			};
 		};
 
-		[_projectile, _unit] call DIS_fnc_StartMissileCamera;
+		[_projectile, _unit] call DIS_fnc_startMissileCamera;
 	};
 }];

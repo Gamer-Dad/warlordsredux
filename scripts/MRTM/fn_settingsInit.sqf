@@ -31,15 +31,3 @@ if !(profileNamespace getVariable ["preferencesInitialzed", false]) then {
 	profileNamespace setVariable ["preferencesInitialzed", true];
 };
 player setVariable ["MRTM_3rdPersonDisabled", (profileNamespace getVariable ["MRTM_3rdPersonDisabled", true]), [2, clientOwner]];
-
-MRTM_fnc_onSliderChanged = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_onSliderChanged.sqf";
-MRTM_fnc_updateViewDistance = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_updateViewDistance.sqf";
-MRTM_fnc_onChar = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_onChar.sqf";
-MRTM_fnc_openGroupMenu = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_openGroupMenu.sqf";
-MRTM_fnc_getLBPicture = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_getLBPicture.sqf";
-MRTM_fnc_getLBText = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_getLBText.sqf";
-MRTM_fnc_onLBSelChanged = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_onLBSelChanged.sqf";
-MRTM_fnc_onButtonClick = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_onButtonClick.sqf";
-MRTM_fnc_openDebugMenu = compileFinal preprocessFileLineNumbers "Scripts\MRTMDebug\fn_openDebugMenu.sqf";
-MRTM_fnc_setReturnValue = compileFinal preprocessFileLineNumbers "Scripts\MRTMDebug\fn_setReturnValue.sqf";
-MRTM_fnc_updateSettings = compileFinal preprocessFileLineNumbers "scripts\MRTM\fn_updateSettings.sqf";

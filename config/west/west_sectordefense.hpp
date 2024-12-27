@@ -257,6 +257,36 @@ class SectorDefense {
         };
     };
 
+    class B_static_AT_UP_F {
+        name = "Static AT Launcher (UP)";
+        description = "Static AT Launcher (UP) is an upgraded variant of the Static AT Launcher.";
+        spawn = "B_static_AT_F";
+        variant = 1;
+        cost = 600;
+        requirements[] = {};
+        offset[] = {0, 3, 0};
+        rearm = 300;
+        killReward = 200;
+        loadable[] = {0, -2.5, 0.2};
+
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            removeMagazines[] = {
+                "1Rnd_GAT_missiles"
+            };
+            removeWeapons[] = {
+                "missiles_titan"
+            };
+            addMagazines[] = {
+                "5Rnd_GAT_missiles",
+                "5Rnd_GAT_missiles"
+            };
+            addWeapons[] = {
+                "missiles_titan"
+            };
+        };
+    };
+
     class B_GMG_01_A_F {
         name = "Mk32 GMG Auto Turret";
         cost = 650;
@@ -297,7 +327,9 @@ class SectorDefense {
         killReward = 600;
 
         disallowMagazines[] = {
-            "magazine_ShipCannon_120mm_HE_cluster_shells_x2"
+            "magazine_ShipCannon_120mm_HE_cluster_shells_x2",
+            "magazine_ShipCannon_120mm_mine_shells_x6",
+            "magazine_ShipCannon_120mm_AT_mine_shells_x6"
         };
     }; // "MK45 Hammer"
 
