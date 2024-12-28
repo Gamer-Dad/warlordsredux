@@ -8,7 +8,7 @@ params ["_projectile"];
     private _isLOAL = getNumber (configfile >> "CfgAmmo" >> typeOf _projectile >> "autoSeekTarget") == 1;
 
     while { alive _projectile } do {
-        sleep 3;
+        sleep 7;
 
         // Ghost missile relocking check.
         if (_isLOAL && !(alive missileTarget _projectile)) exitWith {

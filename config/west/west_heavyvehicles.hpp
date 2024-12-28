@@ -257,35 +257,35 @@ class HeavyVehicles {
         };
     }; // "M2A1 Slammer UP"
 
-    class B_APC_Tracked_01_AA_UP_F {
-        name = "IFV-6X Puma";
-        description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.";
-        spawn = "B_APC_Tracked_01_AA_F";
-        variant = 1;
-        cost = 8000;
-        requirements[] = {};
-        rearm = 450;
-        killReward = 600;
-        capValue = 4;
-        aps = 2;
+    // class B_APC_Tracked_01_AA_UP_F {
+    //     name = "IFV-6X Puma";
+    //     description = "IFV-6X Puma is a variant of the IFV-6a Cheetah armed with Defender missiles.";
+    //     spawn = "B_APC_Tracked_01_AA_F";
+    //     variant = 1;
+    //     cost = 8000;
+    //     requirements[] = {};
+    //     rearm = 450;
+    //     killReward = 600;
+    //     capValue = 4;
+    //     aps = 2;
 
-        class Gunner: WLTurretDefaults {
-            turret[] = { 0 };
-            removeMagazines[] = {
-                "4Rnd_Titan_long_missiles"
-            };
-            removeWeapons[] = {
-                "missiles_titan_AA"
-            };
-            addMagazines[] = {
-                "magazine_Missile_mim145_x4",
-                "680Rnd_35mm_AA_shells_Tracer_Red"
-            };
-            addWeapons[] = {
-                "weapon_mim145Launcher"
-            };
-        };
-    };
+    //     class Gunner: WLTurretDefaults {
+    //         turret[] = { 0 };
+    //         removeMagazines[] = {
+    //             "4Rnd_Titan_long_missiles"
+    //         };
+    //         removeWeapons[] = {
+    //             "missiles_titan_AA"
+    //         };
+    //         addMagazines[] = {
+    //             "magazine_Missile_mim145_x4",
+    //             "680Rnd_35mm_AA_shells_Tracer_Red"
+    //         };
+    //         addWeapons[] = {
+    //             "weapon_mim145Launcher"
+    //         };
+    //     };
+    // };
 
     class B_MBT_03_cannon_F {
         cost = 8000;

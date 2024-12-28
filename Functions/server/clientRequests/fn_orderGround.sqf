@@ -33,8 +33,9 @@ private _asset = if (_isUav) then {
 waitUntil {sleep 0.1; !(isNull _asset)};
 
 private _side = side group _sender;
+private _isAircraft = _asset isKindOf "Air";
 private _variant = missionNamespace getVariable ["WL2_variant", createHashMap] getOrDefault [_orderedClass, 0];
-if (_variant != 0) then {
+if (!_isAircraft && _variant != 0) then {
 	private _sideFlag = if (_side == west) then {
 		"\A3\Ui_f\data\Map\Markers\Flags\nato_ca.paa"
 	} else {
