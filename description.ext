@@ -75,6 +75,9 @@ class Header
 #include "sounds.hpp"
 #include "briefings.hpp"
 
+#include "scripts\WLC\ui.hpp"
+#include "scripts\WLC\customization.hpp"
+
 class CfgUnitInsignia
 {
 	class InsigniaMrThomasM

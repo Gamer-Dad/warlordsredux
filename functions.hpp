@@ -300,6 +300,17 @@ class CfgFunctions {
 			class orderWater {};
 		};
 	};
+	class WLC {
+		class Default {
+			file = "scripts\WLC";
+			class action {};
+			class buildMenu {};
+			class init {};
+			class onRespawn {};
+			class onSelection {};
+			class setScore {};
+		};
+	};
 	class WLM {
 		class WLM {
 			file = "Scripts\WLM\functions";

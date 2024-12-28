@@ -25,3 +25,5 @@ if (side player == west) then {
 player linkItem"Integrated_NVG_TI_0_F";
 player addPrimaryWeaponItem "muzzle_snds_H";
 player addMagazines ["SmokeShellGreen", 1];
+
+0 spawn WLC_fnc_onRespawn;

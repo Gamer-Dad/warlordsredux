@@ -84,6 +84,14 @@ class CfgRemoteExec {
 			allowedTargets = 0;
 		};
 
+		class WLC_fnc_action {
+			allowedTargets = 0;
+		};
+
+		class WLC_fnc_setScore {
+			allowedTargets = 2;
+		};
+
 		class WLM_fnc_applyPylon {
 			allowedTargets = 0;
 		};

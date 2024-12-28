@@ -14,6 +14,7 @@ BIS_WL_allSectors = (entities "Logic") select {count synchronizedObjects _x > 0}
 enableSaving [false, false];
 
 call WL2_fnc_tablesSetUp;
+call WLC_fnc_init;
 
 {
 	private _sector = _x;
