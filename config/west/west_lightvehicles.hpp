@@ -163,7 +163,7 @@ class LightVehicles {
         description = "Prowler (AT UP) is a variant of the Prowler armed with a 5-mag Titan AT launcher.";
         spawn = "B_LSV_01_AT_F";
         variant = 1;
-        cost = 1200;
+        cost = 1100;
         requirements[] = {};
         offset[] = {0, 5, 0};
         rearm = 200;
@@ -172,6 +172,7 @@ class LightVehicles {
 
         class Gunner: WLTurretDefaults {
             turret[] = { 0 };
+            reloadOverride = 6;
             removeMagazines[] = {
                 "1Rnd_GAT_missiles"
             };
@@ -179,8 +180,11 @@ class LightVehicles {
                 "missiles_titan_static"
             };
             addMagazines[] = {
-                "5Rnd_GAT_missiles",
-                "5Rnd_GAT_missiles"
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles"
             };
             addWeapons[] = {
                 "missiles_titan"
@@ -188,7 +192,8 @@ class LightVehicles {
         };
 
         disallowMagazines[] = {
-            "4Rnd_GAA_missiles"
+            "4Rnd_GAA_missiles",
+            "5Rnd_GAT_missiles",
         };
     }; // "Prowler (AT UP)"
 

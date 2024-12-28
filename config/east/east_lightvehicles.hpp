@@ -171,7 +171,7 @@ class LightVehicles {
         description = "Qilin (AT-M) is a variant of the Qilin armed with a Firefist AT missile launcher.";
         spawn = "O_LSV_02_AT_F";
         variant = 1;
-        cost = 1200;
+        cost = 1100;
         requirements[] = {};
         offset[] = {0, 5, 0};
         rearm = 200;
