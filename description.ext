@@ -76,7 +76,7 @@ class Header
 #include "briefings.hpp"
 
 #include "scripts\WLC\ui.hpp"
-#include "scripts\WLC\customization.hpp"
+#include "config\customization.hpp"
 
 class CfgUnitInsignia
 {

@@ -305,9 +305,12 @@ class CfgFunctions {
 			file = "scripts\WLC";
 			class action {};
 			class buildMenu {};
+			class clientEquip {};
 			class init {};
+			class levelUp {};
 			class onRespawn {};
 			class onSelection {};
+			class serverRequest {};
 			class setScore {};
 		};
 	};

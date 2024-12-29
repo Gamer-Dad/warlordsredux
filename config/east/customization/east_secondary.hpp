@@ -1,7 +1,7 @@
 class Secondary {
-    class P07 {
-        name = "P07";
-        item = "hgun_P07_F";
+    class Rook40 {
+        name = "Rook-40";
+        item = "hgun_Rook40_F";
         level = 0;
         magazines[] = {
             "16Rnd_9x21_Mag",
@@ -11,6 +11,18 @@ class Secondary {
         attachments[] = {
             "muzzle_snds_L"
         };
+    };
+
+    class PM9 {
+        name = "PM 9mm";
+        item = "hgun_Pistol_01_F";
+        level = 0;
+        magazines[] = {
+            "10Rnd_9x21_Mag",
+            "10Rnd_9x21_Mag",
+            "10Rnd_9x21_Mag"
+        };
+        attachments[] = {};
     };
 
     class ACP {

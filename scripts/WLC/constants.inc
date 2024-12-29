@@ -1,4 +1,5 @@
 #include "..\..\core\warlords_constants.inc"
+#include "..\..\core\server_macros.inc"
 
 #define WLC_VERSION 1
 

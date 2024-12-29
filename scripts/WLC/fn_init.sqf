@@ -11,18 +11,22 @@ private _customizationConfig = missionConfigFile >> "CfgWLCCustomization";
             private _customizationClass = configName _x;
             private _customizationName = getText (_x >> "name");
             private _customizationItem = getText (_x >> "item");
-            private _customizationValue = getNumber (_x >> "value");
+            private _customizationLevel = getNumber (_x >> "level");
             private _customizationCost = getNumber (_x >> "cost");
             private _customizationMagazines = getArray (_x >> "magazines");
             private _customizationAttachments = getArray (_x >> "attachments");
 
+            if (_customizationName == "") then {
+                _customizationName = getText (configFile >> "CfgWeapons" >> _customizationItem >> "displayName");
+            };
+
             private _customizationHashMap = createHashMapFromArray [
-                "name", _customizationName,
-                "item", _customizationItem,
-                "value", _customizationValue,
-                "cost", _customizationCost,
-                "magazines", _customizationMagazines,
-                "attachments", _customizationAttachments
+                ["name", _customizationName],
+                ["item", _customizationItem],
+                ["level", _customizationLevel],
+                ["cost", _customizationCost],
+                ["magazines", _customizationMagazines],
+                ["attachments", _customizationAttachments]
             ];
 
             _customization set [_customizationClass, _customizationHashMap];
