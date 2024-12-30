@@ -244,7 +244,7 @@ call WL2_fnc_targetResetHandle;
 		} forEach _vehicles;
 
 		_vehicles = _vehicles select {
-			alive _x
+			alive _x && _x getVariable ["BIS_WL_ownerAsset", "123"] == getPlayerUID player
 		};
 		missionNamespace setVariable [_ownedVehicleVar, _vehicles, [2, clientOwner]];
 		sleep 10;
