@@ -28,6 +28,10 @@ class CfgRemoteExec {
 			allowedTargets = 1;
 		};
 
+		class WL2_fnc_repairAction {
+			allowedTargets = 1;
+		};
+
 		class WL2_fnc_handleClientRequest {
 			allowedTargets = 2;
 		};

@@ -13,7 +13,7 @@ _index = _asset addAction [
 	true,
 	false,
 	"",
-	"alive _target && {getPlayerUID _this == (_target getVariable ['BIS_WL_ownerAsset', '123']) && {vehicle _this == _this}}",
+	"alive _target && getPlayerUID _this == (_target getVariable ['BIS_WL_ownerAsset', '123']) && vehicle _this == _this && cursorObject == _target",
 	WL_MAINTENANCE_RADIUS,
 	false
 ];

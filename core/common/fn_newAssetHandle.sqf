@@ -207,7 +207,7 @@ if (_asset isKindOf "Man") then {
 		};
 	};
 
-	_asset spawn WL2_fnc_repairAction;
+	[_asset] remoteExec ["WL2_fnc_repairAction", 0, true];
 
 	if (getNumber (configFile >> "CfgVehicles" >> typeOf _asset >> "transportAmmo") > 0) then {
 		[_asset, 0] remoteExec ["setAmmoCargo", 0];

@@ -15,7 +15,7 @@ private _lockActionId = _asset addAction [
 	true,
 	false,
 	"",
-	"alive _target && {getPlayerUID _this == (_target getVariable ['BIS_WL_ownerAsset', '123'])}",
+	"alive _target && getPlayerUID _this == (_target getVariable ['BIS_WL_ownerAsset', '123']) && cursorObject == _target",
 	50,
 	true
 ];
