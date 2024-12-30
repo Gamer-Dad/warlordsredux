@@ -12,6 +12,22 @@ class CfgRemoteExec {
 			allowedTargets = 2;
 		};
 
+		class WL2_fnc_claimAction {
+			allowedTargets = 1;
+		};
+
+		class WL2_fnc_vehicleLockAction {
+			allowedTargets = 1;
+		};
+
+		class WL2_fnc_removeAction {
+			allowedTargets = 1;
+		};
+
+		class WL2_fnc_rearmAction {
+			allowedTargets = 1;
+		};
+
 		class WL2_fnc_handleClientRequest {
 			allowedTargets = 2;
 		};

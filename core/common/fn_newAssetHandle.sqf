@@ -43,7 +43,7 @@ if (_asset isKindOf "Man") then {
 
 	[_asset] call APS_fnc_registerVehicle;
 	_asset call APS_fnc_setupProjectiles;
-	_asset setVariable ["BIS_WL_nextRepair", 0];
+	_asset setVariable ["BIS_WL_nextRepair", 0, true];
 	_asset setVariable ["BIS_WL_ownerAssetSide", _side, true];
 	_asset setVariable ["WL2_massDefault", getMass _asset];
 
@@ -53,7 +53,7 @@ if (_asset isKindOf "Man") then {
 	missionNamespace setVariable [_var, _vehicles, [2, clientOwner]];
 	0 remoteExec ["WL2_fnc_updateVehicleList", 2];
 
-	_asset spawn WL2_fnc_rearmAction;
+	[_asset] remoteExec ["WL2_fnc_rearmAction", 0, true];
 
 	switch (typeOf _asset) do {
 		// Dazzlers
@@ -194,7 +194,7 @@ if (_asset isKindOf "Man") then {
 		["B_Slingload_01_Medevac_F", true]
 	];
 	if !(_notLockableVehicles getOrDefault [typeOf _asset, false]) then {
-		_asset call WL2_fnc_vehicleLockAction;
+		[_asset] remoteExec ["WL2_fnc_vehicleLockAction", 0, true];
 	};
 
 	if (profileNamespace getVariable ["MRTM_spawnEmpty", false]) then {
@@ -219,7 +219,7 @@ if (_asset isKindOf "Man") then {
 	};
 
 	private _rearmTime = (missionNamespace getVariable "WL2_rearmTimers") getOrDefault [(typeOf _asset), 600];
-	_asset setVariable ["BIS_WL_nextRearm", serverTime + _rearmTime];
+	_asset setVariable ["BIS_WL_nextRearm", serverTime + _rearmTime, true];
 
 	if (_asset call DIS_fnc_check) then {
 		_asset spawn DIS_fnc_registerLauncher;
@@ -338,7 +338,7 @@ if (_asset isKindOf "Man") then {
 		_asset animateSource ["hide_rail", 0];
 	};
 
-	_asset spawn WL2_fnc_claimAction;
+	[_asset] remoteExec ["WL2_fnc_claimAction", 0, true];
 };
 
-_asset spawn WL2_fnc_removeAction;
+[_asset] remoteExec ["WL2_fnc_removeAction", 0, true];

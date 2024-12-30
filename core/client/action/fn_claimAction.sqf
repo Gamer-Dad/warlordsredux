@@ -7,7 +7,7 @@ private _claimActionID = _asset addAction [
         _this params ["_asset", "_caller", "_actionId"];
 
 		private _displayName = [_asset] call WL2_fnc_getAssetTypeName;
-		systemChat _displayName;
+		systemChat format ["%1 has been claimed.", _displayName];
 
         _asset setVariable ["BIS_WL_ownerAsset", getPlayerUID _caller, true];
         _asset setVariable ["BIS_WL_ownerAssetSide", side group _caller, true];
