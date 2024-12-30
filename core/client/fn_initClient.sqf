@@ -14,7 +14,7 @@ player setVariable ["voteLocked", false, true];
 waitUntil {
 	!(isNil "BIS_WL_playerSide")
 };
-// if (["(EU) #11", serverName] call BIS_fnc_inString) then {
+if ((call BIS_fnc_admin) == 0) then {
 	private _uid = getPlayerUID player;
 	private _switch = format ["teamBlocked_%1", _uid];
 	waitUntil {
@@ -52,7 +52,7 @@ waitUntil {
 		endMission "BlockScreen";
 		forceEnd;
 	};
-// };
+};
 
 if !(BIS_WL_playerSide in BIS_WL_competingSides) exitWith {
 	["client_init"] call BIS_fnc_endLoadingScreen;
