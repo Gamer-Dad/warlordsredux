@@ -20,12 +20,12 @@ _potBases deleteAt (_potBases find _firstBase);
 _potBases = (_potBases select {(_x distanceSqr _firstBase) > _baseDistanceMin});
 private _secondBase = selectRandom _potBases;
 
-private _presetBase = BIS_WL_allSectors select {
-	_x getVariable ["BIS_WL_name", ""] in ["Airbase", "Pyrgos Base"];
-};
+// private _presetBase = BIS_WL_allSectors select {
+// 	_x getVariable ["BIS_WL_name", ""] in ["Airbase", "Pyrgos Base"];
+// };
 
-_firstBase = _presetBase # 0;
-_secondBase = _presetBase # 1;
+// _firstBase = _presetBase # 0;
+// _secondBase = _presetBase # 1;
 
 missionNamespace setVariable ["BIS_WL_base1", _firstBase, true];
 missionNamespace setVariable ["BIS_WL_base2", _secondBase, true];
