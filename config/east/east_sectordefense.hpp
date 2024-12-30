@@ -226,6 +226,36 @@ class SectorDefense {
         };
     };
 
+    class O_static_AT_UP_F {
+        name = "Static AT Launcher (UP)";
+        description = "Static AT Launcher (UP) is an upgraded variant of the Static AT Launcher.";
+        spawn = "O_static_AT_F";
+        variant = 1;
+        cost = 600;
+        requirements[] = {};
+        offset[] = {0, 3, 0};
+        rearm = 300;
+        killReward = 200;
+        loadable[] = {0, -2.5, 0.2};
+
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            removeMagazines[] = {
+                "1Rnd_GAT_missiles"
+            };
+            removeWeapons[] = {
+                "missiles_titan"
+            };
+            addMagazines[] = {
+                "5Rnd_GAT_missiles",
+                "5Rnd_GAT_missiles"
+            };
+            addWeapons[] = {
+                "missiles_titan"
+            };
+        };
+    };
+
     class O_GMG_01_A_F {
         name = "Mk32 GMG Auto Turret";
         cost = 650;
