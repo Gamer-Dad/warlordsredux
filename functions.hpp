@@ -139,6 +139,8 @@ class CfgFunctions {
 			file = "core\client\action";
 			class arsenalSetup {};
 			class attachVehicle {};
+			class claimAction {};
+			class claimEligibility {};
 			class dazzlerAction {};
 			class demolish {};
 			class deployableAddAction {};
@@ -154,6 +156,7 @@ class CfgFunctions {
 			class radarOperate {};
 			class rearmAction {};
 			class removeAction {};
+			class repairAction {};
 			class slingAddAction {};
 			class vehicleLockAction {};
 		};

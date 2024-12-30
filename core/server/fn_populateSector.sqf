@@ -1,8 +1,8 @@
 #include "..\warlords_constants.inc"
 
 params ["_sector", "_owner"];
-
-private _units = [];
+private _startTime = serverTime;
+private _vehicleUnits = [];
 if (_owner == resistance) then {
 	_sector setVariable ["WL2_aafSpawned", true];
 	if (count (_sector getVariable ["BIS_WL_vehiclesToSpawn", []]) == 0) then {
@@ -23,11 +23,11 @@ if (_owner == resistance) then {
 				_vehicleArray params ["_vehicle", "_crew", "_group"];
 
 				_vehicle call WL2_fnc_newAssetHandle;
-				_units pushBack _vehicle;
+				_vehicleUnits pushBack _vehicle;
 
 				{
 					_x call WL2_fnc_newAssetHandle;
-					_units pushBack _x;
+					_vehicleUnits pushBack _x;
 				} forEach _crew;
 
 				[_group, 0] setWaypointPosition [position _vehicle, 100];
@@ -55,7 +55,7 @@ if (_owner == resistance) then {
 					_sam addMagazineTurret ["magazine_Missile_mim145_x4", [0]];
 				};
 				_sam call WL2_fnc_newAssetHandle;
-				_units pushBack _sam;
+				_vehicleUnits pushBack _sam;
 			};
 		};
 	} else {
@@ -66,11 +66,11 @@ if (_owner == resistance) then {
 			_vehicleArray params ["_vehicle", "_crew", "_group"];
 
 			_vehicle call WL2_fnc_newAssetHandle;
-			_units pushBack _vehicle;
+			_vehicleUnits pushBack _vehicle;
 
 			{
 				_x call WL2_fnc_newAssetHandle;
-				_units pushBack _x;
+				_vehicleUnits pushBack _x;
 			} forEach _crew;
 
 			_posVic = position _vehicle;
@@ -98,11 +98,11 @@ if (_owner == resistance) then {
 			_vehicleArray params ["_vehicle", "_crew", "_group"];
 
 			_vehicle call WL2_fnc_newAssetHandle;
-			_units pushBack _vehicle;
+			_vehicleUnits pushBack _vehicle;
 
 			{
 				_x call WL2_fnc_newAssetHandle;
-				_units pushBack _x;
+				_vehicleUnits pushBack _x;
 			} forEach _crew;
 
 			[_group, 0] setWaypointPosition [position _vehicle, 300];
@@ -122,14 +122,15 @@ if (_owner == resistance) then {
 		};
 	};
 };
-[_units, _sector] spawn WL2_fnc_assetRelevanceCheck;
+[_vehicleUnits, _sector] spawn WL2_fnc_assetRelevanceCheck;
 
 private _spawnPosArr = [_sector, 0, true] call WL2_fnc_findSpawnPositions;
 if (count _spawnPosArr == 0) exitWith {};
 
 private _garrisonSize = (_sector getVariable "BIS_WL_value") * 2.3; // * x: the bigger x the more ai
 private _unitsPool = serverNamespace getVariable ["WL2_populateUnitPoolList", []];
-_units = [];
+private _infantryUnits = [];
+private _infantryGroups = [];
 _i = 0;
 while {_i < _garrisonSize} do {
 	private _pos = selectRandom _spawnPosArr;
@@ -150,15 +151,16 @@ while {_i < _garrisonSize} do {
 	//***end diag code block***
 	*/
 	private _newGrp = createGroup _owner;
+	_infantryGroups pushBack _newGrp;
 	private _grpSize = floor (10 + random 3);
 	private _cnt = (count allPlayers) max 1;
 
 	private _i2 = 0;
-	private _groupPosArr = _spawnPosArr select {(_pos distance2D _x) < 150};
+	private _groupPosArr = _spawnPosArr select {(_pos distanceSqr _x) < (150 * 150)};
 	for "_i2" from 0 to _grpSize do {
 		private _newUnit = _newGrp createUnit [selectRandom _unitsPool, selectRandom _groupPosArr, [], 0, "NONE"];
 		_newUnit call WL2_fnc_newAssetHandle;
-		_units pushBack _newUnit;
+		_infantryUnits pushBack _newUnit;
 
 		_i = _i + (((_cnt/50) max 0.6) min 2);
 		if (_i >= _garrisonSize) exitwith {};
@@ -179,4 +181,11 @@ while {_i < _garrisonSize} do {
 	sleep 0.001;
 };
 
-[_units, _sector] spawn WL2_fnc_assetRelevanceCheck;
+{
+	private _infantryUnit = _x;
+	{
+		_x reveal [_infantryUnit, 4];
+	} forEach _infantryGroups
+} forEach _infantryUnits;
+
+[_infantryUnits, _sector] spawn WL2_fnc_assetRelevanceCheck;

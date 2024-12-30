@@ -160,7 +160,7 @@ class LightVehicles {
 
     class B_LSV_01_AT_UP_F {
         name = "Prowler (AT UP)";
-        description = "Prowler (AT UP) is a variant of the Prowler armed with a 5-mag Titan AT launcher.";
+        description = "Prowler (AT UP) is a variant of the Prowler AT.";
         spawn = "B_LSV_01_AT_F";
         variant = 1;
         cost = 1100;

@@ -1,3 +1,7 @@
+#include "constants.inc"
+
+if (!WLC_ENABLED) exitWith {};
+
 private _side = BIS_WL_playerSide;
 
 private _data = createHashMap;

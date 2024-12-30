@@ -1,7 +1,7 @@
 #include "..\..\core\warlords_constants.inc"
 #include "..\..\core\server_macros.inc"
 
-#define WLC_VERSION 1
+#define WLC_ENABLED false
 
 #define WLC_DISPLAY 12000
 

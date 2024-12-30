@@ -1,5 +1,8 @@
+#include "constants.inc"
+
 params ["_uid", "_score"];
 
+if (!WLC_ENABLED) exitWith {};
 if !(isServer) exitWith {};
 
 private _previousScore = WLC_Scores getOrDefault [_uid, 0];

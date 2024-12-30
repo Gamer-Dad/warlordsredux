@@ -2,6 +2,8 @@
 
 params ["_flag"];
 
+if (!WLC_ENABLED) exitWith {};
+
 private _index = _flag addAction [
 	"Customize Player",
 	{

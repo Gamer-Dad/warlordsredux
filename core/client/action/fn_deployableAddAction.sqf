@@ -5,6 +5,14 @@ private _deployActionId = _asset addAction [
 	{
 		_this params ["_asset", "_caller", "_deployActionId"];
 
+        private _timeSinceLastLoad = serverTime - (_asset getVariable ["WL2_lastLoadedTime", 0]);
+        private _timeRemaining = 10 - _timeSinceLastLoad;
+        if (_timeRemaining > 0) exitWith {
+            systemChat format ["Please wait %1 seconds to load/unload again. (This prevents despawning.)", round _timeRemaining];
+            playSound "AddItemFailed";
+        };
+        _asset setVariable ["WL2_lastLoadedTime", serverTime];
+
         private _speed = abs (speed _asset);
         if (_speed > 5) exitWith {
             systemChat "Cannot load/unload deployable while moving!";
@@ -23,15 +31,16 @@ private _deployActionId = _asset addAction [
                     _asset setVehicleCargo _assetToLoad;
                     private _offset = _asset getRelPos _assetToLoad;
                     objNull setVehicleCargo _assetToLoad;
-                    _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
+                    _assetToLoad attachTo [_asset, _offset];
                 } else {
                     private _offset = _eligibilityQuery # 2;
-                    _assetToLoad attachTo [_asset, _offset, "proxy:\a3\data_f\proxies\truck_01\cargo.001"];
+                    _assetToLoad attachTo [_asset, _offset];
                 };
 
                 [_asset, _assetToLoad, true] call WL2_fnc_attachVehicle;
             };
         } else {
+            _asset setVariable ["WL2_loadingAsset", true];
             private _desiredPosRelative = [8, 0, 0];
             private _desiredPosRelativeHigh = [0, 0, 1] vectorAdd _desiredPosRelative;
             private _desiredPosWorld = _asset modelToWorld _desiredPosRelative;
