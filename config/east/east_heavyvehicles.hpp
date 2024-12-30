@@ -157,7 +157,7 @@ class HeavyVehicles {
                 "cannon_125mm"
             };
             addMagazines[] = {
-                "20Rnd_105mm_HEAT_MP_T_Red"
+                "40Rnd_105mm_APFSDS"
             };
             addWeapons[] = {
                 "cannon_105mm_VTOL_01"
