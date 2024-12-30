@@ -135,6 +135,36 @@ class HeavyVehicles {
     //     };
     // };
 
+    class O_MBT_02_cannon_export_F {
+        cost = 6000;
+        name = "T-100E Badger";
+        description = "T-100E Badger is a downgraded export variant of the T-100 Varsuk.";
+        spawn = "O_MBT_02_cannon_F";
+        requirements[] = {};
+        rearm = 600;
+        killReward = 500;
+        capValue = 4;
+        aps = 3;
+
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            removeMagazines[] = {
+                "16Rnd_125mm_APFSDS_T_Green",
+                "12Rnd_125mm_HE_T_Green",
+                "12Rnd_125mm_HEAT_T_Green"
+            };
+            removeWeapons[] = {
+                "cannon_125mm"
+            };
+            addMagazines[] = {
+                "20Rnd_105mm_HEAT_MP_T_Red"
+            };
+            addWeapons[] = {
+                "cannon_105mm_VTOL_01"
+            };
+        };
+    };
+
     class O_MBT_02_cannon_F {
         cost = 7500;
         requirements[] = {};
