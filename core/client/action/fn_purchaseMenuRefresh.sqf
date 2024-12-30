@@ -36,9 +36,6 @@ for "_i" from 0 to ((lbSize _purchase_items) - 1) do {
 	_details set [7, _category];
 	_availability = _details call WL2_fnc_purchaseMenuAssetAvailability;
 
-	// private _spawnClass = missionNamespace getVariable ["WL2_spawnClass", createHashMap] getOrDefault [_className, _className];
-	// private _spawnClassTeam = missionNamespace getVariable ["WL2_teams", createHashMap] getOrDefault [_spawnClass, "UNKNOWN"];
-	// private _variant = _spawnClass != _className && _spawnClassTeam == (str BIS_WL_playerSide);
 	private _variant = missionNamespace getVariable ["WL2_variant", createHashMap] getOrDefault [_className, 0];
 	if !(_availability # 0) then {
 		private _color = if (_variant != 0) then {

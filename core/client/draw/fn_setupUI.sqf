@@ -227,6 +227,10 @@ if (_displayClass == "OSD") then {
 		_purchase_frame_bottomleft ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BL_ca.paa";
 		_purchase_frame_bottomright ctrlSetText "A3\ui_f\data\GUI\Rsc\RscMiniMapSmall\GPS_BR_ca.paa";
 
+		private _listBoxTextHeight = (0.03 call WL2_fnc_purchaseMenuGetUIScale) min 0.05;
+		_purchase_category ctrlSetFontHeight _listBoxTextHeight;
+		_purchase_items ctrlSetFontHeight _listBoxTextHeight;
+
 		{_x ctrlSetFade 1; _x ctrlEnable false; _x ctrlCommit 0} forEach [
 			_purchase_transfer_background,
 			_purchase_transfer_units,

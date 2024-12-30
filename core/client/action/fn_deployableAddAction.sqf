@@ -5,6 +5,12 @@ private _deployActionId = _asset addAction [
 	{
 		_this params ["_asset", "_caller", "_deployActionId"];
 
+        private _speed = abs (speed _asset);
+        if (_speed > 5) exitWith {
+            systemChat "Cannot load/unload deployable while moving!";
+            playSound "AddItemFailed";
+        };
+
         private _timeSinceLastLoad = serverTime - (_asset getVariable ["WL2_lastLoadedTime", 0]);
         private _timeRemaining = 10 - _timeSinceLastLoad;
         if (_timeRemaining > 0) exitWith {
@@ -12,12 +18,6 @@ private _deployActionId = _asset addAction [
             playSound "AddItemFailed";
         };
         _asset setVariable ["WL2_lastLoadedTime", serverTime];
-
-        private _speed = abs (speed _asset);
-        if (_speed > 5) exitWith {
-            systemChat "Cannot load/unload deployable while moving!";
-            playSound "AddItemFailed";
-        };
 
         private _assetLoadedItem = _asset getVariable ["WL2_loadedItem", objNull];
         if (isNull _assetLoadedItem) then {

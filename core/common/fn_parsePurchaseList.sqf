@@ -172,7 +172,8 @@ private _savedLoadoutHandled = FALSE;
 
 				if (_category in ["LightVehicles", "HeavyVehicles", "RotaryWing", "FixedWing", "RemoteControl", "AirDefense", "SectorDefense", "Naval"]) then {
 					private _vehicleWeapons = [_className, _actualClassName] call WL2_fnc_getVehicleWeapons;
-					_text = _text + "<br/><t color='#ffffff' shadow='0' size='1.2'>Armament</t><br/>" + _vehicleWeapons;
+					private _scale = 1 call WL2_fnc_purchaseMenuGetUIScale;
+					_text = _text + format ["<br/><t color='#ffffff' shadow='0' size='%1'>Armament</t><br/>%2", _scale, _vehicleWeapons];
 				};
 
 				if (_text == "") then {_text = " "};

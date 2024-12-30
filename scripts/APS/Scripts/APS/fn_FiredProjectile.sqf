@@ -35,11 +35,12 @@ while {_continue && alive _projectile} do {
 		_x != _unit &&
 		[_x] call APS_fnc_active;
 	};
+
 	_eligibleNearbyVehicles = _eligibleNearbyVehicles select {
 		private _ownerSide = _x getVariable ["BIS_WL_ownerAssetSide", sideUnknown];
 		private _isFriendly = _unitSide == _ownerSide;
 		if (_isFriendly) then {	// if friendly, disable insurance measures
-			(_x distanceSqr _firedPosition) > _minDistSqr;
+			(_projectile distanceSqr _x) < _maxDistSqr;
 		} else {
 			true;
 		};
