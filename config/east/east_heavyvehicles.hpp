@@ -136,7 +136,7 @@ class HeavyVehicles {
     // };
 
     class O_MBT_02_cannon_export_F {
-        cost = 6000;
+        cost = 5800;
         name = "T-100E Badger";
         description = "T-100E Badger is a downgraded export variant of the T-100 Varsuk.";
         spawn = "O_MBT_02_cannon_F";

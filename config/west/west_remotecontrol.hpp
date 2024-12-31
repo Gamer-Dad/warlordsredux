@@ -61,16 +61,6 @@ class RemoteControl {
                 "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
                 "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
                 "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
-                "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow",
                 "30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow"
             };
             addWeapons[] = {

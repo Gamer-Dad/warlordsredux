@@ -184,6 +184,11 @@ class LightVehicles {
                 "2Rnd_GAT_missiles",
                 "2Rnd_GAT_missiles",
                 "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
                 "2Rnd_GAT_missiles"
             };
             addWeapons[] = {
@@ -230,10 +235,6 @@ class LightVehicles {
                 "60Rnd_20mm_HE_shells",
                 "60Rnd_20mm_HE_shells",
                 "60Rnd_20mm_HE_shells",
-                "60Rnd_20mm_HE_shells",
-                "60Rnd_20mm_HE_shells",
-                "60Rnd_20mm_HE_shells",
-                "60Rnd_20mm_AP_shells",
                 "60Rnd_20mm_AP_shells",
                 "60Rnd_20mm_AP_shells",
                 "200Rnd_338_Mag",
