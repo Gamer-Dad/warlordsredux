@@ -30,8 +30,6 @@ class HeavyVehicles {
             };
             addMagazines[] = {
                 "250Rnd_30mm_HE_shells_Tracer_Red",
-                "250Rnd_30mm_HE_shells_Tracer_Red",
-                "250Rnd_30mm_APDS_shells_Tracer_Red",
                 "250Rnd_30mm_APDS_shells_Tracer_Red"
             };
             addWeapons[] = {

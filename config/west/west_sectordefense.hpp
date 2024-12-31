@@ -226,6 +226,45 @@ class SectorDefense {
         };
     };
 
+    class B_static_AT_UP_F {
+        name = "Static AT Launcher (UP)";
+        description = "Static AT Launcher (UP) is an upgraded variant of the Static AT Launcher.";
+        spawn = "B_static_AT_F";
+        variant = 1;
+        cost = 590;
+        requirements[] = {};
+        offset[] = {0, 3, 0};
+        rearm = 300;
+        killReward = 200;
+        loadable[] = {0, -2.5, 0.2};
+
+        class Gunner: WLTurretDefaults {
+            turret[] = { 0 };
+            reloadOverride = 6;
+            removeMagazines[] = {
+                "1Rnd_GAT_missiles"
+            };
+            removeWeapons[] = {
+                "missiles_titan_static"
+            };
+            addMagazines[] = {
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles",
+                "2Rnd_GAT_missiles"
+            };
+            addWeapons[] = {
+                "missiles_titan"
+            };
+        };
+    };
+
     class B_static_AA_UP_F {
         name = "Static AA Launcher (UP)";
         description = "Static AA Launcher (UP) is an upgraded variant of the Static AA Launcher.";
@@ -253,36 +292,6 @@ class SectorDefense {
             };
             addWeapons[] = {
                 "missiles_SAAMI"
-            };
-        };
-    };
-
-    class B_static_AT_UP_F {
-        name = "Static AT Launcher (UP)";
-        description = "Static AT Launcher (UP) is an upgraded variant of the Static AT Launcher.";
-        spawn = "B_static_AT_F";
-        variant = 1;
-        cost = 600;
-        requirements[] = {};
-        offset[] = {0, 3, 0};
-        rearm = 300;
-        killReward = 200;
-        loadable[] = {0, -2.5, 0.2};
-
-        class Gunner: WLTurretDefaults {
-            turret[] = { 0 };
-            removeMagazines[] = {
-                "1Rnd_GAT_missiles"
-            };
-            removeWeapons[] = {
-                "missiles_titan"
-            };
-            addMagazines[] = {
-                "5Rnd_GAT_missiles",
-                "5Rnd_GAT_missiles"
-            };
-            addWeapons[] = {
-                "missiles_titan"
             };
         };
     };
