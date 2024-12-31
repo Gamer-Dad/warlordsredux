@@ -16,7 +16,11 @@ private _claimActionID = _asset addAction [
         private _vehicles = missionNamespace getVariable [format ["BIS_WL_ownedVehicles_%1", getPlayerUID _caller], []];
         _vehicles pushBack _asset;
         missionNamespace setVariable [_ownedVehicleVar, _vehicles, [2, owner _caller]];
-        0 remoteExec ["WL2_fnc_updateVehicleList", 2];
+
+		0 spawn {
+			sleep 5;
+        	0 remoteExec ["WL2_fnc_updateVehicleList", 2];
+		};
 	},
 	[],
 	-98,
