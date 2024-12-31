@@ -18,7 +18,7 @@ private _claimActionID = _asset addAction [
         missionNamespace setVariable [_ownedVehicleVar, _vehicles, [2, owner _caller]];
 
 		0 spawn {
-			sleep 5;
+			sleep 10;
         	0 remoteExec ["WL2_fnc_updateVehicleList", 2];
 		};
 	},

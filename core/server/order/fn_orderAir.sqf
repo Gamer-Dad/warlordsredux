@@ -82,7 +82,7 @@ private _turretOverridesForVehicle = _turretOverrides getOrDefault [_orderedClas
 	_existingMagazines = _existingMagazines - (_pylonInfo apply {_x # 3});
 	_existingWeapons = _existingWeapons select {
 		private _intersection = (compatibleMagazines _x) arrayIntersect _existingMagazines;
-		count _intersection == 0;
+		count _intersection != 0;
 	};
 
 	{

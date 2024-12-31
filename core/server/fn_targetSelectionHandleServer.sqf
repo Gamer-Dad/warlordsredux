@@ -24,7 +24,7 @@
 					(BIS_WL_sectorsArrays # _sideIndex) # 1;
 				};
 				if (!(isNull _vote) && (_vote in _availableSectors)) then {
-					private _squadVotingPower = ["getSquadVotingPower", [getPlayerUID _x]] call SQD_fnc_server;
+					private _squadVotingPower = ["getSquadVotingPower", [getPlayerID _x]] call SQD_fnc_server;
 					private _voteCount = _squadVotingPower + (_votesByPlayers getOrDefault [_voteName, [objNull, 0]] select 1);
 					_votesByPlayers set [_voteName, [_vote, _voteCount]];
 				};
