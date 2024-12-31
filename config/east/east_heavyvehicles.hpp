@@ -140,6 +140,7 @@ class HeavyVehicles {
         name = "T-100E Badger";
         description = "T-100E Badger is a downgraded export variant of the T-100 Varsuk.";
         spawn = "O_MBT_02_cannon_F";
+        variant = 1;
         requirements[] = {};
         rearm = 600;
         killReward = 500;

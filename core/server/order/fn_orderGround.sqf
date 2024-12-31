@@ -80,6 +80,14 @@ private _turretOverridesForVehicle = _turretOverrides getOrDefault [_orderedClas
 	private _existingMagazines = _asset magazinesTurret _turret;
 	private _existingWeapons = _asset weaponsTurret _turret;
 
+	// exclude pylons
+	private _pylonInfo = getAllPylonsInfo _asset;
+	_existingMagazines = _existingMagazines - (_pylonInfo apply {_x # 3});
+	_existingWeapons = _existingWeapons select {
+		private _intersection = (compatibleMagazines _x) arrayIntersect _existingMagazines;
+		count _intersection == 0;
+	};
+
 	{
 		_asset removeMagazineTurret [_x, _turret];
 	} forEach _existingMagazines;

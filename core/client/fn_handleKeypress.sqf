@@ -8,7 +8,7 @@ if (_adminKeyPressed && !_isAdmin) exitWith {
     true;
 };
 
-if (inputAction "cycleThrownItems" > 0.01) exitWith {
+if (inputAction "cycleThrownItems" > 0.01 && vehicle player != _vehicle) exitWith {
     [vehicle player, 0, false] spawn APS_fnc_report;
     true;
 };

@@ -203,8 +203,8 @@ switch (_action) do {
         } else {
             private _sum = 0;
             {
-                private _playerId = _x;
-                private _points = WL_PlayerSquadContribution getOrDefault [_playerId, 0];
+                private _squadMemberId = _x;
+                private _points = WL_PlayerSquadContribution getOrDefault [_squadMemberId, 0];
                 _sum = _sum + (_points max 1);
             } forEach (_squad select 2);
             _sum max 1;
